@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.qurba.android.ui.place_details.view_models.InfoViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:clickable="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_grey"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:elevation="0dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_13sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/description"
+                        android:textAllCaps="true"
+                        android:textColor="#9b9ba2"
+                        android:textSize="@dimen/_8ssp"
+                        android:textStyle="bold"
+                        tools:text="Description" />
+
+                    <TextView
+                        android:id="@+id/info_description_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_13sdp"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:layout_marginEnd="@dimen/_13sdp"
+                        android:fontFamily="sans-serif-medium"
+                        android:lineSpacingExtra="2.5sp"
+                        android:text="@{viewModel.getDescription()}"
+                        android:textColor="#7e7e82"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="normal"
+                        tools:text="There are some things in life that should never be rushed, coffee being one of them That&apos;s why we only ever slow roast our coffee beans" />
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/place_hashtages_ll"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/_13sdp"-->
+<!--                        android:layout_marginTop="@dimen/_9sdp"-->
+<!--                        android:layout_marginEnd="@dimen/_13sdp"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        android:visibility="@{viewModel.isHaveHashtag() == true ? View.GONE: View.VISIBLE}" />-->
+
+                    <LinearLayout
+                        android:id="@+id/place_phones_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_13sdp"
+                        android:layout_marginTop="@dimen/_14sdp"
+                        android:layout_marginEnd="@dimen/_13sdp"
+                        android:gravity="center_vertical"
+
+                        android:orientation="horizontal"
+                        android:visibility="@{viewModel.isHavingNumber() ? View.VISIBLE: View.GONE}">
+
+                        <ImageView
+                            android:layout_width="@dimen/_11sdp"
+                            android:layout_height="@dimen/_11sdp"
+                            android:padding="@dimen/_1sdp"
+                            android:src="@drawable/ic_icon_phone"
+                            app:tint="#747474">
+
+                        </ImageView>
+
+                        <TextView
+                            android:id="@+id/info_landline_number_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_4sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:fontFamily="sans-serif-medium"
+                            android:onClick="@{viewModel.callBranch()}"
+                            android:text="@{viewModel.getPlaceLandLineNumber()}"
+                            android:textColor="#5388db"
+                            android:textSize="@dimen/_10ssp"
+                            android:textStyle="normal"
+                            android:visibility="@{viewModel.getPlaceLandLineNumber().isEmpty() ? View.GONE: View.VISIBLE}"
+                            tools:text="19051" />
+
+                        <TextView
+                            android:id="@+id/info_mobile_number_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:onClick="@{viewModel.callBranch()}"
+                            android:text="@{viewModel.getPlaceMobileNumber()}"
+                            android:textColor="#5388db"
+                            android:textSize="@dimen/_10ssp"
+                            android:textStyle="normal"
+                            android:visibility="@{viewModel.getPlaceMobileNumber().isEmpty() ? View.GONE: View.VISIBLE}"
+                            tools:text="01229277113" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/place_open_time_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_13sdp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/place_open_time_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:drawableStart="@drawable/ic_access_time_black_24dp"
+                            android:drawableEnd="@{viewModel.isHasOpeningTimes() ? (@drawable/ic_keyboard_arrow_down_red_24dp) : (null)}"
+                            android:drawablePadding="@dimen/_3sdp"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="-0.02"
+                            android:text="@{viewModel.getPlaceOpenClosed()}"
+                            android:textAllCaps="false"
+                            android:textColor="#9b9ba2"
+                            android:textSize="@dimen/_10ssp"
+                            android:textStyle="bold"
+                            tools:text="Open Now - 11:00 PM - 12:00 AM" />
+
+
+                        <com.github.chuross.library.ExpandableLayout
+                            android:id="@+id/expandableLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="@{viewModel.isHasOpeningTimes() == true ? View.VISIBLE: View.GONE}"
+                            app:exl_collapseHeight="0dp"
+                            app:exl_expanded="false">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/days_rv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:nestedScrollingEnabled="false"
+                                    android:paddingTop="@dimen/_10sdp" />
+                            </RelativeLayout>
+                        </com.github.chuross.library.ExpandableLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/info_gallery_cv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:elevation="0dp"
+                android:visibility="@{viewModel.isHaveGallery() == true ? View.GONE: View.VISIBLE}"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/info_gallery_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_13sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/gallery"
+                        android:textAllCaps="true"
+                        android:textColor="#9b9ba2"
+                        android:textSize="@dimen/_8ssp"
+                        android:textStyle="bold"
+                        tools:text="gallery" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/gallery_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/info_gallery_tv"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingStart="@dimen/_12sdp"
+                        android:paddingEnd="@dimen/_12sdp" />
+
+
+                    <TextView
+                        android:id="@+id/view_all_gallery_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/gallery_rv"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginBottom="@dimen/_15sdp"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_horizontal"
+                        android:letterSpacing="0.09"
+                        android:lineSpacingExtra="1.7sp"
+                        android:text="@string/view_all"
+                        android:textAllCaps="true"
+                        android:textColor="#e01629"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold"
+                        tools:text="View All"
+
+                        />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/hashtags_cv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_3sdp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_10sdp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/info_hashtags_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/hash_tags"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="normal" />
+
+
+                    <TextView
+                        android:id="@+id/hashtags"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/info_hashtags_tv"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/facilities_cv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:elevation="0dp"
+                android:visibility="@{viewModel.isHaveFacilities() == true ? View.GONE: View.VISIBLE}"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/info_facilities_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_13sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/facilities"
+                        android:textAllCaps="true"
+                        android:textColor="#9b9ba2"
+                        android:textSize="@dimen/_8ssp"
+                        android:textStyle="bold"
+                        tools:text="Facilities" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/facilities_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/info_facilities_tv"
+                        android:clipToPadding="false"
+                        android:paddingStart="@dimen/_13sdp" />
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:elevation="0dp"
+                android:visibility="@{viewModel.isHaveFacilities() == true ? View.GONE: View.VISIBLE}"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/info_location_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_13sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/location"
+                        android:textAllCaps="true"
+                        android:textColor="#9b9ba2"
+                        android:textSize="@dimen/_8ssp"
+                        android:textStyle="bold"
+                        tools:text="Location" />
+
+                    <TextView
+                        android:id="@+id/address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_13sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:fontFamily="sans-serif"
+                        android:lineHeight="@dimen/_13ssp"
+                        android:lineSpacingExtra="1.7sp"
+                        android:text="@{viewModel.getPlaceAddress()}"
+                        android:textColor="#626b80"
+                        android:textSize="@dimen/_10ssp"
+                        tools:text="28 Great Sutton St, Clerkenwell, London, EC1V 0DS" />
+
+                    <com.google.android.gms.maps.MapView
+                        android:id="@+id/nearby_map_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_145sdp"
+                        android:layout_marginStart="@dimen/_13sdp"
+                        android:layout_marginTop="@dimen/_9sdp"
+                        android:layout_marginEnd="@dimen/_13sdp"
+                        android:layout_marginBottom="@dimen/_15sdp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_13sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/other_branches"
+                        android:textAllCaps="true"
+                        android:textColor="#9b9ba2"
+                        android:textSize="@dimen/_8ssp"
+                        android:textStyle="bold"
+                        android:visibility="@{viewModel.isHaveOtherBranches() ? View.GONE: View.VISIBLE}"
+                        tools:text="other_branches" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/other_branches_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingStart="@dimen/_13sdp"
+                        android:paddingTop="@dimen/_16sdp"
+                        android:visibility="@{viewModel.isHaveOtherBranches()? View.GONE: View.VISIBLE}"
+                        tools:listitem="@layout/item_other_branches" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/nearby_garage_cv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:elevation="0dp"
+                android:visibility="@{viewModel.isHaveGarage() ? View.GONE: View.VISIBLE}"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_13sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/nearby_garages"
+                        android:textAllCaps="true"
+                        android:textColor="#9b9ba2"
+                        android:textSize="@dimen/_8ssp"
+                        android:textStyle="bold"
+                        tools:text="nearby_garages" />
+
+                    <LinearLayout
+                        android:id="@+id/place_garages_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_13sdp"
+                        android:layout_marginTop="@dimen/_9sdp"
+                        android:layout_marginEnd="@dimen/_13sdp"
+                        android:layout_marginBottom="@dimen/_13sdp"
+                        android:orientation="vertical" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/nearby_landmarks_cv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:elevation="0dp"
+                android:visibility="@{viewModel.isHaveLandmarks() ? View.GONE: View.VISIBLE}"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_13sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/nearby_landmarks"
+                        android:textAllCaps="true"
+                        android:textColor="#9b9ba2"
+                        android:textSize="@dimen/_8ssp"
+                        android:textStyle="bold"
+                        tools:text="nearby_garages" />
+
+                    <LinearLayout
+                        android:id="@+id/place_landmarks_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_13sdp"
+                        android:layout_marginTop="@dimen/_9sdp"
+                        android:layout_marginEnd="@dimen/_13sdp"
+                        android:layout_marginBottom="@dimen/_13sdp"
+                        android:orientation="vertical" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/info_products_Services_cv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:elevation="0dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/info_products_services_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_13sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/products_and_services"
+                        android:textAllCaps="true"
+                        android:textColor="#9b9ba2"
+                        android:textSize="@dimen/_8ssp"
+                        android:textStyle="bold"
+                        tools:text="products_and_services" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/producr_setvices_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/info_products_services_tv"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingStart="@dimen/_12sdp"
+                        android:paddingEnd="@dimen/_12sdp" />
+
+
+                    <TextView
+                        android:id="@+id/products_view_all_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/producr_setvices_rv"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginBottom="@dimen/_15sdp"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_horizontal"
+                        android:letterSpacing="0.09"
+                        android:lineSpacingExtra="1.7sp"
+                        android:text="@string/view_all"
+                        android:textAllCaps="true"
+                        android:textColor="#e01629"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold"
+                        tools:text="View All"
+
+                        />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/about_cv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:elevation="0dp"
+                android:visibility="@{viewModel.isHaveAbout() ? View.GONE: View.VISIBLE}"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="0dp"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_13sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/about"
+                        android:textAllCaps="true"
+                        android:textColor="#9b9ba2"
+                        android:textSize="@dimen/_8ssp"
+                        android:textStyle="bold"
+                        tools:text="about" />
+
+                    <TextView
+                        android:id="@+id/about"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_13sdp"
+                        android:layout_marginTop="@dimen/_7sdp"
+                        android:layout_marginEnd="@dimen/_13sdp"
+                        android:layout_marginBottom="@dimen/_15sdp"
+                        android:fontFamily="sans-serif-medium"
+                        android:lineSpacingExtra="2.5sp"
+                        android:text="@{viewModel.getAbout()}"
+                        android:textColor="#7e7e82"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="normal"
+                        tools:text="There are some things in life that should never be rushed, coffee being one of them That&apos;s why we only ever slow roast our coffee beans" />
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_15sdp" />
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:visibility="@{viewModel.isLoading() == true ? View.VISIBLE: View.GONE}" />
+
+    </RelativeLayout>
+</layout>

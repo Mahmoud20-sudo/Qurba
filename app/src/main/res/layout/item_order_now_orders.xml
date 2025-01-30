@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.qurba.android.ui.my_orders.view_models.MyOrderItemViewModel" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:background="@drawable/white_oval"
+        app:contentPadding="@dimen/_13sdp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/_3sdp">
+
+        <RelativeLayout
+            android:id="@+id/item_place_review_top_container_rl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <com.veeyaar.supergradienttextview.GradientTextView
+                android:id="@+id/item_order_status_tv"
+                android:layout_width="match_parent"
+                android:layout_toStartOf="@+id/item_order_status_lbl_tv"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif"
+                android:maxLines="1"
+                android:text="@{viewModel.getOrderFullStatus()}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13ssp"
+                android:textStyle="bold"
+                app:endColor="#db1f30"
+                app:startColor="#fa6400"
+                app:isVertical="true"/>
+
+            <ImageView
+                android:id="@+id/item_order_status_lbl_tv"
+                android:layout_width="@dimen/_39sdp"
+                android:layout_height="@dimen/_39sdp"
+                android:src="@drawable/order_food_icon"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true" />
+
+            <TextView
+                android:id="@+id/place_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_order_status_tv"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:text="@{viewModel.getName()}"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:maxEms="13"
+                tools:text="PICK’N GO - Stanley"
+                android:textColor="#6d7278"
+                android:singleLine="true"
+                android:textSize="@dimen/_11ssp" />
+
+            <TextView
+                android:id="@+id/item_order_orderr_total_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_order_status_tv"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_toStartOf="@+id/item_order_status_lbl_tv"
+                android:layout_toEndOf="@+id/place_name_tv"
+                android:text="@{viewModel.getOrderTotal()}"
+                android:textColor="#6d7278"
+                android:textSize="@dimen/_11ssp"
+                android:textStyle="normal"
+                tools:text="EGP 350.00" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

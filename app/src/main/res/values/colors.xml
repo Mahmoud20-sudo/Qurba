@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#cb1414</color>
+    <color name="colorPrimaryDark">#cb1414</color>
+    <color name="colorAccent">#cb1414</color>
+    <color name="offers_filter_selected">#fafafa</color>
+
+    <color name="categories_border">#baefefef</color>
+    <color name="unactive_order_status">#c4c4c4</color>
+    <color name="dimmed_status_color">#1d2129</color>
+
+    <color name="main_red_color">#DE1D31</color>
+    <color name="categories_red">#db1f30</color>
+    <color name="white">#FFFFFF</color>
+    <color name="search_layout_background_color">#fbfbfb</color>
+    <color name="search_field_stroke">#eeeeee</color>
+    <color name="search_hint_text_color">#0a2463</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="fifty_transparent">#50ffffff</color>
+    <color name="navigation_icon_color">#C3C4C3</color>
+    <color name="rating_green">#79bb27</color>
+    <color name="review_item_background_color">#f0f0f0</color>
+    <color name="place_name_color">#0a2463</color>
+    <color name="subcategories_grey">#626d7d</color>
+    <color name="facilities_grey">#8024253d</color>
+    <color name="black">#000000</color>
+
+    <color name="light_white">#80ececec</color>
+
+    <color name="light_grey">#dbdbdb</color>
+    <color name="background_grey">#f3f3f3</color>
+    <color name="search_hint">#c1c1c1</color>
+    <color name="phones_text_color">#007bd4</color>
+    <color name="red_stroke">#88e02020</color>
+    <color name="claim_offer_hint_bg">#fcf8f5</color>
+    <color name="claim_offer_hint_stroke">#fa6400</color>
+    <color name="claim_offer_btn_tint">#65db1f30</color>
+    <color name="fifty_transparent_black">#50000000</color>
+    <color name="facebook_blue">#475993</color>
+    <color name="login_hint_color">#6c727c</color>
+    <color name="forgot_pass_hint_color">#6d7278</color>
+    <color name="password_help_hint_color">#80000000</color>
+    <color name="delivery_color">#659e1e</color>
+    <color name="unprogress_color">#d8d8d8</color>
+    <color name="toolbar_color">#d0021b</color>
+    <color name="unactive_status">#5e5e5e</color>
+    <color name="order_color">#e02020</color>
+    <color name="lbl_ddefault_color">#6d7278</color>
+
+    <color name="default_fess_color">#46474a</color>
+
+
+
+
+
+</resources>

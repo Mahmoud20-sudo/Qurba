@@ -1,0 +1,125 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+project.ext {
+    compileSdkVersion = 28
+    buildToolsVersion = "30.0.2"
+    applicationId = "com.jaygoo.demo"
+    minSdkVersion = 16
+    targetSdkVersion = 28
+    versionCode = 7
+    versionName = "3.0.0"
+}
+buildscript {
+    ext.kotlin_version = '1.6.0'
+
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.android.tools.build:gradle:7.0.3'
+        classpath 'com.google.gms:google-services:4.3.10'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.8.0'
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url "https://maven.google.com" }
+        maven { url "https://jitpack.io" }
+        maven { url "https://dl.bintray.com/rmrspb/android-maven" }
+        maven {
+            url 'http://oss.sonatype.org/content/repositories/snapshots'
+            allowInsecureProtocol = true
+        }
+        google()
+        mavenCentral()
+        jcenter()
+    }
+}
+
+ext {
+    supportLibraryVersion = '28.0.0'
+    playServicesVersion = '11.6.2'
+    TargetSdk = 28
+    minSdk = 22
+    VERISON_CODE = 1
+    VERSION_NAME = "1.0"
+    CONSTRAINT_LAYOUT = "1.1.3"
+    PICASSO = "2.5.2"
+    GLIDE = '4.12.0'
+
+    RETROFIT_V = '2.9.0'
+    RETROFIT_LOGGER = "4.9.1"
+
+    COMPONENT_ARC = "1.1.1"
+    RETROFIT_RX_JAVA_VERSION = "2.9.0"
+
+    RX_ANDROID_VERSION = "1.2.1"
+    RX_JAVA = "1.3.5"
+
+    DIMENSIONS_V = '1.0.6'
+    CIRCLE_IMAGE_VIEW = "2.1.0"
+
+    DAIMAJIA_EASING = "2.0@aar"
+    DAIMAJIA_ANIMATION = "2.3"
+
+    CIRCULAR_PROGRESS = "1.2.1"
+    EDIT_SPINNER = "1.0.0"
+    BUBBLE_SEEKBAR = "3.16-lite"
+    MP_CHARTS = "v3.1.0-alpha"
+
+    JODA_TIME = "2.10.3"
+
+    HAWK = "2.0.1"
+    PLAY_SERVICES = "18.0.0"
+    PLAY_SERVICES_X = "18.0.0"
+    BUBBLE_VIEW = "1.2.0"
+    MAP_ROUTE = "1.1.0"
+    CIRCULAR_IMAGE_VIEW = "3.0.0"
+    EDIT_SPINNER = "1.0.0"
+    IMAGE_PICKER = "1.3.3"
+
+    GOOGLE_PLACES = "2.5.0"
+
+    BOTTOM_NAVIGATION = "1.2.0"
+
+    KOTLIN_JETBRAINS = '1.5.0'
+
+    EDIT_SPINNER = "1.0.0"
+
+    LABEL_VIEW = "v1.1.2"
+    RATING_BAR = "0.1.5"
+    CIRCLE_IMAGE_VIEW = '3.0.1'
+    FLOAING_BUTTON = "3.2.0"
+
+    ROUNDED_PROGRESS_BAR = "1.0.1"
+
+    EXPANDABLE_TEXTVIEW = "2.1.0"
+
+    IMAGE_SLIDER = "1.1.5"
+    NINO_ANIM = "2.4.0"
+    EXPANDABLE_RECYCLER_VIEW = "1.3"
+    ROUNDED_CORNER_IMAGE = "2.3.0"
+
+    MULTILINE_COLLAPSING_TOOLBAR = "27.1.1"
+
+    PIN_VIEW = "1.4.3"
+
+    BOTTOM_SHEET = "2.0.0"
+
+    COUNTRY_CODES = "2.4.1"
+    FACEBOOK = "8.1.0"
+    EXPANDABLE_LAYOUT = "1.0.5"
+    FIREBASE_CORE = "20.0.0"
+    CRASHLYTICS = "2.10.1"
+
+    facebookAppId = ""
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -1,0 +1,50 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#111111"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/white"
+            android:backgroundTint="#1c1c1c"
+            android:elevation="@dimen/_10sdp"
+            android:theme="@style/AddReviewBarStyle"
+            app:layout_collapseMode="pin"
+            app:navigationIcon="@drawable/ic_back"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+                android:id="@+id/toolbar_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="5sp"
+                android:text="@string/gallery"
+                android:textColor="#ffffff"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="normal"
+                tools:text="1/3"
+
+                />
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.daimajia.slider.library.SliderLayout
+        android:id="@+id/slider"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_height="@dimen/_169sdp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        app:auto_cycle="false" />
+
+</RelativeLayout>

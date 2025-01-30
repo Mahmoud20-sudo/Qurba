@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:fancy="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="position"
+                type="Integer" />
+
+        <variable
+                name="viewModel"
+                type="com.qurba.android.ui.offers.view_models.OfferItemViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="android.view.Gravity" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="0dp"
+            android:onClick="@{viewModel.opendOffersDetailsActivity(position)}"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="0dp">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/_4sdp">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/offer_image_iv"
+                    android:layout_width="@dimen/_90sdp"
+                    android:layout_height="@dimen/_91sdp"
+                    android:layout_marginStart="@dimen/_11sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:alpha="@{viewModel.isReadyToOrder() == true ? 1.0f : 0.5f}"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/offer_details_place_holder"
+                    app:riv_corner_radius="@dimen/_6sdp" />
+
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/sponsored_offer_tv"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_below="@+id/offer_image_iv"-->
+            <!--                android:layout_marginStart="@dimen/_15sdp"-->
+            <!--                android:layout_marginEnd="@dimen/_7sdp"-->
+            <!--                android:fontFamily="sans-serif-medium"-->
+            <!--                android:gravity="start|center_vertical"-->
+            <!--                android:letterSpacing="-0.02"-->
+            <!--                android:maxLines="2"-->
+            <!--                android:text="@string/sponsored"-->
+            <!--                android:textAllCaps="true"-->
+            <!--                android:textSize="@dimen/_10ssp"-->
+            <!--                android:textStyle="normal"-->
+            <!--                android:visibility="@{viewModel.isSponsored() == true ? View.VISIBLE: View.GONE}"-->
+            <!--                tools:text="SPONSORED" />-->
+
+            <LinearLayout
+                    android:id="@+id/middle_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_toEndOf="@+id/offer_image_iv"
+                    android:orientation="horizontal">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingStart="@dimen/_11sdp">
+
+                    <com.veeyaar.supergradienttextview.GradientTextView
+                            android:id="@+id/offer_discount_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif-medium"
+                            android:letterSpacing="-0.02"
+                            android:lineSpacingExtra="6sp"
+                            android:text="@{viewModel.getDiscount()}"
+                            android:textAllCaps="true"
+                            android:textColor="#46474a"
+                            android:textSize="@dimen/_10ssp"
+                            android:textStyle="bold"
+                            app:endColor="#db1f30"
+                            app:isVertical="true"
+                            app:startColor="#fa6400"
+                            tools:text="50% Discount" />
+
+                    <TextView
+                            android:id="@+id/offer_title_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:ellipsize="end"
+                            android:fontFamily="sans-serif"
+                            android:gravity="start|center_vertical"
+                            android:maxLines="2"
+                            android:text="@{viewModel.getTitle()}"
+                            android:textColor="#1d2129"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="bold"
+                            tools:text="Buy One and get one for " />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:ellipsize="end"
+                            android:fontFamily="sans-serif"
+                            android:gravity="start|center_vertical"
+                            android:letterSpacing="0.01"
+                            android:lineSpacingExtra="4.2sp"
+                            android:maxLines="1"
+                            android:text="@{viewModel.getPlaceAndBranchName()}"
+                            android:textColor="#646464"
+                            android:textSize="@dimen/_10ssp"
+                            android:textStyle="bold"
+                            tools:text="test" />
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal">
+
+                        <com.veeyaar.supergradienttextview.GradientTextView
+                                android:id="@+id/offer_details_ended_on_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:letterSpacing="-0.02"
+                                android:lineSpacingExtra="6sp"
+                                android:text="@{viewModel.getEndDate()}"
+                                android:textColor="#46474a"
+                                android:textSize="@dimen/_10ssp"
+                                android:textStyle="normal"
+                                android:visibility="@{viewModel.isHaveEndDate() ? View.VISIBLE: View.INVISIBLE}"
+                                app:endColor="#db1f30"
+                                app:isVertical="true"
+                                android:paddingEnd="@dimen/_22sdp"
+                                app:startColor="#fa6400"
+                                tools:text="Valid till 30 Apr 2020" />
+
+                        <TextView
+                                android:id="@+id/starting_at_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_3sdp"
+                                android:fontFamily="sans-serif-medium"
+                                android:letterSpacing="0"
+                                android:text="@string/starting_at"
+                                android:textColor="#73787d"
+                                android:textSize="@dimen/_10ssp"
+                                android:textStyle="normal"
+                                android:visibility="@{viewModel.isVariablePrice() || viewModel.isDiscountOnMenu()  ? View.GONE: View.VISIBLE}"
+                                tools:text="300 EGP" />
+
+                        <TextView
+                                android:id="@+id/offer_old_price_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_marginStart="@dimen/_3sdp"
+                                android:fontFamily="sans-serif-medium"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:text="@{viewModel.getOfferOldPrice()}"
+                                android:textColor="#73787d"
+                                android:textSize="@dimen/_11ssp"
+                                android:textStyle="normal"
+                                android:visibility="@{viewModel.getOfferOldPrice().isEmpty() || !viewModel.isVariablePrice() ? View.GONE: View.VISIBLE}"
+                                tools:text="300 EGP" />
+
+                    </LinearLayout>
+
+                    <TextView
+                            android:id="@+id/order_btn"
+                            android:layout_width="88dp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:layout_gravity="end"
+                            android:layout_marginBottom="@dimen/_5sdp"
+                            android:alpha="@{viewModel.isReadyToOrder() == true ? 1.0f : 0.5f}"
+                            android:background="@drawable/bg_card"
+                            android:backgroundTint="@color/order_color"
+                            android:clickable="true"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center"
+                            android:letterSpacing="-0.05"
+                            android:lineSpacingExtra="0.8sp"
+                            android:onClick="@{viewModel.isReadyToOrder() == true ? viewModel.opendDeliveryAreaActivity() : viewModel.opendOffersDetailsActivity(position)}"
+                            android:text="@{viewModel.getOfferPrice()}"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_11ssp"
+                            android:textStyle="bold"
+                            tools:text="150 EGP"
+                            android:focusable="true" />
+
+                    <!--                        <ImageView-->
+                    <!--                            android:layout_width="@dimen/_17sdp"-->
+                    <!--                            android:layout_height="@dimen/_17sdp"-->
+                    <!--                            android:layout_marginEnd="@dimen/_16sdp"-->
+                    <!--                            android:layout_marginStart="@dimen/_10sdp"-->
+                    <!--                            android:drawablePadding="@dimen/_7sdp"-->
+                    <!--                            android:fontFamily="sans-serif"-->
+                    <!--                            android:gravity="center_vertical"-->
+                    <!--                            android:letterSpacing="-0.05"-->
+                    <!--                            android:onClick="@{viewModel.likeOffer()}"-->
+                    <!--                            android:src="@{viewModel.isFavourite ? (@drawable/ic_like_filled) : (@drawable/ic_like_outline)}" />-->
+
+                    <!--                        <ImageView-->
+                    <!--                            android:layout_width="@dimen/_17sdp"-->
+                    <!--                            android:layout_height="@dimen/_17sdp"-->
+                    <!--                            android:fontFamily="sans-serif"-->
+                    <!--                            android:gravity="center_vertical"-->
+                    <!--                            android:letterSpacing="-0.05"-->
+                    <!--                            android:onClick="@{viewModel.shareOffer()}"-->
+                    <!--                            android:src="@mipmap/ic_share_outline" />-->
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/social_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/offer_image_iv"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:orientation="horizontal"
+                    android:visibility="@{viewModel.isHaveLikesCount || viewModel.isHaveCommentsCount || viewModel.isHaveSharesCount ? View.VISIBLE : View.GONE}">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_1sdp"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:text="@{viewModel.likeCount}"
+                        android:textColor="#6d7278"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold"
+                        android:visibility="@{viewModel.isHaveLikesCount ? View.VISIBLE : View.GONE}"
+                        tools:text="10" />
+
+                <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:contentDescription="@string/like"
+                        android:src="@{viewModel.isFavourite ? (@drawable/ic_like_active_new) : (@drawable/ic_like_new)}"
+                        android:visibility="@{viewModel.isHaveLikesCount ? View.VISIBLE : View.GONE}" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:text="@{viewModel.commentsCount}"
+                        android:textColor="#6d7278"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold"
+                        android:visibility="@{viewModel.isHaveCommentsCount ? View.VISIBLE : View.GONE}"
+                        tools:text="10" />
+
+                <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:contentDescription="@string/commnt"
+                        android:src="@drawable/ic_comment_new"
+                        android:visibility="@{viewModel.isHaveCommentsCount ? View.VISIBLE : View.GONE}" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:text="@{viewModel.sharesCount}"
+                        android:textColor="#6d7278"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold"
+                        android:visibility="@{viewModel.isHaveSharesCount ? View.VISIBLE : View.GONE}"
+                        tools:text="10" />
+
+                <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:contentDescription="@string/share"
+                        android:src="@drawable/ic_share_new"
+                        android:visibility="@{viewModel.isHaveSharesCount ? View.VISIBLE : View.INVISIBLE}" />
+
+            </LinearLayout>
+
+            <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:visibility="@{(viewModel.isHaveLikesCount || viewModel.isHaveCommentsCount || viewModel.isHaveSharesCount) &amp; viewModel.getAvailability().isEmpty() ? View.VISIBLE : View.INVISIBLE}"
+                    android:layout_below="@+id/middle_ll"
+                    android:layout_height="@dimen/_12sdp"/>
+
+            <TextView
+                    android:id="@+id/availability_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/divider"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_9sdp"
+                    android:drawablePadding="@dimen/_6sdp"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center_vertical"
+                    android:letterSpacing="-0.02"
+                    android:maxLines="2"
+                    android:text="@{viewModel.getAvailability()}"
+                    android:textAllCaps="false"
+                    android:textColor="@{viewModel.isReadyToOrder() ? (@color/forgot_pass_hint_color) : (@color/dimmed_status_color)}"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="normal"
+                    android:visibility="@{!viewModel.getAvailability().isEmpty() ? View.VISIBLE : View.GONE}"
+                    tools:text="Available from Sunday to Theusday" />
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

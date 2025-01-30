@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.qurba.android.tst",
+  "variantName": "tstDebug",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 92,
+      "versionName": "2.0.3",
+      "outputFile": "app-tst-debug.apk"
+    }
+  ],
+  "elementType": "File"
+}

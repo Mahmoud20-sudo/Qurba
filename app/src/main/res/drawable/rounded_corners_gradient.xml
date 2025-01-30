@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/white" />
+
+    <gradient
+        android:angle="180"
+        android:endColor="#fa6400"
+        android:startColor="#db1f30"
+        android:type="linear" />
+
+    <corners
+        android:bottomLeftRadius="@dimen/_3sdp"
+        android:bottomRightRadius="@dimen/_3sdp"
+        android:topLeftRadius="@dimen/_3sdp"
+        android:topRightRadius="@dimen/_3sdp" />
+
+    <stroke
+        android:width="0.5dp"
+        android:color="@color/navigation_icon_color" />
+</shape>

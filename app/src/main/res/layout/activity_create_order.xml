@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:fancy="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="createOrderVM"
+                type="com.qurba.android.ui.checkout.view_models.CheckoutViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                    android:id="@+id/temp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                <com.google.android.material.appbar.AppBarLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.Toolbar
+                            android:id="@+id/anim_toolbar"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            android:background="@color/white"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            app:layout_collapseMode="pin"
+                            app:navigationIcon="@drawable/ic_back"
+                            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                            app:title="@string/checkout" />
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:orientation="horizontal">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif"
+                            android:text="@string/delivery_address"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    <TextView
+                            android:id="@+id/edit_address_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="6sp"
+                            android:text="@string/edit"
+                            android:textColor="#e02020"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                </LinearLayout>
+
+                <com.google.android.gms.maps.MapView
+                        android:id="@+id/map_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_83sdp"
+                        android:layout_margin="@dimen/_13sdp" />
+
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:layout_weight="1"
+                        android:lineSpacingExtra="5sp"
+                        android:text="@={createOrderVM.addressType}"
+                        android:textColor="#46474a"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold"
+                        tools:text="@string/home_lbl" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:fontFamily="sans-serif"
+                        android:lineSpacingExtra="6sp"
+                        android:text="@={createOrderVM.address}"
+
+                        android:textColor="#46474a"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="normal"
+                        tools:text="Alexandria, Louran \n1060 W Addison St 1060 W Addison St1060 W Addison St" />
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@drawable/grey_border"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/_5sdp">
+
+                    <ImageView
+                            android:id="@+id/driver_iv"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:src="@drawable/ic_baseline_sports_motorsports_24" />
+
+                    <TextView
+                            android:id="@+id/delivery_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_7sdp"
+                            android:layout_toEndOf="@+id/driver_iv"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="6sp"
+                            android:text="@={createOrderVM.deliveryTime}"
+                            android:textColor="#46474a"
+                            android:textSize="@dimen/_11ssp"
+                            android:textStyle="normal"
+                            tools:text="within 60 minutes" />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/driver_iv"
+                            android:layout_marginTop="-10dp"
+                            android:layout_toEndOf="@+id/driver_iv"
+                            android:alpha="0.7"
+                            android:fontFamily="sans-serif"
+                            android:text="@string/busy_hint"
+                            android:textColor="#46474a"
+                            android:textSize="@dimen/_9ssp"
+                            android:textStyle="normal"
+                            android:visibility="@{createOrderVM.isPlaceBusy() ? View.VISIBLE: View.GONE}"
+                            tools:text="@string/busy_hint" />
+
+                </RelativeLayout>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="@dimen/_12sdp"
+                        android:background="#ededed"></View>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:orientation="horizontal">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="5sp"
+                            android:text="@string/mobile_number"
+                            android:textColor="#46474a"
+                            android:textSize="@dimen/_11ssp"
+                            android:textStyle="bold" />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="6sp"
+                            android:onClick="@{createOrderVM.changeMobileNumber()}"
+                            android:text="@string/edit"
+                            android:textColor="#e02020"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:fontFamily="sans-serif"
+                        android:lineSpacingExtra="5sp"
+                        android:text="@={createOrderVM.mobileNumber}"
+                        android:textColor="#46474a"
+
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="normal"
+                        tools:text="012345678910" />
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="#ededed"></View>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/order_details"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                <TextView
+                        android:id="@+id/order_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:gravity="start"
+                        android:lineSpacingExtra="5sp"
+                        android:text="@={createOrderVM.orderName}"
+                        android:textColor="#46474a"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold"
+                        tools:text="PICK’N GO - Stanley"></TextView>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="@dimen/_15sdp"
+                        android:background="#ededed"></View>
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/order_offers_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:nestedScrollingEnabled="false"
+                        tools:listitem="@layout/item_order_offer" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/note"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:visibility="@{createOrderVM.note.length() == 0 ? View.GONE: View.VISIBLE}" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:fontFamily="sans-serif"
+                        android:lineSpacingExtra="5sp"
+                        android:text="@{createOrderVM.note}"
+                        android:textColor="#46474a"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="normal"
+                        android:visibility="@{createOrderVM.note.length() == 0 ? View.GONE: View.VISIBLE}"
+                        tools:text="بدون  بصل " />
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="#ededed"></View>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/payment_information"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_11sdp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/_15sdp"
+                        android:paddingEnd="@dimen/_15sdp">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="6sp"
+                            android:text="@string/payment_method"
+                            android:textColor="#46474a"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="normal" />
+
+                    <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="15dp"
+                            android:src="@drawable/ic_currency"></ImageView>
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:fontFamily="sans-serif"
+                            android:includeFontPadding="false"
+                            android:lineSpacingExtra="6sp"
+                            android:text="@string/cash_on_delivery"
+                            android:textColor="#46474a"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="normal" />
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_11sdp"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/_15sdp"
+                        android:paddingEnd="@dimen/_15sdp">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="6sp"
+                            android:text="@string/subtotal"
+                            android:textColor="#46474a"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="normal" />
+
+                    <TextView
+                            android:id="@+id/subtotal_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="6sp"
+                            android:text="@={createOrderVM.subtotal}"
+                            android:textColor="#46474a"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="normal"
+                            tools:text="195 LE" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_11sdp"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/_15sdp"
+                        android:paddingEnd="@dimen/_15sdp">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="6sp"
+                            android:text="@string/fees"
+                            android:textColor="#46474a"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="normal" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/delivery_fees_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="6sp"
+                            android:text="@={createOrderVM.deliveryFees}"
+                            android:textColor="#46474a"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="normal"
+                            tools:text="195 LE" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_11sdp"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/_15sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:visibility="gone">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="6sp"
+                            android:text="@string/delivery_time"
+                            android:textColor="#46474a"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="normal" />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="6sp"
+                            android:text="@={createOrderVM.deliveryTime}"
+                            android:textColor="#46474a"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="normal"
+                            tools:text="195 LE" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_11sdp"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/_15sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:visibility="@{createOrderVM.isHaveVAT() ? View.VISIBLE: View.GONE}">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="6sp"
+                            android:text="@string/vat"
+                            android:textColor="#46474a"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="normal" />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="6sp"
+                            android:text="@={createOrderVM.vat}"
+                            android:textColor="#46474a"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="normal"
+                            tools:text="195 LE" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_11sdp"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/_15sdp"
+                        android:paddingEnd="@dimen/_15sdp">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/order_total"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="bold" />
+
+                    <TextView
+                            android:id="@+id/total_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="end"
+                            android:text="@={createOrderVM.total}"
+                            android:textColor="#000000"
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="bold"
+                            tools:text="170 LE" />
+
+                </LinearLayout>
+
+                <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="#ededed"
+                        android:visibility="@{createOrderVM.isTotalSavings() == true ? View.VISIBLE: View.GONE}"></View>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_11sdp"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/_15sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:visibility="@{createOrderVM.isTotalSavings() == true ? View.VISIBLE: View.GONE}">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/total_saving_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="6sp"
+                            android:text="@string/total_savings"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="bold"/>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/total_saving_value_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="1"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:background="@drawable/gradient_oval_no_stroke"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="6sp"
+                            android:paddingStart="@dimen/_5sdp"
+                            android:paddingTop="@dimen/_1sdp"
+                            android:paddingEnd="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_1sdp"
+                            android:text="@={createOrderVM.totalSaves}"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+                        android:id="@+id/confirm_order_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_33sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_marginTop="@dimen/_21sdp"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:layout_marginBottom="@dimen/_26sdp"
+                        android:background="@drawable/red_rect"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center"
+                        android:lineSpacingExtra="1.7sp"
+                        android:onClick="@{createOrderVM.createOrderClick()}"
+                        android:text="@string/confrim_order"
+                        android:textAllCaps="true"
+                        android:textColor="#ffffff"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold"
+                        app:fb_textSize="@dimen/_11ssp"
+                        app:spinning_bar_color="#FFF"
+                        app:spinning_bar_padding="6dp"
+                        tools:text="Confirm Order"
+                        tools:textAllCaps="true" />
+            </LinearLayout>
+
+            <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:visibility="@{createOrderVM.isLoading() == true ? View.VISIBLE: View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

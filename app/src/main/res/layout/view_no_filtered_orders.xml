@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/_42sdp"
+            android:layout_marginTop="@dimen/_130sdp"
+            android:layout_height="@dimen/_42sdp"
+            android:src="@drawable/no_orders_icon">
+
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="2sp"
+            android:text="@string/no_result_found"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13ssp"
+            android:textStyle="bold"
+            tools:text="This area not supported Yet!" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_35sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_35sdp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="5.8sp"
+            android:text="@string/no_filtered_result"
+            android:textColor="#6d7278"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="normal"
+            tools:text="The delivery address selected is currently not supported. Please select another address to deliver to" />
+
+
+    </LinearLayout>
+</layout>

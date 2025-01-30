@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corners"
+        android:layout_margin="@dimen/_16sdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="@color/black"
+            android:lineSpacingExtra="2sp"
+            android:gravity="center_horizontal"
+            android:text="@string/need_account"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/sign_up"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            android:lineSpacingExtra="2sp"
+            android:gravity="center"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:text="@string/sign_up"
+            android:textAllCaps="true"
+            android:background="@drawable/red_oval_no_stroke"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_gravity="center" />
+
+        <RelativeLayout
+            android:id="@+id/facebook"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_16ssp"
+            android:background="@drawable/fb_blue_oval"
+            android:layout_marginTop="@dimen/_16sdp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12ssp"
+                android:fontFamily="sans-serif"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:text="@string/sign_up_facebook"
+                android:textAllCaps="true"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_toEndOf="@id/fb_logo" />
+
+            <ImageView
+                android:id="@+id/fb_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_facebook_icon"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_30sdp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_16ssp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"
+                android:textStyle="normal"
+                android:textColor="#000000"
+                android:layout_gravity="center_horizontal"
+                android:lineSpacingExtra="4sp"
+                android:gravity="center_horizontal"
+                android:text="@string/have_account" />
+
+            <TextView
+                android:id="@+id/login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:fontFamily="sans-serif"
+                android:textStyle="bold"
+                android:textColor="@color/main_red_color"
+                android:layout_gravity="center_horizontal"
+                android:lineSpacingExtra="4sp"
+                android:gravity="center_horizontal"
+                android:textAllCaps="true"
+                android:text="@string/login"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

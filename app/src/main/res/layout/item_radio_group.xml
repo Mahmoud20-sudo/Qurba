@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/radio_roup_ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <RadioButton
+        android:id="@+id/radio_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineHeight="16.7sp"
+        android:layout_gravity="start|center_vertical"
+        android:textColor="#de000000"
+        android:textSize="@dimen/_11sdp"
+        android:textStyle="normal"
+
+        ></RadioButton>
+
+    <CheckBox
+        android:id="@+id/checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|center_vertical"
+        android:lineHeight="16.7sp"
+        android:textColor="#de000000"
+        android:textSize="@dimen/_11sdp"
+        android:textStyle="normal"
+        android:visibility="gone"
+
+        ></CheckBox>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/_14sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textSize="@dimen/_11ssp"
+            android:textColor="#de000000"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="5sp"
+            tools:text="Potato Chips And Sprite Can "
+            />
+
+        <TextView
+            android:id="@+id/description_tv"
+            android:layout_width="match_parent"
+            android:gravity="start"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="4.2sp"
+            android:textColor="#6d7278"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="normal"
+            tools:text="super large" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/item_price_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:gravity="end"
+        android:letterSpacing="0.02"
+        android:lineSpacingExtra="6.7sp"
+        android:textColor="#6d7278"
+        android:textSize="@dimen/_10ssp"
+        android:textStyle="normal"
+        tools:text="100 EGP" />
+
+</LinearLayout>

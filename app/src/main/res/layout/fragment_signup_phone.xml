@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="signUpPhoneVM"
+                type="com.qurba.android.ui.auth.view_models.SignUpPhoneViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="android.view.Gravity" />
+
+    </data>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:layoutDirection="ltr">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/verify_status_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_29sdp"
+                    android:letterSpacing="0.01"
+                    android:lineSpacingExtra="6sp"
+                    android:text="@string/enter_number_hint"
+                    android:textColor="#6d7278"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_80sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal">
+
+
+                <com.rilixtech.widget.countrycodepicker.CountryCodePicker
+                        android:id="@+id/sign_up_phone_screen_ccp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:visibility="gone"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:gravity="center"
+                        app:ccp_arrowSize="@dimen/_16sdp"
+                        app:ccp_hideNameCode="true"
+                        app:ccp_hidePhoneCode="false"
+                        app:ccp_showFlag="true"
+                        app:ccp_showFullName="true"
+                        app:ccp_textColor="@color/black"
+                        app:ccp_textSize="@dimen/_12ssp" />
+
+                <TextView
+                        android:id="@+id/phone_number_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:fontFamily="sans-serif"
+                        android:lineSpacingExtra="3.3sp"
+                        android:text="@string/mobile_number"
+                        android:textColor="#6d7278"
+                        android:textSize="@dimen/_8ssp"
+                        android:textStyle="bold" />
+
+
+                <!--                <com.qurba.android.utils.CustomTextInputLayout-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    app:errorTextAppearance="@style/error_text_appearance">-->
+
+                <androidx.appcompat.widget.AppCompatEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_below="@+id/phone_number_tv"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:background="@drawable/address_fields_bg"
+                        android:fontFamily="sans-serif"
+                        android:gravity="start|center_vertical"
+                        android:hint="01*********"
+                        android:maxLength="11"
+                        android:inputType="phone"
+                        android:lineSpacingExtra="7.5sp"
+                        android:padding="@dimen/_10sdp"
+                        android:id="@+id/sign_up_phone_phone_edt"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        app:error="@{signUpPhoneVM.getPhoneError()}"
+                        android:text="@={signUpPhoneVM.phoneNumber}"
+                        app:errorTextAppearance="@style/error_text_appearance" />
+
+
+<!--                <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/_16sdp"-->
+<!--                        android:layout_toEndOf="@+id/sign_up_phone_screen_ccp"-->
+<!--                        android:hint="01*********"-->
+<!--                        app:error="@{signUpPhoneVM.getPhoneError()}"-->
+<!--                        app:errorTextAppearance="@style/error_text_appearance">-->
+
+<!--                    <androidx.appcompat.widget.AppCompatEditText-->
+<!--                            android:id="@+id/sign_up_phone_phone_edt"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="@dimen/_16sdp"-->
+<!--                            android:layout_marginEnd="@dimen/_16sdp"-->
+<!--                            android:digits="0123456789"-->
+<!--                            android:gravity="start"-->
+<!--                            android:inputType="number"-->
+<!--                            android:longClickable="false"-->
+<!--                            android:maxLength="11"-->
+<!--                            android:padding="@dimen/_14sdp"-->
+<!--                            android:singleLine="true"-->
+<!--                            android:text="@={signUpPhoneVM.phoneNumber}"-->
+<!--                            android:textSize="@dimen/_14ssp" />-->
+<!--                </com.google.android.material.textfield.TextInputLayout>-->
+            </RelativeLayout>
+
+            <TextView
+                    android:id="@+id/sign_up_phone_screen_forgot_password_tv"
+                    android:layout_width="@dimen/_55sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_100sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:background="@drawable/red_oval_no_stroke"
+                    android:drawableEnd="@drawable/ic_arrow_forward"
+                    android:fontFamily="sans-serif-medium"
+                    android:lineSpacingExtra="6sp"
+                    android:onClick="@{signUpPhoneVM.signUp()}"
+                    android:padding="@dimen/_10sdp"
+                    android:textStyle="normal" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_16ssp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingExtra="4sp"
+                        android:text="@string/have_account"
+                        android:textColor="#000000"
+                        android:textSize="16sp"
+                        android:textStyle="normal" />
+
+                <TextView
+                        android:id="@+id/sign_up_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_horizontal"
+                        android:lineSpacingExtra="4sp"
+                        android:onClick="@{signUpPhoneVM.openLoginActivity()}"
+                        android:text="@string/login"
+                        android:textAllCaps="true"
+                        android:textColor="@color/main_red_color"
+                        android:textSize="16sp"
+                        android:textStyle="normal" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:visibility="@{signUpPhoneVM.isLoading() == true ? View.VISIBLE: View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.qurba.android.ui.customization.view_models.CustomizOffersViewModel" />
+
+        <variable
+            name="offerVM"
+            type="com.qurba.android.ui.offers.view_models.OfferDetailsViewModel" />
+
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_grey"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/_66sdp">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/toolbar_color"
+                    android:elevation="@dimen/_10sdp"
+                    android:theme="@style/AddReviewBarStyle"
+                    app:layout_collapseMode="pin"
+                    app:navigationIcon="@drawable/ic_back"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:title="@string/customize_order"
+                    app:titleTextColor="@color/white" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/place_logo_cv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elevation="@dimen/_3sdp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardElevation="@dimen/_3sdp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/_7sdp">
+
+
+                        <ImageView
+                            android:id="@+id/offer_image_iv"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_140sdp"
+                            android:scaleType="fitXY" />
+
+                        <LinearLayout
+                            android:id="@+id/offer_type_view"
+                            android:layout_width="@dimen/_44sdp"
+                            android:layout_height="@dimen/_44sdp"
+                            android:layout_below="@+id/offer_image_iv"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="-32dp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:background="@drawable/gradient_circle"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical"
+                            android:paddingTop="13dp">
+
+                            <TextView
+                                android:id="@+id/discount_type_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:gravity="center_horizontal"
+                                android:includeFontPadding="false"
+                                android:letterSpacing="0.01"
+                                android:text="@{viewModel.getOfferValue()}"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_9ssp"
+                                android:textStyle="bold"
+                                tools:text="Free" />
+
+                            <TextView
+                                android:id="@+id/discount_value_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif"
+                                android:gravity="center_horizontal"
+                                android:includeFontPadding="false"
+                                android:letterSpacing="0.01"
+                                android:text="@{viewModel.getOfferType()}"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_9ssp"
+                                android:textStyle="bold"
+                                tools:text="Items" />
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/offer_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/offer_image_iv"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="@dimen/_13sdp"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:layout_marginEnd="@dimen/_50sdp"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="start"
+                            android:lineHeight="@dimen/_20ssp"
+                            android:lineSpacingExtra="5.8sp"
+                            android:text="@{viewModel.getTitle()}"
+                            android:textColor="#1d2129"
+                            android:textSize="@dimen/_17ssp"
+                            android:textStyle="normal"
+                            tools:text="اختار اي نوع بيتزا و احصل علي الاخري مجانا" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/offer_text"
+                            android:layout_marginStart="@dimen/_13sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_13sdp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_3sdp"
+                                android:layout_weight="1"
+                                android:fontFamily="sans-serif"
+                                android:gravity="bottom"
+                                android:includeFontPadding="false"
+                                android:text="@{viewModel.getOfferDescription()}"
+                                android:textColor="#6d7278"
+                                android:textSize="@dimen/_10ssp"
+                                android:textStyle="normal"
+                                tools:text="Choose any pizza and get one for free طدطذدطدطدطذدطذدطذدطذذدطذدطذدطذدطذد " />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_horizontal"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="sans-serif"
+                                    android:gravity="center_horizontal"
+                                    android:letterSpacing="-0.02"
+                                    android:text="@string/starting_from"
+                                    android:textColor="#747474"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="normal"
+                                    android:visibility="@{viewModel.isVariablePrice() == true ? View.GONE: View.VISIBLE}"
+                                    tools:text="@string/starting_from" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="sans-serif"
+                                    android:gravity="end"
+                                    android:letterSpacing="-0.02"
+                                    android:text="@{viewModel.getStartPrice()}"
+                                    android:textColor="#000000"
+                                    android:textSize="@dimen/_15ssp"
+                                    android:textStyle="bold"
+                                    tools:text="100 EGP" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/offer_customizes_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_weight="1"
+                    android:nestedScrollingEnabled="false"
+                    tools:listitem="@layout/item_customization" />
+
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_66sdp"
+            android:layout_alignParentBottom="true"
+            android:paddingTop="@dimen/_16sdp"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:id="@+id/add_to_cart_ll"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_33sdp"
+                android:layout_marginBottom="@dimen/_11sdp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/bg_card"
+                android:clickable="true"
+                android:gravity="center"
+                android:alpha="@{viewModel.isReady() ? 1.0f : 0.5f}"
+                app:backgroundTint="@color/main_red_color"
+                android:enabled="@{viewModel.isReady() ? true : false}"
+                android:onClick="@{viewModel.openCartScreen()}"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_to_cart"
+                    android:layout_weight="1"
+                    android:textColor="#ffffff"
+                    android:layout_marginStart="@dimen/_13sdp"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    tools:text="اضف الى السلة" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_13sdp"
+                    android:visibility="@{viewModel.isItemSelected() ? View.VISIBLE: View.GONE}"
+                    android:text="@{viewModel.getOfferPrice()}"
+                    android:textColor="#ffffff"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    tools:text="اضف الى السلة" />
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:visibility="@{offerVM.isLoading() == true ? View.VISIBLE: View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </RelativeLayout>
+</layout>

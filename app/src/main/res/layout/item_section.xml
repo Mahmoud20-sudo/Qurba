@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.qurba.android.ui.place_details.view_models.ProductSectionItemViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item_section_name_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_32sdp"
+            android:background="#f7f7f7"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/_13sdp"
+            android:text="@{viewModel.getName()}"
+            android:textColor="#222222"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"
+            tools:text="Mains" />
+
+        <com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
+            android:id="@+id/item_products_rv"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/item_section_name_tv"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_section_product" />
+
+    </RelativeLayout>
+
+
+</layout>

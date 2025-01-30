@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="hashtag_sorting_options">
+        <item>Distance</item>
+        <item>Relevance</item>
+    </string-array>
+
+    <string-array name="order_status_options">
+        <item>Received</item>
+        <item>Prepared</item>
+        <item>Delivery</item>
+
+    </string-array>
+
+    <string-array name="offer_types_options">
+        <item>@string/discount</item>
+        <item>@string/free_items</item>
+        <item>@string/discount_on_items</item>
+        <item>@string/free_delivery_hint</item>
+        <item>@string/discount_on_menu</item>
+
+    </string-array>
+
+    <string-array name="offer_availabilty_options">
+        <item>@string/can_deliver</item>
+        <item>@string/active_now</item>
+    </string-array>
+
+    <string-array name="offer_price_options">
+        <item>0</item>
+        <item>20</item>
+        <item>30</item>
+        <item>40</item>
+        <item>50</item>
+        <item>60</item>
+        <item>70</item>
+        <item>80</item>
+        <item>90</item>
+
+
+    </string-array>
+
+</resources>

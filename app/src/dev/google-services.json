@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "856244251721",
+    "firebase_url": "https://qurba-dev-googlconsole.firebaseio.com",
+    "project_id": "qurba-dev-googlconsole",
+    "storage_bucket": "qurba-dev-googlconsole.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:856244251721:android:7da9d707e82e809b246398",
+        "android_client_info": {
+          "package_name": "com.qurba.android.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "856244251721-kdsv3kk4mf6vqkukm7f0j5c08tg076p4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABHMKyUYuS7xXWqDvgFJrDrqN8q5aZOws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "856244251721-kdsv3kk4mf6vqkukm7f0j5c08tg076p4.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "856244251721-q8pcb1tacmn5li5gps2pl374dqrv1pls.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "io.qurba.ios.user.poc"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

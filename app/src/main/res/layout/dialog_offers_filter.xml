@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.qurba.android.ui.comments.view_models.CommentsViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true">
+
+        <LinearLayout
+                android:id="@+id/parent_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/comments_sheet_bg"
+                android:orientation="vertical"
+                app:behavior_hideable="true"
+                app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_17sdp"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_horizontal"
+                        android:text="@string/filter_by"
+                        android:textColor="#de000000"
+                        android:textSize="@dimen/_14ssp"
+                        android:textStyle="bold"
+                        tools:text="Filter By" />
+
+                <TextView
+                        android:id="@+id/options_title_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="sans-serif"
+                        android:gravity="start"
+                        android:maxLines="1"
+                        android:textAllCaps="false"
+                        android:textColor="#1d2129"
+                        android:textSize="@dimen/_13ssp"
+                        android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <TextView
+                    android:id="@+id/offer_type_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_19sdp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/offer_type"
+                    android:textColor="#de000000"
+                    android:textSize="@dimen/_11ssp"
+                    android:textStyle="normal"
+                    tools:text="Offer Type" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/fexLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_14sdp"
+                    app:alignContent="center"
+                    app:alignItems="center"
+                    app:flexWrap="wrap">
+
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                    android:id="@+id/offer_price_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/price"
+                    android:textColor="#de000000"
+                    android:textSize="@dimen/_11ssp"
+                    android:textStyle="normal"
+                    tools:text="Price" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/price_filters_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@color/white"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_price_filter" />
+
+            <TextView
+                    android:id="@+id/offer_availability_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/availability"
+                    android:textColor="#de000000"
+                    android:textSize="@dimen/_11ssp"
+                    android:textStyle="normal"
+                    tools:text="Availability" />
+
+
+            <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/availabilityFexLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_14sdp"
+                    android:isScrollContainer="true"
+                    app:alignContent="center"
+                    app:alignItems="center"
+                    app:flexWrap="wrap" />
+
+
+            <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:visibility="@{viewModel.isLoading() == true ? View.VISIBLE: View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                    android:id="@+id/categories_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/categories"
+                    android:textColor="#de000000"
+                    android:textSize="@dimen/_11ssp"
+                    android:textStyle="normal"
+                    android:visibility="gone"
+                    tools:text="Price" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/categoriesFexLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_14sdp"
+                    android:visibility="gone"
+                    app:alignContent="center"
+                    app:alignItems="center"
+                    app:flexWrap="wrap">
+
+
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_21sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                <TextView
+                        android:id="@+id/offer_apply_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_gravity="end"
+                        android:layout_weight="2"
+                        android:background="@drawable/white_rect_red_stroke"
+                        android:backgroundTint="@color/order_color"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center"
+                        android:text="@string/apply_filter"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="normal" />
+
+                <TextView
+                        android:id="@+id/offer_item_reset_btn"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_gravity="end"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/white_rect_red_stroke"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center"
+                        android:text="@string/reset"
+                        android:textAllCaps="true"
+                        android:textColor="@color/main_red_color"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_17sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:background="#e4e4e4" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

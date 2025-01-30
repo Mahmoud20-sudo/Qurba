@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.qurba.android.ui.order_now.view_models.OrderNowViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/toolbar_color"
+                android:elevation="@dimen/_10sdp"
+                android:theme="@style/AddReviewBarStyle"
+                android:visibility="gone"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                <ImageView
+                        android:layout_width="@dimen/_13sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:src="@drawable/ic_locations"
+                        app:tint="@color/white"></ImageView>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:fontFamily="sans-serif"
+                        android:letterSpacing="0.01"
+                        android:lineSpacingExtra="1.7sp"
+                        android:text="@string/deliver_to"
+                        android:textColor="#ffffff"
+                        android:textSize="@dimen/_9ssp"
+                        android:textStyle="normal"
+                        tools:text="Delivering to" />
+
+                <TextView
+                        android:id="@+id/delivery_area_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:fontFamily="sans-serif"
+                        android:letterSpacing="0.01"
+                        android:lineSpacingExtra="0sp"
+                        android:onClick="@{viewModel.openDeliverAreaFragment()}"
+                        android:text="@{viewModel.deliveryTitle}"
+                        android:textColor="#ffffff"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold"
+                        tools:text="Alexandria, San Stefano"></TextView>
+
+                <ImageView
+                        android:id="@+id/delivery_area_iv"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:src="@drawable/ic_arrow_drop_down"
+                        app:tint="@color/white">
+
+                </ImageView>
+
+                <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                <RelativeLayout
+                        android:id="@+id/cart_rl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:onClick="@{viewModel.openCartScreen()}"
+                        android:visibility="@{viewModel.isHaveQuantity() == true ? View.GONE: View.VISIBLE}">
+
+                    <ImageView
+                            android:id="@+id/cart_iv"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:src="@drawable/ic_shopping_cart_24"
+                            app:tint="@color/white" />
+
+                    <com.robinhood.ticker.TickerView
+                            android:id="@+id/cart_number_tv"
+                            android:layout_width="@dimen/_12sdp"
+                            android:layout_height="@dimen/_12sdp"
+                            android:layout_marginStart="-10dp"
+                            android:layout_toEndOf="@+id/cart_iv"
+                            android:background="@drawable/gradient_circle"
+                            android:backgroundTint="@color/white"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:text="@{viewModel.qty}"
+                            android:textColor="#d0021b"
+                            android:textSize="@dimen/_8ssp"
+                            app:ticker_animationDuration="100"
+                            app:ticker_defaultPreferredScrollingDirection="any"
+                            tools:text="2" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <!--        <androidx.core.widget.NestedScrollView-->
+        <!--            android:id="@+id/nestedScrollView"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:background="@color/background_grey"-->
+        <!--            android:animateLayoutChanges="true"-->
+        <!--            android:fillViewport="true">-->
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white"
+                        android:elevation="@dimen/_3sdp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="0dp"
+                        app:cardElevation="@dimen/_3sdp">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:visibility="visible">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/price_filters_rv"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:background="@color/white"
+                                android:clipToPadding="false"
+                                android:orientation="horizontal"
+                                android:paddingTop="@dimen/_5sdp"
+                                android:paddingEnd="@dimen/_10sdp"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                tools:listitem="@layout/item_price_filter" />
+
+                        <com.qurba.android.utils.CustomSearchView
+                                android:id="@+id/order_now_search_view"
+                                style="@style/MySearchViewStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_26sdp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_margin="@dimen/_10sdp"
+                                android:layout_toStartOf="@+id/filter_place_tv"
+                                android:background="@drawable/grey_border"
+                                android:focusable="false"
+                                android:focusableInTouchMode="true"
+                                android:iconifiedByDefault="false"
+                                app:closeIcon="@mipmap/close"
+                                app:defaultQueryHint="@string/search_hint"
+                                app:iconifiedByDefault="false"
+                                app:queryBackground="@android:color/transparent"
+                                app:queryHint="@string/search_hint"
+                                app:searchHintIcon="@drawable/ic_search_black_24dp"
+                                app:searchIcon="@null" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmerLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:shimmer_auto_start="true"
+                        app:shimmer_duration="1000"
+                        app:shimmer_repeat_mode="restart"
+                        app:shimmer_shape="radial">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:orientation="vertical">
+
+                        <include layout="@layout/item_offer_shimmer"></include>
+
+                        <include layout="@layout/item_offer_shimmer"></include>
+
+                        <include layout="@layout/item_offer_shimmer"></include>
+
+                        <include layout="@layout/item_offer_shimmer"></include>
+
+                        <include layout="@layout/item_offer_shimmer"></include>
+
+                        <include layout="@layout/item_offer_shimmer"></include>
+                    </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <FrameLayout
+                        android:id="@+id/empty_state_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="@{!viewModel.isDataFound() ? View.VISIBLE: View.GONE}">
+
+                    <include layout="@layout/empty_state_view" />
+                </FrameLayout>
+
+                <com.qurba.android.utils.SwipeToRefreshLayout
+                        android:id="@+id/refreshLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/order_now_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#EEEEEE"
+                            android:clipToPadding="false"
+                            android:paddingBottom="@dimen/_140sdp"
+                            app:shimmer_demo_child_count="7"
+                            app:shimmer_demo_duration="1000"
+                            app:shimmer_demo_layout="@layout/item_offer_shimmer"
+                            app:shimmer_demo_mask_width="1"
+                            app:stackFromEnd="true" />
+                </com.qurba.android.utils.SwipeToRefreshLayout>
+
+
+            </LinearLayout>
+
+        </RelativeLayout><!--        </androidx.core.widget.NestedScrollView>-->
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="@dimen/_73sdp"
+        android:background="@drawable/qty_view_bg"
+        android:weightSum="4"
+        android:layout_height="@dimen/_25sdp">
+
+        <TextView
+            android:id="@+id/minusButton"
+            android:layout_width="0dp"
+            android:layout_weight="1.2"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:textColor="#797979"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:textSize="@dimen/_19ssp"
+            android:text="-"
+            android:layout_centerVertical="true" />
+
+        <View
+            android:layout_width="0.8dp"
+            android:background="#dbdbdb"
+            android:layout_height="match_parent" />
+
+
+        <EditText
+            android:gravity="center"
+            android:text="0"
+            android:enabled="false"
+            android:background="@null"
+            android:layout_centerHorizontal="true"
+            android:layout_width="0dp"
+            android:layout_weight="1.6"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/_11ssp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#000000"
+            tools:text="2"
+            android:id="@+id/valueTextView" />
+
+        <View
+            android:layout_width="0.8dp"
+            android:background="#dbdbdb"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1.2"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:textColor="#797979"
+            android:gravity="center"
+            android:id="@+id/plusButton"
+            android:includeFontPadding="false"
+            android:textSize="@dimen/_16ssp"
+            android:text="+"
+            android:layout_centerVertical="true" />
+
+    </LinearLayout>
+</merge>
+

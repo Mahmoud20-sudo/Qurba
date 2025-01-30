@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.qurba.android.ui.my_orders.view_models.MyOrderItemViewModel" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_oval"
+        app:cardBackgroundColor="@color/white"
+        android:layout_margin="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_3sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/item_place_review_top_container_rl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/item_order_avatar_iv"
+                    android:layout_width="@dimen/_64sdp"
+                    android:scaleType="centerCrop"
+                    android:background="#d8d8d8"
+                    app:riv_corner_radius="@dimen/_10sdp"
+                    android:layout_height="@dimen/_64sdp" />
+
+                <TextView
+                    android:id="@+id/item_order_offer_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_toStartOf="@+id/item_order_status_lbl_tv"
+                    android:layout_toEndOf="@id/item_order_avatar_iv"
+                    android:text="@{viewModel.getName()}"
+                    android:textSize="@dimen/_12ssp"
+                    android:fontFamily="sans-serif"
+                    android:textColor="@color/black"
+                    tools:text="PICK’N GO - Stanley"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/item_order_status_lbl_tv"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:background="@drawable/bg_card"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="@{viewModel.getCurrentStatus()}"
+                    android:visibility="@{viewModel.isCurrentOder() == true ? View.VISIBLE: View.GONE}"
+                    android:backgroundTint="#f7a157"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="@dimen/_9ssp"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="bold"
+                    tools:text="Current"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/order_id_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/item_order_offer_name_tv"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_toEndOf="@id/item_order_avatar_iv"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/item_place_review_username_tv"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="@string/order_id_hint"
+                        android:textSize="@dimen/_11ssp"
+                        android:textColor="#4a4a4a" />
+
+                    <TextView
+                        android:id="@+id/item_order_id_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:text="@{viewModel.getID()}"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        tools:text="Q-2345"
+                        android:textSize="@dimen/_11ssp"
+                        android:textColor="@color/black"
+                        android:textStyle="normal"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/order_status_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/order_id_view"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_toEndOf="@id/item_order_avatar_iv"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/item_place_review_username_tv"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="@string/current_status"
+                        android:textSize="@dimen/_11ssp"
+                        android:textColor="#4a4a4a" />
+
+                    <TextView
+                        android:id="@+id/item_order_status_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:text="@{viewModel.getOrderStatus()}"
+                        tools:text="Pending"
+                        android:textColor="@{viewModel.getColor()}"
+                        android:textSize="@dimen/_11ssp"
+                        tools:textColor="#f7a157"
+                        android:textStyle="bold"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/order_date_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/order_status_view"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_toEndOf="@id/item_order_avatar_iv"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/item_place_review_username_tv"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="@string/ordered_on"
+                        android:textSize="@dimen/_11ssp"
+                        android:textColor="#4a4a4a" />
+
+                    <TextView
+                        android:id="@+id/item_order_orderr_on_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:text="@{viewModel.getOrderDate()}"
+                        tools:text="Today | 05:11 AM"
+                        android:textSize="@dimen/_11ssp"
+                        android:textColor="@color/black"
+                        android:textStyle="normal"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/order_date_view"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:layout_toEndOf="@id/item_order_avatar_iv"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/item_place_review_username_tv"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:text="@string/total_hint"
+                        android:textSize="@dimen/_11ssp"
+                        android:textColor="#4a4a4a" />
+
+                    <TextView
+                        android:id="@+id/item_order_orderr_total_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        tools:text="EGP 350.00"
+                        android:text="@{viewModel.getOrderTotal()}"
+                        android:textSize="@dimen/_11ssp"
+                        android:textColor="@color/black"
+                        android:textStyle="normal"
+                        />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

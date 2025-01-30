@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_trending"
+        android:icon="@drawable/ic_tabbar_trending_normal"
+        android:title="@string/trending" />
+
+    <item
+        android:id="@+id/navigation_nearby"
+        android:icon="@drawable/ic_tabbar_nearby_normal"
+        android:title="@string/nearby" />
+
+    <item
+        android:id="@+id/navigation_offers"
+        android:icon="@drawable/ic_tabbar_offers_normal"
+        android:title="@string/offers" />
+
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_tabbar_profile_normal"
+        android:title="@string/profile" />
+
+</menu>

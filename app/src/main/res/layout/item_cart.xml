@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="cartItemVM"
+            type="com.qurba.android.ui.cart.view_models.CartItemViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:weightSum="4"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_14sdp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_40sdp"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="start|center_vertical"
+                    android:lineSpacingExtra="3.3sp"
+                    android:maxLines="2"
+                    android:text="@{cartItemVM.getTitle()}"
+                    android:textColor="#0d0d0d"
+                    android:textSize="@dimen/_13ssp"
+                    android:textStyle="bold"
+                    tools:text="Combo shawerma Large " />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_10ssp"
+                    android:fontFamily="sans-serif"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:visibility="gone"
+                    android:textStyle="normal"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:id="@+id/description_tv"
+                    android:layout_marginBottom="@dimen/_3sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:ellipsize="end"
+                    android:textColor="#747474"
+                    tools:text="Combo shawerma Large " />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:gravity="center_vertical"
+                    android:visibility="gone"
+                    android:orientation="horizontal"
+                    android:weightSum="8">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/item_price"
+                        android:textColor="#4a4a4a"
+                        android:textSize="@dimen/_9ssp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:fontFamily="sans-serif-medium"
+                        android:includeFontPadding="false"
+                        android:text="@{cartItemVM.getItemPrice()}"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold"
+                        tools:text="40.00" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:fontFamily="sans-serif"
+                        android:gravity="end"
+                        android:text="@string/total"
+                        android:textColor="#4a4a4a"
+                        android:textSize="@dimen/_9ssp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:fontFamily="sans-serif-medium"
+                        android:includeFontPadding="false"
+                        android:text="@{cartItemVM.getTotalPrice()}"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold"
+                        tools:text="40.00" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_11sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="@{cartItemVM.getItemPrice()}"
+                        android:fontFamily="sans-serif-medium"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_11ssp"
+                        android:layout_marginEnd="@dimen/_20sdp"
+                        android:textColor="#000000"
+                        tools:text="EGP 175"
+                        />
+
+                    <com.qurba.android.utils.ValueSelector
+                        android:id="@+id/valueSelector"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"></com.qurba.android.utils.ValueSelector>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="@dimen/_14sdp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/cart_img"
+                    android:layout_width="match_parent"
+                    app:riv_corner_radius="@dimen/_2sdp"
+                    android:layout_height="@dimen/_39sdp"/>
+
+                <TextView
+                    android:id="@+id/offer_details_ended_on_tv"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:gravity="center"
+                    android:layout_height="@dimen/_19sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_weight="1"
+                    android:background="@drawable/gradient_oval"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/not_available"
+                    android:visibility="@{cartItemVM.isAvailable() ? View.GONE: View.VISIBLE}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_9ssp"
+                    android:textStyle="bold"
+                    tools:text="@string/not_available" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+<!--        <TextView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="@dimen/_14sdp"-->
+<!--            android:layout_marginTop="@dimen/_14sdp"-->
+<!--            android:layout_marginEnd="@dimen/_12sdp"-->
+<!--            android:fontFamily="sans-serif"-->
+<!--            android:maxLines="2"-->
+<!--            android:lineSpacingExtra="2.7sp"-->
+<!--            android:visibility="gone"-->
+<!--            android:textColor="#f7a157"-->
+<!--            android:text="@string/free_Delivery_loss"-->
+<!--            android:textSize="@dimen/_9ssp"-->
+<!--            android:textStyle="bold"-->
+<!--            tools:text="@string/free_Delivery_loss" />-->
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginStart="@dimen/_14sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_14sdp"
+            android:background="#e8e8e8" />
+
+    </LinearLayout>
+</layout>

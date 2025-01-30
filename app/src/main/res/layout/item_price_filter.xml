@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <TextView
+        android:layout_width="@dimen/_47sdp"
+        android:layout_height="@dimen/_26sdp"
+        android:textSize="@dimen/_10ssp"
+        android:id="@+id/price_tv"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="normal"
+        android:background="@drawable/price_card"
+        android:layout_marginEnd="@dimen/_3sdp"
+        android:textColor="#747474"
+        android:letterSpacing="0.02"
+        android:lineSpacingExtra="5.6sp"
+        android:gravity="center"
+        tools:text="100 EGP"
+        />
+</layout>

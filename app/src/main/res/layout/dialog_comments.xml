@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.qurba.android.ui.comments.view_models.CommentsOverlayViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/parent_rl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/comments_sheet_bg"
+        android:gravity="center"
+        app:behavior_hideable="true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <ImageView
+            android:id="@+id/options_close_iv"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="16dp"
+            android:padding="8dp"
+            android:src="@drawable/ic_grey_close_icon" />
+
+        <TextView
+            android:id="@+id/options_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="15dp"
+            android:layout_toStartOf="@+id/options_close_iv"
+            android:fontFamily="sans-serif"
+            android:gravity="start"
+            android:maxLines="1"
+            android:text="@{viewModel.overlayTitle}"
+            android:textAllCaps="false"
+            android:textColor="#1d2129"
+            android:textSize="@dimen/_13ssp"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/options_title_tv"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginBottom="10dp"
+            android:alpha="0.3"
+            android:background="#33000000" />
+
+        <LinearLayout
+            android:id="@+id/social_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/_13sdp"
+            android:paddingEnd="@dimen/_13sdp">
+
+            <ImageView
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:src="@drawable/ic_no_of_likes"
+                android:visibility="@{viewModel.likeCount.isEmpty() == false ? View.VISIBLE : View.GONE}" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_1sdp"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:text="@{viewModel.likeCount}"
+                android:textColor="#6d7278"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold"
+                android:visibility="@{viewModel.likeCount.isEmpty() == false ? View.VISIBLE : View.GONE}"
+                tools:text="10 Likes" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="@={viewModel.shareCount}"
+                android:textColor="#6d7278"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold"
+                android:visibility="@{viewModel.shareCount.isEmpty() == false ? View.VISIBLE : View.GONE}"
+                tools:text="2 comments" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider_sep"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/social_ll"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="13dp"
+            android:layout_marginBottom="@dimen/_9sdp"
+            android:alpha="0.3"
+            android:background="#33000000"
+            android:visibility="@{viewModel.likeCount.isEmpty() == false || viewModel.shareCount.isEmpty() == false ? View.VISIBLE : View.GONE}" />
+
+        <FrameLayout
+            android:id="@+id/container_fm"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/divider_sep" />
+
+    </RelativeLayout>
+</layout>

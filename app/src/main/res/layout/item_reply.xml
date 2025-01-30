@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.qurba.android.ui.comments.view_models.CommentItemViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:clickable="true"
+        android:focusable="true">
+
+        <RelativeLayout
+            android:id="@+id/parent_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?android:attr/selectableItemBackground">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/user_image_iv"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_13sdp" />
+
+            <RelativeLayout
+                android:id="@+id/reply_rv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:layout_marginEnd="@dimen/_7sdp"
+                android:layout_toEndOf="@+id/user_image_iv"
+                android:background="@drawable/comment_border"
+                android:padding="@dimen/_7sdp">
+
+                <TextView
+                    android:id="@+id/user_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
+                    android:maxLines="1"
+                    android:text="@{viewModel.getUserName()}"
+                    android:textColor="#1d2129"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold"
+                    tools:text="Hector Mariano Ali" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/user_name_tv"
+
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="4.2sp"
+                    android:text="@{viewModel.getCommentText()}"
+                    android:textColor="#6d7278"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="normal"
+                    tools:text="Pellentesque iaculis purus non tempus mollis. Morbi varius sem massa, at auctor mi" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/social_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/reply_rv"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:gravity="top"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/_53sdp">
+
+                <TextView
+                    android:id="@+id/comment_date_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@{viewModel.getDate()}"
+                    android:textColor="#6d7278"
+                    android:textSize="@dimen/_9ssp"
+                    android:textStyle="normal"
+                    tools:text="2h" />
+
+                <TextView
+                    android:id="@+id/comments_like_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/comment_date_tv"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:fontFamily="sans-serif-medium"
+                    android:onClick="@{viewModel.likeClickListener()}"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="@string/like"
+                    android:textColor="@{viewModel.isLiked == true ? @color/order_color : @color/unactive_status}"
+                    android:textSize="@dimen/_9ssp"
+                    android:textStyle="normal"
+                    tools:text="Like" />
+
+                <ImageView
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_toStartOf="@+id/like_counts_tv"
+                    android:layout_height="@dimen/_15sdp"
+                    android:src="@drawable/ic_no_of_likes"
+                    android:visibility="@{viewModel.isHaveLikesCount ? View.VISIBLE: View.GONE}" />
+
+                <TextView
+                    android:id="@+id/like_counts_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/_1sdp"
+                    android:layout_marginEnd="@dimen/_14sdp"
+                    android:fontFamily="sans-serif"
+                    android:text="@{viewModel.likeCount}"
+                    android:textColor="#6d7278"
+                    android:textSize="@dimen/_9ssp"
+                    android:textStyle="bold"
+                    android:visibility="@{viewModel.isHaveLikesCount ? View.VISIBLE: View.GONE}"
+                    tools:text="2" />
+            </RelativeLayout>
+        </RelativeLayout>
+        <!--        this section is only for cards         -->
+
+
+
+    </RelativeLayout>
+</layout>

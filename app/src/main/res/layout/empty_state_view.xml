@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:src="@drawable/ic_no_result"></ImageView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_18sdp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_horizontal"
+        android:text="@string/no_result_found"
+        android:textColor="#000000"
+        android:textSize="@dimen/_12ssp"
+        android:textStyle="bold"
+        tools:text="No Results Found!" />
+
+    <TextView
+        android:id="@+id/no_result_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:fontFamily="sans-serif"
+        android:letterSpacing="0.01"
+        android:text="@string/no_offer_found"
+        android:textColor="#646464"
+        android:textSize="@dimen/_10ssp"
+        android:textStyle="bold"
+        tools:text="No offers matching selected filters to show" />
+
+    <TextView
+        android:id="@+id/clear_filters_tv"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_28sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:background="@drawable/bg_card"
+        android:backgroundTint="@color/order_color"
+        android:clickable="true"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:letterSpacing="-0.05"
+        android:lineSpacingExtra="0.8sp"
+        android:text="@string/clear_filters"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_11ssp"
+        android:textStyle="bold"
+        tools:text="@string/clear_filters" />
+
+</LinearLayout>

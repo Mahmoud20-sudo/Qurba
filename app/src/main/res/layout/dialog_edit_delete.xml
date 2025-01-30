@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/parent_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/comments_sheet_bg"
+        android:orientation="vertical"
+        app:behavior_hideable="true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <LinearLayout
+            android:id="@+id/edit_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="23dp">
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:padding="@dimen/_2sdp"
+                android:src="@drawable/ic_baseline_edit_24"
+                app:tint="@color/order_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_9sdp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/edit"
+                android:textColor="#1d2129"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="normal"
+                tools:text="Edit " />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/options_title_tv"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="13dp"
+            android:alpha="0.3"
+            android:background="#33000000" />
+
+        <LinearLayout
+            android:id="@+id/delete_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="23dp">
+
+            <ImageView
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:padding="@dimen/_2sdp"
+                android:src="@drawable/ic_baseline_delete_24"
+                app:tint="@color/order_color" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_9sdp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/delete_hint"
+                android:textColor="#1d2129"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="normal"
+                android:textAllCaps="false"
+                tools:text="@string/delete_hint" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

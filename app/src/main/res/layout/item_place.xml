@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:fancy="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="position"
+                type="Integer" />
+
+        <variable
+                name="viewModel"
+                type="com.qurba.android.ui.places.view_models.PlaceItemViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_3sdp"
+            android:background="@color/white"
+            android:elevation="@dimen/_3sdp"
+            android:layoutDirection="locale"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="@dimen/_3sdp">
+
+        <!--        <com.facebook.shimmer.ShimmerFrameLayout-->
+        <!--            android:id="@+id/shimmer_view_container"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            app:shimmer_auto_start="true"-->
+        <!--            app:shimmer_duration="1000">-->
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layoutDirection="locale"
+                android:orientation="vertical">
+
+            <LinearLayout
+                    android:id="@+id/top_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="@dimen/_13sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_toStartOf="@+id/offer_type_view"
+                    android:clickable="true"
+                    android:onClick="@{viewModel.openPlaceDetails(position)}"
+                    android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/place_image_iv"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:src="@drawable/red_circle" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="0.01"
+                            android:maxLines="2"
+                            android:text="@{viewModel.getPlaceAndBranchName()}"
+                            android:textColor="#1d2129"
+                            android:textSize="@dimen/_13ssp"
+                            android:textStyle="bold"
+                            tools:text="Corcovado - Meroza" />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:letterSpacing="0.01"
+                            android:text="@{viewModel.getPlaceCategory()}"
+                            android:textColor="#1d2129"
+
+                            android:textSize="@dimen/_11ssp"
+                            android:textStyle="normal"
+                            tools:text="Sub category " />
+
+                </LinearLayout>
+
+                <TextView
+                        android:id="@+id/offer_date_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:layout_toEndOf="@+id/top_ll"
+                        android:fontFamily="sans-serif"
+                        android:gravity="end"
+                        android:textColor="#616770"
+                        android:textSize="@dimen/_7ssp"
+                        android:textStyle="normal"
+                        android:visibility="gone"
+                        tools:text="20 min ago" />
+
+            </LinearLayout>
+
+            <ImageView
+                    android:id="@+id/place_cover_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_148sdp"
+                    android:layout_below="@+id/top_ll"
+                    android:layout_marginTop="@dimen/_11sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:alpha="@{!viewModel.isPlaceOpen()  || !viewModel.isDeliveringToArea() || !viewModel.getAvailability().isEmpty() ? 0.5f : 1.0f}"
+                    android:onClick="@{viewModel.openPlaceDetails(position)}"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/offer_details_place_holder" />
+
+            <FrameLayout
+                    android:id="@+id/availability_fl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/place_cover_iv"
+                    android:layout_marginStart="@dimen/_13sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:visibility="@{!viewModel.getAvailability().isEmpty() ? View.VISIBLE : View.GONE}">
+
+                <TextView
+                        android:id="@+id/place_availability_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/place_details_ended_on_tv"
+                        android:layout_gravity="start|center_vertical"
+                        android:drawableStart="@drawable/ic_closed"
+                        android:drawablePadding="@dimen/_4sdp"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center_vertical"
+                        android:includeFontPadding="false"
+                        android:letterSpacing="-0.02"
+                        android:maxLines="2"
+                        android:text="@{viewModel.getAvailability()}"
+                        android:textAllCaps="false"
+                        android:textColor="#6d7278"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="bold"
+                        tools:text="Not delivering to San Stefano" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                    android:id="@+id/social_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/availability_fl"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:tag="binding_12"
+                    android:visibility="@{viewModel.isHaveLikesCount || viewModel.isHaveCommentsCount || viewModel.isHaveSharesCount ? View.VISIBLE : View.GONE}">
+
+                <ImageView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:src="@drawable/ic_no_of_likes"
+                        android:visibility="@{viewModel.isHaveLikesCount ? View.VISIBLE : View.GONE}" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_1sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:text="@{viewModel.likeCount}"
+                        android:textColor="#6d7278"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="bold"
+                        android:visibility="@{viewModel.isHaveLikesCount ? View.VISIBLE : View.INVISIBLE}"
+                        tools:text="10 Likes" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:onClick="@{viewModel.commentClick()}"
+                        android:text="@={viewModel.commentsCount}"
+                        android:textColor="#6d7278"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="bold"
+                        android:visibility="@{viewModel.isHaveCommentsCount ? View.VISIBLE : View.INVISIBLE}"
+                        tools:text="2 comments" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:fontFamily="sans-serif"
+                        android:includeFontPadding="false"
+                        android:text="@={viewModel.sharesCount}"
+                        android:textColor="#6d7278"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="bold"
+                        android:visibility="@{viewModel.isHaveSharesCount ? View.VISIBLE : View.GONE}"
+                        tools:text="2 comments" />
+            </LinearLayout>
+
+            <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/social_ll"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="#19000000"></View>
+
+            <LinearLayout
+                    android:id="@+id/social_actions_ll"
+                    android:layout_width="382dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/divider"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginBottom="@dimen/_6sdp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:onClick="@{viewModel.likePlaceClick()}">
+
+                    <ImageView
+                            android:layout_width="17dp"
+                            android:layout_height="17dp"
+                            android:src="@{viewModel.isFavourite ? (@drawable/ic_like_filled) : (@drawable/ic_like_outline)}" />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="-0.05"
+                            android:text="@string/like"
+                            android:textAllCaps="true"
+                            android:textColor="@{viewModel.isFavourite ? (@color/main_red_color) : (@color/unactive_status)}"
+                            android:textSize="@dimen/_10ssp"
+                            android:textStyle="bold"
+                            android:visibility="visible" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="@{viewModel.commentClick()}"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp">
+
+                    <ImageView
+                            android:layout_width="17dp"
+                            android:layout_height="17dp"
+                            android:src="@drawable/ic_no_of_comments" />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="-0.05"
+                            android:text="@string/commnt"
+                            android:textAllCaps="true"
+                            android:textColor="#5e5e5e"
+                            android:textSize="@dimen/_10ssp"
+                            android:textStyle="bold"
+                            android:visibility="visible"
+                            tools:text="COMMENT" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="@{viewModel.sharePlace()}">
+
+                    <ImageView
+                            android:layout_width="17dp"
+                            android:layout_height="17dp"
+                            android:src="@drawable/ic_share_new" />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="-0.05"
+                            android:text="@string/share"
+                            android:textAllCaps="true"
+                            android:textSize="@dimen/_10ssp"
+                            android:textColor="#5e5e5e"
+                            android:textStyle="bold"
+                            android:visibility="visible" />
+                </LinearLayout>
+
+
+                <!--                <TextView-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="@dimen/_25sdp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:background="@drawable/bg_card"-->
+                <!--                    android:backgroundTint="@{viewModel.isReadyToOrder() == true ? @color/order_color : @color/transparent}"-->
+                <!--                    android:drawableStart="@{viewModel.isReadyToOrder() == true ? @drawable/ic_add_to_cart : @drawable/ic_view}"-->
+                <!--                    android:drawablePadding="-14dp"-->
+                <!--                    android:fontFamily="sans-serif"-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:letterSpacing="-0.05"-->
+                <!--                    android:lineSpacingExtra="0.8sp"-->
+                <!--                    android:onClick="@{viewModel.isReadyToOrder() == true ? viewModel.opendDeliveryAreaActivity() : viewModel.opendOffersDetailsActivity(position)}"-->
+                <!--                    android:paddingStart="@dimen/_15sdp"-->
+                <!--                    android:text="@{viewModel.isReadyToOrder() == true ? @string/order_now : @string/view_details}"-->
+                <!--                    android:textAllCaps="true"-->
+                <!--                    android:textColor="@{viewModel.isReadyToOrder() == true ? @color/white : @color/unactive_status}"-->
+                <!--                    android:textSize="@dimen/_10ssp"-->
+                <!--                    android:textStyle="bold"-->
+                <!--                    tools:text="Order" />-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/comments_parent_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/social_actions_ll"
+                    android:layoutDirection="locale"
+                    android:orientation="vertical"
+                    android:visibility="@{viewModel.isHaveComments() ? View.GONE: View.VISIBLE}">>
+
+                <View
+                        android:id="@+id/sep"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginBottom="6dp"
+                        android:background="#19000000" />
+
+                <FrameLayout
+                        android:id="@+id/comments_container_fm"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/profile_avatar_iv"
+                            android:layout_width="@dimen/_25sdp"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_marginStart="14dp"
+                            android:background="@drawable/ic_profile_placeholder" />
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                        <RelativeLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1">
+
+                            <com.vanniktech.emoji.EmojiEditText
+                                    android:id="@+id/add_comment_et"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_29sdp"
+                                    android:layout_marginStart="6dp"
+                                    android:background="@drawable/grey_oval_black_stroke"
+                                    android:fontFamily="sans-serif"
+                                    android:gravity="start|center_vertical"
+                                    android:hint="@string/add_comment"
+                                    android:inputType="textMultiLine"
+                                    android:maxLength="500"
+                                    android:paddingStart="@dimen/_13sdp"
+
+                                    android:paddingEnd="@dimen/_35sdp"
+                                    android:text="@={viewModel.commentText}"
+                                    android:textColor="#6d7278"
+                                    android:textColorHint="#6d7278"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold" />
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/emjois_iv"
+                                    android:layout_width="@dimen/_16sdp"
+                                    android:layout_height="@dimen/_16sdp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="@dimen/_15sdp"
+                                    android:background="@drawable/ic_smile_icon"
+                                    android:clickable="true" />
+                        </RelativeLayout>
+
+                        <FrameLayout
+                                android:id="@+id/actions_fl"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone">
+
+                            <ImageView
+                                    android:id="@+id/comments_send_iv"
+                                    android:layout_width="@dimen/_30sdp"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="-10dp"
+                                    android:onClick="@{viewModel.addComment()}"
+                                    android:padding="@dimen/_7sdp"
+                                    android:src="@drawable/ic_baseline_send_24"
+                                    android:visibility="@{viewModel.isProgress() == true ? View.GONE: View.VISIBLE}" />
+
+                            <ProgressBar
+                                    android:id="@+id/comments_loading"
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_20sdp"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_centerVertical="true"
+
+                                    android:layout_marginStart="@dimen/_3sdp"
+                                    android:visibility="@{viewModel.isProgress() == true ? View.VISIBLE: View.GONE}" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <!--        </com.facebook.shimmer.ShimmerFrameLayout>-->
+
+    </androidx.cardview.widget.CardView>
+</layout>

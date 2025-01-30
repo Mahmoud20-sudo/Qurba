@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="otherOfferItemVM"
+            type="com.qurba.android.ui.offers.view_models.OtherOfferItemViewModel" />
+
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_190sdp"
+        android:layout_margin="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        android:background="@color/white"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="@dimen/_1sdp">
+
+        <LinearLayout
+            android:id="@+id/similar_offer_item_container_ll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/trending_item_cover_iv"
+                    android:layout_height="@dimen/_90sdp"
+                    android:layout_width="match_parent"
+                    android:scaleType="centerCrop"
+                    app:riv_border_color="@color/light_grey"
+                    app:riv_border_width="@dimen/_1sdp"
+                    app:riv_corner_radius="@dimen/_10sdp"
+                    android:src="@mipmap/offer_details_place_holder" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="bold"
+                    android:layout_centerVertical="true"
+                    android:gravity="start|center_vertical"
+                    android:text="@{otherOfferItemVM.getTitle()}"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/item_offer_favorite_iv"
+                    android:maxLines="1"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_13ssp" />
+
+                <ImageView
+                    android:id="@+id/item_offer_favorite_iv"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:src="@drawable/ic_red_heart"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/_10sdp"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_15sdp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_margin="@dimen/_5sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="sans-serif"
+                    android:textStyle="normal"
+                    android:textColor="#b9bdc5"
+                    android:layout_gravity="center_vertical"
+                    android:letterSpacing="-0.02"
+                    android:text="@{otherOfferItemVM.getFollowers()}"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:gravity="center"
+                    tools:text="150 LE"
+
+                    android:drawableStart="@drawable/ic_followers_heart"
+                    android:textSize="@dimen/_8ssp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:fontFamily="sans-serif"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@{otherOfferItemVM.getType()}"
+                    android:layout_gravity="center_vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    tools:text="150 LE"
+
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_8ssp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:fontFamily="sans-serif"
+                    android:text="@{otherOfferItemVM.getDiscount()}"
+                    android:layout_gravity="center_vertical"
+                    android:paddingStart="@dimen/_10sdp"
+                    tools:text="150 LE"
+                    android:visibility="@{otherOfferItemVM.isDiscount()== true ? View.VISIBLE: View.GONE}"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_gravity="center_vertical"
+                    android:visibility="visible"
+                    android:layout_weight="1"
+                    android:textColor="@android:color/black"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:text="@{otherOfferItemVM.getOfferPrice()}"
+                    android:gravity="end"
+                    android:textSize="14sp"
+                    android:fontFamily="sans-serif-medium"
+                    android:textStyle="normal"
+                    android:letterSpacing="-0.03"
+                    tools:text="150 LE"
+                    />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="start"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_5sdp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:src="@drawable/ic_offer_watch" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_5sdp">
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/_12ssp"
+                            android:fontFamily="sans-serif"
+                            android:textStyle="bold"
+                            android:textColor="#000000"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            android:letterSpacing="-0.05"
+                            android:text="@{otherOfferItemVM.getRemainingDays()}" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/_8ssp"
+                            android:fontFamily="sans-serif"
+                            android:textStyle="normal"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:textColor="#173143"
+                            android:letterSpacing="-0.05"
+                            android:text="@{otherOfferItemVM.getShortEndDate()}" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "77505268445",
+    "firebase_url": "https://qurba-tst-googlconsole.firebaseio.com",
+    "project_id": "qurba-tst-googlconsole",
+    "storage_bucket": "qurba-tst-googlconsole.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77505268445:android:84a24ffdf0ce85fc582934",
+        "android_client_info": {
+          "package_name": "com.qurba.android.tst"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77505268445-apo6p2d9at8u4vamuvajtog61a38p7a2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.qurba.android.tst",
+            "certificate_hash": "2e92150223403a836e417bfb871d85ab6fa9ad56"
+          }
+        },
+        {
+          "client_id": "77505268445-crgo491iaa48662epoonq7oamv36v1ug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEyNe-AybZUJDYWwLkw6x8UYzU2IJ3Vd4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77505268445-crgo491iaa48662epoonq7oamv36v1ug.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "77505268445-r5tjtjurqh2q914sf5gb7qmvmhklrsiq.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.qurba.ios.tst"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/relativeLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/anim_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/white"
+                android:elevation="@dimen/_10sdp"
+                android:theme="@style/AddReviewBarStyle"
+                app:layout_collapseMode="pin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/ic_back"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+
+        <com.qurba.android.utils.CustomViewPager
+                android:id="@+id/bannerViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/bannerView_pageIndicator"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/anim_toolbar" />
+
+        <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/bannerView_pageIndicator"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="20dp"
+                android:clipToPadding="false"
+                android:visibility="visible"
+                app:ci_drawable="@drawable/red_oval_no_stroke"
+                app:ci_drawable_unselected="@drawable/white_oval_no_stroke"
+                app:ci_height="5dp"
+                android:layout_marginBottom="@dimen/_30sdp"
+                app:ci_margin="3dp"
+                app:ci_width="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+
+        <!--        <com.github.chrisbanes.photoview.PhotoView-->
+        <!--                android:id="@+id/item_image_iv"-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_centerInParent="true" />-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

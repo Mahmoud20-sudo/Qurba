@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="placeOffersViewModel"
+                type="com.qurba.android.ui.place_details.view_models.PlaceOffersViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@color/white">
+
+        <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+                android:id="@+id/place_offers_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never"
+
+                app:shimmer_demo_child_count="1" />
+
+        <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/place_offers_rv"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:visibility="invisible" />
+
+        <TextView
+                android:id="@+id/no_offer_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:text="@string/no_offers_yet"
+                android:visibility="gone" />
+
+
+    </RelativeLayout>
+</layout>

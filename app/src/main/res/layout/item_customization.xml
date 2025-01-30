@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.qurba.android.ui.customization.view_models.CustomizeOfferItemViewModel" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.cardview.widget.CardView
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_oval"
+            android:elevation="@dimen/_1sdp"
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="@dimen/_1sdp">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/_11sdp"
+                android:paddingTop="@dimen/_11sdp"
+                android:paddingEnd="@dimen/_11sdp"
+                android:paddingBottom="@dimen/_2sdp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/group_ll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:gravity="center_vertical">
+
+                <TextView
+                        android:id="@+id/group_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="start"
+                        android:letterSpacing="0.01"
+                        android:maxLines="2"
+                        android:text="@{viewModel.getSectionGroupTitle()}"
+                        android:textColor="#de000000"
+                        android:textSize="@dimen/_13ssp"
+                        android:textStyle="normal"
+                        tools:text="Pizza Type" />
+
+                <TextView
+                        android:id="@+id/group_ll_type_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/group_name_tv"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:fontFamily="sans-serif"
+                        android:letterSpacing="0.01"
+                        android:text="@string/section_required"
+                        android:textColor="#6d7278"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="normal" />
+
+                <TextView
+                        android:id="@+id/group_status_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/group_name_tv"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_1sdp"
+                        android:layout_toEndOf="@+id/group_ll"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif"
+                        android:letterSpacing="0.01"
+                        android:text="@{viewModel.getGroupType()}"
+                        android:textColor="#6d7278"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="normal"
+                        tools:text="(Required)" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                    android:id="@+id/top_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/group_ll"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                <TextView
+                        android:id="@+id/item_custom_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="start"
+                        android:letterSpacing="0.01"
+                        android:maxLines="2"
+                        android:text="@{viewModel.getTitle()}"
+                        android:textColor="#de000000"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="normal"
+                        tools:text="Pizza Type" />
+
+                <TextView
+                        android:id="@+id/item_status_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_7sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif"
+                        android:letterSpacing="0.01"
+                        android:text="@{viewModel.getType()}"
+                        android:textColor="#6d7278"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="normal"
+                        tools:text="(Required)" />
+
+                <TextView
+                        android:id="@+id/item_custom_free_item_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:fontFamily="sans-serif"
+                        android:gravity="end"
+                        android:letterSpacing="0.01"
+                        android:text="@{viewModel.getFreeItems()}"
+                        android:textAllCaps="true"
+                        android:textColor="#d0021b"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold"
+                        tools:text="Free Item" />
+
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/item_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/top_ll"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:fontFamily="sans-serif"
+                    android:letterSpacing="0.01"
+                    android:text="@{viewModel.getDescription()}"
+                    android:textColor="#6d7278"
+                    android:textSize="@dimen/_11ssp"
+                    android:textStyle="normal"
+                    android:visibility="@{viewModel.getDescription().isEmpty() ? View.GONE: View.VISIBLE}"
+                    tools:text="Choose one type of Pizza " />
+
+
+            <RadioGroup
+                    android:id="@+id/radio_group1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/item_title_tv"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:divider="?android:attr/dividerHorizontal"
+                    android:background="@color/transparent"
+                    android:dividerPadding="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_8sdp"
+                    android:showDividers="middle"
+                    android:textAppearance="?android:attr/textAppearanceSmall"></RadioGroup>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

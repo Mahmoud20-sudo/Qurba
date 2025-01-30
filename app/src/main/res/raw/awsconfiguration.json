@@ -1,0 +1,26 @@
+{
+  "UserAgent": "MobileHub/1.0",
+  "Version": "1.0",
+  "CredentialsProvider": {
+    "CognitoIdentity": {
+      "Default": {
+        "PoolId": "eu-west-1:9af24413-5b76-43cd-a6bd-0793fae43d8c",
+        "Region": "eu-west-1"
+      }
+    }
+  },
+  "IdentityManager": {
+    "Default": {}
+  },
+  "PinpointTargeting": {
+    "Default": {
+      "Region": "eu-west-1"
+    }
+  },
+  "S3TransferUtility": {
+    "Default": {
+      "Bucket": "qurba-dev-media",
+      "Region": "eu-west-1"
+    }
+  }
+}

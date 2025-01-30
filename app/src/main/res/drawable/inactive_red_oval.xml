@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/claim_offer_btn_tint" />
+
+    <corners
+        android:bottomLeftRadius="@dimen/_300sdp"
+        android:bottomRightRadius="@dimen/_300sdp"
+        android:topLeftRadius="@dimen/_300sdp"
+        android:topRightRadius="@dimen/_300sdp" />
+</shape>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.qurba.android.ui.my_orders.view_models.MyOrderViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/anim_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:background="@color/white"
+                        android:fontFamily="sans-serif-medium"
+                        android:textStyle="normal"
+                        app:layout_collapseMode="pin"
+                        app:navigationIcon="@drawable/ic_back"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                        app:title="@string/my_order" />
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/appbar"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmerLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="@{viewModel.isLoading() == true ? View.VISIBLE: View.GONE}"
+                        app:shimmer_auto_start="true"
+                        app:shimmer_duration="1000"
+                        app:shimmer_repeat_mode="restart"
+                        app:shimmer_shape="radial">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/white"
+                            android:orientation="vertical">
+
+                        <include layout="@layout/item_my_order_shimmer"></include>
+
+                        <include layout="@layout/item_my_order_shimmer"></include>
+
+                        <include layout="@layout/item_my_order_shimmer"></include>
+
+                        <include layout="@layout/item_my_order_shimmer"></include>
+
+                        <include layout="@layout/item_my_order_shimmer"></include>
+
+                        <include layout="@layout/item_my_order_shimmer"></include>
+                    </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/orders_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:nestedScrollingEnabled="false"
+                        android:visibility="@{viewModel.isDataFound() ? View.VISIBLE: View.GONE}"
+                        tools:listitem="@layout/item_my_order" />
+
+                <ImageView
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_gravity="center"
+                        android:alpha="0.5"
+                        android:src="@drawable/ic_shopping_cart_24"
+                        android:visibility="@{viewModel.isDataFound() ? View.GONE: View.VISIBLE}"
+                        app:tint="#c9c9c9" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:text="@string/no_orders_yet"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13ssp"
+                        android:textStyle="bold"
+                        android:visibility="@{viewModel.isDataFound() ? View.GONE: View.VISIBLE}" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_24sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_24sdp"
+                        android:gravity="center_horizontal"
+                        android:text="@string/no_orders_hint"
+                        android:textColor="#4a4a4a"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="normal"
+                        android:visibility="@{viewModel.isDataFound() ? View.GONE: View.VISIBLE}"
+                        tools:text="You haven’t make any orders till now, If you make a new order later you can manage it from here   " />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

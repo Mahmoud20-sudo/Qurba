@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/arrow_imv"
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_18sdp"
+            android:layout_marginStart="@dimen/_45sdp"
+            android:elevation="2dp"
+            android:rotation="-90"
+            android:src="@drawable/ic_baseline_play_arrow_24"
+            android:tint="@color/white"
+            android:translationZ="2dp"></ImageView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="@dimen/_15sdp">
+
+            <TextView
+                android:id="@+id/not_deliver_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="6.7sp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:maxLines="3"
+                android:textColor="#000000"
+                android:textSize="@dimen/_16ssp"
+                android:textStyle="bold"
+                tools:text="Sorry, We currently do not deliver to Borg El Arab yet!" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="sans-serif"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="5.8sp"
+                android:text="@string/select_another_supported_area"
+                android:textColor="#6d7278"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="normal" />
+
+            <CheckBox
+                android:id="@+id/checkbox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-4dp"
+                android:checked="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:buttonTint="@color/main_red_color"
+                android:paddingStart="5dp"
+                android:text="@string/vote_hint"
+                android:textSize="@dimen/_11sdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_13sdp"
+                android:orientation="horizontal"
+                android:weightSum="2.5">
+
+                <TextView
+                    android:id="@+id/cancel_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="end"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:letterSpacing="-0.05"
+                    android:lineSpacingExtra="0.8sp"
+                    android:text="@string/cancel"
+                    android:textAllCaps="true"
+                    android:textColor="@color/main_red_color"
+
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    tools:text="@string/cancel" />
+
+                <TextView
+                    android:id="@+id/edit_location_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_28sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1.5"
+                    android:backgroundTint="#e02020"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
+                    android:letterSpacing="-0.05"
+                    android:lineSpacingExtra="0.8sp"
+                    android:text="@string/choose_another_area"
+                    android:textAllCaps="true"
+                    android:textColor="@color/main_red_color"
+
+                    android:textSize="@dimen/_11ssp"
+                    android:textStyle="bold"
+                    tools:text="@string/choose_another_area" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</layout>
+

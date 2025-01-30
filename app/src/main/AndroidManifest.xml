@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        package="com.qurba.android">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <!--    <uses-permission android:name="android.permission.RECEIVE_SMS" />-->
+    <uses-permission
+            android:name="android.permission.READ_LOGS"
+            tools:ignore="ProtectedPermissions" />
+
+    <uses-feature
+            android:glEsVersion="0x00020000"
+            android:required="true"/>
+
+    <application
+            android:name=".utils.QurbaApplication"
+            android:allowBackup="false"
+            android:hardwareAccelerated="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:largeHeap="true"
+            android:networkSecurityConfig="@xml/network_security_config"
+            android:requestLegacyExternalStorage="true"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme"
+            tools:replace="android:allowBackup,android:supportsRtl"
+            tools:targetApi="n">
+
+        <activity
+                android:name=".ui.splash.views.SplashActivity"
+                android:launchMode="singleInstance"
+                android:noHistory="true"
+                android:theme="@style/LoadingTheme"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter>
+                <data android:scheme="${deep_link_one}" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                        android:host="qurba.io"
+                        android:path="/places"
+                        android:pathPrefix="/"
+                        android:scheme="https" />
+
+                <data
+                        android:host="qurba.io"
+                        android:path="/offers"
+                        android:pathPrefix="/"
+                        android:scheme="https" />
+
+                <data
+                        android:host="qurba.io"
+                        android:path="/order_now"
+                        android:scheme="https" />
+
+                <data
+                        android:host="qurba.io"
+                        android:path="/order_now"
+                        android:scheme="https" />
+
+                <data
+                        android:host="qurba.io"
+                        android:path="/products"
+                        android:scheme="https" />
+
+
+                <data
+                        android:host="qurba-dev.com"
+                        android:path="/places"
+                        android:pathPrefix="/"
+                        android:scheme="https" />
+
+                <data
+                        android:host="qurba-dev.com"
+                        android:path="/offers"
+                        android:pathPrefix="/"
+                        android:scheme="https" />
+
+                <data
+                        android:host="qurba-dev.com"
+                        android:path="/order_now"
+                        android:scheme="https" />
+
+                <data
+                        android:host="qurba-dev.com"
+                        android:path="/products"
+                        android:scheme="https" />
+
+            </intent-filter>
+
+            <!-- Branch App Links (optional) -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- example-alternate domain is required for App Links when the Journeys/Web SDK and Deepviews are used inside your website.  -->
+                <data
+                        android:host="${deep_link_two}"
+                        android:scheme="https" />
+            </intent-filter>
+
+            <!--            &lt;!&ndash; Branch App Links (optional) &ndash;&gt;-->
+            <!--            <intent-filter android:autoVerify="true">-->
+            <!--                <action android:name="android.intent.action.VIEW" />-->
+            <!--                <category android:name="android.intent.category.DEFAULT" />-->
+            <!--                <category android:name="android.intent.category.BROWSABLE" />-->
+            <!--                <data android:scheme="https" android:host="qurba.app.link" />-->
+            <!--                &lt;!&ndash; example-alternate domain is required for App Links when the Journeys/Web SDK and Deepviews are used inside your website.  &ndash;&gt;-->
+            <!--                <data android:scheme="https" android:host="${deep_link_two}" />-->
+            <!--            </intent-filter>-->
+        </activity>
+
+        <activity
+                android:name=".ui.home.views.HomeActivityKotlin"
+                android:launchMode="standard"
+                android:windowSoftInputMode="stateHidden"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.place_details.views.PlaceDetailsActivity"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.place_details.views.GalleryActivity"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.place_details.views.ImageScrollActivity"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.offers.views.OfferDetailsActivity"
+                android:windowSoftInputMode="stateHidden|adjustResize"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.auth.views.SignUpActivity"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.auth.views.VerifyAccountActivity"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.profile.views.SettingsActivity"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.offers.views.OffersSearchResultsActivity"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.cart.views.CartActivity"
+                android:windowSoftInputMode="stateHidden|adjustResize"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.checkout.views.CheckoutActivity"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.order_status.views.OrderStatusActivity"
+                android:noHistory="true"
+                android:screenOrientation="portrait" />
+
+        <!--<string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAq6f6pR-Rr4W4YqOHjj2QJVgt8Yr2hhJo</string>-->
+
+        <activity
+                android:name=".ui.customization.views.CustomizOffersActivity"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.my_orders.views.MyOrderActivity"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.profile.views.UserMealsActivity"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.profile.views.UserOffersActivity"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.profile.views.UserPlacesActivity"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.customization.views.CustomizProductActivity"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.products.views.ProductDetailsActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="stateHidden|adjustResize" />
+
+        <activity
+                android:name=".ui.place_details.views.GalleryPreviewActivity"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.on_boarding.views.OnBoardingActivity"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.add_edit_address.views.AddAddressActivity"
+                android:screenOrientation="portrait"
+                android:windowSoftInputMode="adjustResize" />
+
+        <activity
+                android:name=".ui.address_component.views.AddressActivity"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait" />
+
+        <activity
+                android:name=".ui.profile.views.EditProfileActivity"
+                android:launchMode="singleTask"
+                android:screenOrientation="portrait" />
+
+
+        <meta-data
+                android:name="com.google.android.gms.version"
+                android:value="@integer/google_play_services_version" />
+
+        <meta-data
+                android:name="com.google.android.geo.API_KEY"
+                android:value="AIzaSyABHMKyUYuS7xXWqDvgFJrDrqN8q5aZOws" />
+
+        <!--        <meta-data-->
+        <!--            android:name="io.fabric.ApiKey"-->
+        <!--            android:value="d29c0a2f658e9a924ad1457b0f6bf4334b10648b" />-->
+
+        <service
+                android:name=".utils.notifications.MyFirebaseMessagingService"
+                android:enabled="true"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service
+                android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
+                android:enabled="true" />
+
+        <meta-data
+                android:name="com.google.firebase.messaging.default_notification_icon"
+                android:resource="@drawable/ic_notification" />
+
+        <meta-data
+                android:name="com.google.firebase.messaging.default_notification_channel_id"
+                android:value="@string/notification_channel_id" />
+
+        <meta-data
+                android:name="com.google.firebase.messaging.default_notification_color"
+                android:resource="@color/order_color" />
+
+        <meta-data
+                android:name="firebase_messaging_auto_init_enabled"
+                android:value="false" />
+        <meta-data
+                android:name="firebase_analytics_collection_enabled"
+                android:value="true" />
+
+        <meta-data
+                android:name="firebase_analytics_collection_deactivated"
+                android:value="false" />
+
+        <service
+                android:name="com.google.android.gms.measurement.AppMeasurementService"
+                android:enabled="true"
+                android:exported="false" />
+
+        <receiver
+                android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+                android:enabled="true"
+                android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.measurement.UPLOAD" />
+            </intent-filter>
+        </receiver>
+
+<!--        <receiver-->
+<!--                android:name=".utils.YourUpgradeReceiver"-->
+<!--                android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.PACKAGE_REPLACED" />-->
+<!--                <data android:scheme="package" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+
+        <!-- Branch init -->
+        <meta-data
+                android:name="io.branch.sdk.BranchKey"
+                android:value="${branch_io}" />
+
+        <!-- Branch init -->
+        <!--        <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_cfINw1o728c6PtBd0chuDopbxCk711ks" />-->
+        <!--        <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_hlxrWC5Zx16DkYmWu4AHiimdqugRYMr" />-->
+        <!--        <meta-data android:name="io.branch.sdk.TestMode" android:value="false" />     &lt;!&ndash; Set to true to use Branch_Test_Key (useful when simulating installs and/or switching between debug and production flavors) &ndash;&gt;-->
+
+        <meta-data
+                android:name="com.facebook.sdk.AutoInitEnabled"
+                android:value="true" />
+
+        <meta-data
+                android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
+                android:value="true" />
+
+        <meta-data
+                android:name="com.facebook.sdk.ApplicationId"
+                android:value="${facebookAppId}" />
+
+    </application>
+
+</manifest>

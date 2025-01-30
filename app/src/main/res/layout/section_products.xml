@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <!--        <variable-->
+        <!--            name="viewModel"-->
+        <!--            type="com.qurba.android.ui.order_now.view_models.OrderNowItemViewModel" />-->
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/item_products_rv"
+        android:layout_width="match_parent"
+        tools:listitem="@layout/item_section_product"
+        android:layout_height="match_parent"/>
+
+</layout>

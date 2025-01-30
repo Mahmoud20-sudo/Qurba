@@ -1,0 +1,381 @@
+buildscript {
+    repositories {
+        maven {
+            url uri('mint-plugin-repo-5.2.5')
+        }
+    }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 31
+    buildToolsVersion "30.0.3"
+    defaultConfig {
+        applicationId "com.qurba.android"
+        minSdkVersion 21
+        targetSdkVersion 31
+        versionCode 102
+        versionName "2.0.6"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    bundle {
+        language {
+            // Specifies that the app bundle should not support
+            // configuration APKs for language resources. These
+            // resources are instead packaged with each base and
+            // dynamic feature APK.
+            enableSplit = false
+        }
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('/Users/apple/Documents/Qurba/Dev/Signatures/production/Untitled')
+            storePassword '#Qurba#User# '
+            keyAlias = 'key_live'
+            keyPassword '#Qurba#User# '
+
+        }
+
+        tst {
+            storeFile file('/Users/apple/Documents/Qurba/Dev/Signatures/test/Untitled')
+            storePassword '#Qurba#User#'
+            keyAlias = 'key_test'
+            keyPassword '#Qurba#User#'
+
+        }
+
+        stg {
+            storeFile file('/Users/apple/Documents/Qurba/Dev/Signatures/stg/Untitled')
+            storePassword '#Qurba#User#'
+            keyAlias = 'key_stg'
+            keyPassword '#Qurba#User#'
+
+        }
+    }
+
+    android {
+        lintOptions {
+            checkReleaseBuilds false
+            // Or, if you prefer, you can continue to check for errors in release builds,
+            // but continue the build even when errors are found:
+            abortOnError false
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/lib_release.kotlin_module'
+    }
+    // For Kotlin projects add also this line
+    kotlinOptions.jvmTarget = "1.8"
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+    flavorDimensions "version"
+    productFlavors {
+        prod {
+            applicationId "com.qurba.android"
+            buildConfigField 'String', 'HOST', '"https://backend-user-alb.qurba-liv.com"'
+            buildConfigField 'String', 'SHARE_BASE_URL', '"https://qurba.io"'
+            buildConfigField 'String', 'TAG', '"qurba-liv-client-user-android"'
+            buildConfigField 'String', 'ENV', '"Qurba Live"'
+            buildConfigField 'String', 'LogDNA_APIKEY', '"ccc9e56357be4a5180d24d48eebf8f62"'
+            buildConfigField 'String', 'COGNITO_BUCKET_NAME', '"qurba-liv-media"'
+            buildConfigField 'String', 'COGNITO_AUTH', '"qurba-liv-backend-user-auth"'
+            buildConfigField 'String', 'COGNITO_URL', '"https://media.qurba-liv.com/"'
+            buildConfigField 'String', 'COGNITO_IDENTITY_POOL_ID', '"eu-west-1:ca3b23c4-1d0b-43cf-bb20-b493f89ffb24"'
+            buildConfigField 'String', 'Intercome_APIKEY', '"android_sdk-91836825d434561c95a523ab93195880894a247b"'
+            buildConfigField 'String', 'Intercome_SECRET', '"abh1j77r"'
+
+            dimension "version"
+            signingConfig signingConfigs.release
+            manifestPlaceholders = [deep_link_one    : "qurba", deep_link_two: "qurba.app.link",
+                                    branch_io        : "key_live_cfINw1o728c6PtBd0chuDopbxCk711ks"
+                                    , facebookAppId  : "fb420354745006215",
+                                    googleWebClientId: "193878249600-f4fgeducaq1jkk3hi5h9t4evcqe6lceg.apps.googleusercontent.com"]
+        }
+
+        dev {
+            applicationId "com.qurba.android.dev"
+            buildConfigField 'String', 'HOST', '"https://backend-user-alb.qurba-dev.com"'
+            buildConfigField 'String', 'TAG', '"qurba-dev-client-user-android"'
+            buildConfigField 'String', 'SHARE_BASE_URL', '"https://qurba-stg.com"'
+            buildConfigField 'String', 'ENV', '"Qurba Dev"'
+            buildConfigField 'String', 'LogDNA_APIKEY', '"ccc9e56357be4a5180d24d48eebf8f62"'
+            buildConfigField 'String', 'COGNITO_BUCKET_NAME', '"qurba-dev-media"'
+            buildConfigField 'String', 'COGNITO_AUTH', '"qurba-dev-backend-user-auth"'
+            buildConfigField 'String', 'COGNITO_URL', '"https://media.qurba-dev.com/"'
+            buildConfigField 'String', 'COGNITO_IDENTITY_POOL_ID', '"eu-west-1:9af24413-5b76-43cd-a6bd-0793fae43d8c"'
+            buildConfigField 'String', 'Intercome_APIKEY', '"android_sdk-90b2fa7d3b996e33eaa8ab9765ce616d008660ec"'
+            buildConfigField 'String', 'Intercome_SECRET', '"q13mfe2a"'
+
+            dimension "version"
+            manifestPlaceholders = [deep_link_one    : "qurba-dev://", deep_link_two: "qurba-dev.app.link",
+                                    branch_io        : "key_live_okG18duMQpxkC0HD9wxCBfpbAriL1OVF"
+                                    , facebookAppId  : "fb457115404681191",
+                                    googleWebClientId: "856244251721-u1ffit96bisgemi9ungfh7kkqvdbdg8p.apps.googleusercontent.com"]
+        }
+
+        stg {
+            applicationId "com.qurba.android.stg"
+            buildConfigField 'String', 'HOST', '"https://backend-user-alb.qurba-stg.com"'
+            buildConfigField 'String', 'TAG', '"qurba-stg-client-user-android"'
+            buildConfigField 'String', 'SHARE_BASE_URL', '"https://qurba-stg.com"'
+            buildConfigField 'String', 'ENV', '"Qurba Stg"'
+            buildConfigField 'String', 'LogDNA_APIKEY', '"ccc9e56357be4a5180d24d48eebf8f62"'
+            buildConfigField 'String', 'COGNITO_BUCKET_NAME', '"qurba-stg-media"'
+            buildConfigField 'String', 'COGNITO_AUTH', '"qurba-stg-backend-user-auth"'
+            buildConfigField 'String', 'COGNITO_URL', '"https://media.qurba-stg.com/"'
+            buildConfigField 'String', 'COGNITO_IDENTITY_POOL_ID', '"eu-west-1:081555ca-11d7-4ef5-936b-e09833f215e8"'
+            buildConfigField 'String', 'Intercome_APIKEY', '"android_sdk-90b2fa7d3b996e33eaa8ab9765ce616d008660ec"'
+            buildConfigField 'String', 'Intercome_SECRET', '"q13mfe2a"'
+
+            dimension "version"
+            manifestPlaceholders = [deep_link_one    : "qurba-stg://", deep_link_two: "qurba-stg.app.link",
+                                    branch_io        : "key_live_gi9aiw33NwdXS1xFF2kbKajczBfHeevC"
+                                    , facebookAppId  : "fb306361310450310",
+                                    googleWebClientId: "807331739649-b741lnbjot518tsulpmp5jsig8rv20b6.apps.googleusercontent.com"]
+        }
+
+        tst {
+            applicationId "com.qurba.android.tst"
+            buildConfigField 'String', 'HOST', '"https://backend-user-alb.qurba-tst.com"'
+            buildConfigField 'String', 'TAG', '"qurba-tst-client-user-android"'
+            buildConfigField 'String', 'SHARE_BASE_URL', '"https://qurba-tst.com"'
+            buildConfigField 'String', 'ENV', '"Qurba Test"'
+            buildConfigField 'String', 'LogDNA_APIKEY', '"ccc9e56357be4a5180d24d48eebf8f62"'
+            buildConfigField 'String', 'COGNITO_BUCKET_NAME', '"qurba-tst-media"'
+            buildConfigField 'String', 'COGNITO_AUTH', '"qurba-tst-backend-user-auth"'
+            buildConfigField 'String', 'COGNITO_URL', '"https://media.qurba-tst.com/"'
+            buildConfigField 'String', 'COGNITO_IDENTITY_POOL_ID', '"eu-west-1:c33a3136-9690-4d04-896c-ee3172a2ce94"'
+            buildConfigField 'String', 'Intercome_APIKEY', '"android_sdk-90b2fa7d3b996e33eaa8ab9765ce616d008660ec"'
+            buildConfigField 'String', 'Intercome_SECRET', '"q13mfe2a"'
+
+            dimension "version"
+            signingConfig signingConfigs.tst
+
+            manifestPlaceholders = [deep_link_one    : "qurba-tst://", deep_link_two: "qurba-tst.app.link",
+                                    branch_io        : "key_live_eaP86mqGOcFYUpMjtbnI4ojnqxpmNEBP"
+                                    , facebookAppId  : "fb2468663563162219",
+                                    googleWebClientId: "77505268445-lebbdc5v20jdqtqv2178b3rt9kloi3fe.apps.googleusercontent.com"]
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.play:core-ktx:1.8.1'
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
+    testImplementation 'junit:junit:4.13.2'
+
+    //design and support
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    // images
+    implementation "com.github.bumptech.glide:glide:$GLIDE"
+    kapt "com.github.bumptech.glide:compiler:$GLIDE"
+    // network
+    implementation "com.squareup.retrofit2:retrofit:$RETROFIT_V"
+    implementation "com.squareup.retrofit2:converter-gson:$RETROFIT_V"
+    implementation "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_RX_JAVA_VERSION"
+    implementation "com.squareup.okhttp3:logging-interceptor:$RETROFIT_LOGGER"
+    implementation "com.squareup.okhttp3:logging-interceptor:$RETROFIT_LOGGER"
+
+    //rx
+    implementation "io.reactivex:rxjava:$RX_JAVA"
+    implementation "io.reactivex:rxandroid:$RX_ANDROID_VERSION"
+
+    // architecture
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.4.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
+    implementation 'androidx.lifecycle:lifecycle-reactivestreams-ktx:2.4.0'
+
+    // Dimensions
+    implementation "com.intuit.sdp:sdp-android:$DIMENSIONS_V"
+    implementation "com.intuit.ssp:ssp-android:$DIMENSIONS_V"
+
+    //Joda Time
+    implementation "net.danlew:android.joda:$JODA_TIME"
+
+    //animation
+    implementation "com.daimajia.androidanimations:library:$DAIMAJIA_ANIMATION"
+
+    //saving data
+    implementation "com.orhanobut:hawk:$HAWK"
+
+    // Google play services
+    implementation "com.google.android.gms:play-services-maps:$PLAY_SERVICES"
+    implementation "com.google.android.gms:play-services-location:$PLAY_SERVICES_X"
+
+    // Circular image view
+    implementation "com.mikhaellopez:circularimageview:$CIRCULAR_IMAGE_VIEW"
+
+    //Bottom navigation
+    implementation "com.etebarian:meow-bottom-navigation:$BOTTOM_NAVIGATION"
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$KOTLIN_JETBRAINS"
+
+    // Dropdown Spinner
+    implementation "com.reginald:editspinner:$EDIT_SPINNER"
+
+    //label view
+    implementation "com.github.linger1216:labelview:$LABEL_VIEW"
+
+    //custom rating bar
+    implementation "com.iarcuschin:simpleratingbar:$RATING_BAR"
+
+    //circle image view
+    implementation "de.hdodenhof:circleimageview:$CIRCLE_IMAGE_VIEW"
+
+    // Floating button
+    implementation "com.leinardi.android:speed-dial:$FLOAING_BUTTON"
+
+    // Rounded progress bar
+    implementation "com.sasank.roundedhorizontalprogress:roundedhorizontalprogress:$ROUNDED_PROGRESS_BAR"
+
+//    // Expandable Text view
+//    implementation "com.borjabravo:readmoretextview:$EXPANDABLE_TEXTVIEW"
+
+    // Google places
+    implementation "com.google.android.libraries.places:places:$GOOGLE_PLACES"
+
+    // Animation
+    implementation "com.nineoldandroids:library:$NINO_ANIM"
+
+    // Image Slider
+    implementation "com.daimajia.slider:library:$IMAGE_SLIDER"
+
+    // Expandable recycler view
+    implementation "com.thoughtbot:expandablerecyclerview:$EXPANDABLE_RECYCLER_VIEW"
+
+    // Rounded corners image
+    implementation "com.makeramen:roundedimageview:$ROUNDED_CORNER_IMAGE"
+
+    // Multiline Collapsing Toolbar
+    implementation "net.opacapp:multiline-collapsingtoolbar:$MULTILINE_COLLAPSING_TOOLBAR"
+
+    // Pin edit text
+    implementation "com.chaos.view:pinview:$PIN_VIEW"
+
+    //Bottom sheet
+    implementation "com.github.andrefrsousa:SuperBottomSheet:$BOTTOM_SHEET"
+
+    //Country codes
+    implementation "com.github.joielechong:countrycodepicker:$COUNTRY_CODES"
+
+    implementation 'com.google.android.gms:play-services-auth:19.2.0'
+    implementation 'com.jaychang:simpleauth-google:2.1.4'
+
+//457115404681191 420354745006215
+    implementation "com.github.chuross:expandable-layout:$EXPANDABLE_LAYOUT"
+
+    implementation 'com.facebook.android:facebook-core:9.1.1'
+    implementation 'com.facebook.android:facebook-login:9.1.1'
+
+    implementation "com.google.firebase:firebase-core:$FIREBASE_CORE"
+    implementation "com.google.firebase:firebase-crashlytics:18.2.4"
+    implementation "com.google.firebase:firebase-analytics:$FIREBASE_CORE"
+    implementation 'com.google.firebase:firebase-messaging:23.0.0'
+
+    implementation 'com.google.firebase:firebase-auth-ktx'
+
+    implementation 'com.github.alejandrorosas:ShimmerRecyclerView:2.0.0-alpha1'
+
+    implementation 'androidx.work:work-runtime:2.7.1'
+
+    //QuantityView
+    implementation 'me.himanshusoni.quantityview:quantity-view:1.2.0'
+
+    implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.2'
+//    implementation 'com.github.tony19:timber-loggly:1.0.1'
+    implementation 'com.squareup.retrofit:retrofit:1.9.0'
+    implementation 'io.nlopez.smartlocation:rx:3.3.3'
+    // required for all Android apps
+    implementation 'io.branch.sdk.android:library:5.0.9'
+
+    // required if your app is in the Google Play Store (tip: avoid using bundled play services libs)
+    implementation 'com.google.firebase:firebase-appindexing:20.0.0' // App indexing
+//    implementation 'com.android.support:customtabs:28.0.0'
+    // Chrome Tab matching (enables 100% guaranteed matching based on cookies), androidx.browser:browser works just the same
+    implementation 'com.github.medyo:fancybuttons:1.9.1'
+
+    implementation 'com.robinhood.ticker:ticker:2.0.2'
+
+    implementation 'com.github.markomilos:paginate:0.5.1'
+    implementation 'org.jsoup:jsoup:1.13.1'
+
+    implementation 'me.zhanghai.android.materialratingbar:library:1.4.0'
+    implementation 'io.nlopez.smartlocation:library:3.3.3'
+
+    implementation 'com.booking:rtlviewpager:1.0.1'
+    implementation 'me.relex:circleindicator:2.1.6'
+    implementation 'com.github.igortrncic.dotted-progress-bar:library:1.0.0'
+
+    implementation 'com.github.seventhmoon:ipapi-retrofit:1.5.0'
+    implementation 'com.github.mazenrashed:LogDNA-Android-Client:1.1.0'
+    implementation 'com.github.veeyaarVR:SuperGradientTextView:1.1'
+    implementation 'com.simplecityapps:recyclerview-fastscroll:2.0.1'
+    implementation 'br.com.simplepass:loading-button-android:2.2.0'
+    implementation 'com.vanniktech:emoji:0.7.0'
+    implementation 'com.vanniktech:emoji-google:0.7.0'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+    implementation 'com.akexorcist:localization:1.2.6'
+    implementation 'us.belka:androidtoggleswitch:1.2.2'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    api 'com.google.maps:google-maps-services:0.10.2'
+    debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
+    implementation 'com.jsibbold:zoomage:1.3.1'
+
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    implementation 'com.github.arimorty:floatingsearchview:2.1.1'
+    implementation 'com.kwai.koom:java-oom:1.0.7'
+
+    //kotlinx coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
+
+
+
+    implementation 'io.intercom.android:intercom-sdk:10.0.2'
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
+
+//    implementation 'com.amazonaws:aws-android-sdk-SERVICE:2.27.0'
+    implementation 'com.amazonaws:aws-android-sdk-s3:2.15.+'
+    implementation ('com.amazonaws:aws-android-sdk-mobile-client:2.15.+@aar') { transitive = true }
+    implementation ('com.amazonaws:aws-android-sdk-auth-userpools:2.15.+@aar') { transitive = true }
+
+    implementation 'com.github.Shouheng88:compressor:1.5.0'
+}
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'

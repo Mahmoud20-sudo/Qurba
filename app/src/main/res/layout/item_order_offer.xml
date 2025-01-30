@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.qurba.android.ui.checkout.view_models.OrdersViewModel" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_4sdp"
+        android:weightSum="6.3"
+        android:gravity="top"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12ssp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:id="@+id/offer_qty_tv"
+            android:textStyle="normal"
+            android:textColor="#4a4a4a"
+            tools:text="22" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12ssp"
+            android:fontFamily="sans-serif"
+            android:textStyle="normal"
+            android:textColor="#4a4a4a"
+            android:textColorHint="#4a4a4a"
+            android:hint="x" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/item_image_iv"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="@dimen/_23sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:scaleType="centerCrop"
+            app:riv_border_color="@color/light_grey"
+            app:riv_border_width="@dimen/_1sdp"
+            app:riv_corner_radius="@dimen/_2sdp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="3.2"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:id="@+id/title_tv"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_12ssp"
+                android:fontFamily="sans-serif"
+                android:textStyle="bold"
+                android:textColor="#222222"
+                android:maxLines="2"
+                tools:text="سيبسيبسيبسيبسيبسيب"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_11ssp"
+                android:fontFamily="sans-serif"
+                android:textStyle="normal"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:id="@+id/description_tv"
+                android:ellipsize="end"
+                android:textColor="#4a4a4a"
+                tools:text="سيبسبسيبسبيسبسب" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1.4"
+            android:gravity="end"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/_12ssp"
+            android:fontFamily="sans-serif"
+            android:id="@+id/offer_price_tv"
+            android:textStyle="bold"
+            android:textColor="#4a4a4a"
+            tools:text="180 EGP" />
+    </LinearLayout>
+</layout>

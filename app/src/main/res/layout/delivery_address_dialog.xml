@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.qurba.android.ui.address_component.view_models.DelieveryAddressViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/comments_sheet_bg"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/options_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="29dp"
+                android:fontFamily="sans-serif"
+                android:gravity="start"
+                android:maxLines="1"
+                android:text="@string/select_your_city"
+                android:textAllCaps="false"
+                android:textColor="#1d2129"
+                android:textSize="@dimen/_16ssp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_offers_search_view"
+                style="@style/MySearchViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:background="@drawable/qty_view_bg"
+                android:backgroundTint="#f4f4f4"
+                android:focusable="false"
+                android:focusableInTouchMode="true"
+                android:paddingStart="-10dp"
+                android:visibility="gone"
+                app:closeIcon="@color/transparent"
+                app:iconifiedByDefault="false"
+                app:queryBackground="@android:color/transparent"
+                app:queryHint="@string/search_for_areas"
+                app:searchIcon="@drawable/ic_search_red_24dp" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/delivery_places_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:clipToPadding="false"
+                android:paddingStart="@dimen/_16sdp" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_80sdp"
+            android:visibility="@{viewModel.isLoading() == true ? View.VISIBLE: View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </RelativeLayout>
+</layout>

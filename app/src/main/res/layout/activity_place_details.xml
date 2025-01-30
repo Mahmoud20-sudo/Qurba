@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:fancy="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.qurba.android.ui.place_details.view_models.PlaceDetailsBrandNewViewModel" />
+
+        <variable
+                name="pagerAgentVM"
+                type="com.qurba.android.ui.place_details.view_models.PagerAgentViewModel" />
+
+        <variable
+                name="placeModel"
+                type="com.qurba.android.network.models.response_models.PlaceDetailsHeaderPayload" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.isLoading() ? View.GONE: View.VISIBLE}">
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true">
+
+                <com.google.android.material.appbar.AppBarLayout
+                        android:id="@+id/appbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_168sdp"
+                        android:fitsSystemWindows="true"
+                        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                    <com.google.android.material.appbar.CollapsingToolbarLayout
+                            android:id="@+id/collapsing_toolbar"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="start"
+                            android:background="@drawable/scrim"
+                            android:fitsSystemWindows="true"
+                            app:collapsedTitleTextAppearance="@style/ExpandedToolbarText"
+                            app:contentScrim="@color/white"
+                            app:expandedTitleGravity="center_horizontal"
+                            app:expandedTitleTextAppearance="@style/ProductToolbarText"
+                            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+                        <ImageView
+                                android:id="@+id/backdrop"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:alpha="@{viewModel.isPlaceOpen() == false || viewModel.isDeliveringToArea() == false ? 0.5f : 1.0f}"
+                                android:fitsSystemWindows="true"
+                                android:foreground="@color/fifty_transparent_black"
+                                android:scaleType="centerCrop"
+                                android:src="@mipmap/offer_details_place_holder"
+                                app:layout_collapseMode="parallax" />
+
+
+                        <androidx.appcompat.widget.Toolbar
+                                android:id="@+id/anim_toolbar"
+                                android:layout_width="match_parent"
+                                android:layout_height="?attr/actionBarSize"
+                                android:gravity="start"
+                                app:contentInsetStartWithNavigation="0dp"
+                                app:layout_collapseMode="pin"
+                                app:navigationIcon="@drawable/ic_back"
+                                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                    </com.google.android.material.appbar.CollapsingToolbarLayout>
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <androidx.core.widget.NestedScrollView
+                        android:id="@+id/nestedScrollView"
+                        android:overScrollMode="never"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fillViewport="true"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+
+                                android:orientation="vertical"
+                                android:visibility="visible">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/place_image_iv"
+                                    android:layout_width="@dimen/_50sdp"
+                                    android:layout_height="@dimen/_50sdp"
+                                    android:layout_marginStart="@dimen/_11sdp"
+                                    android:layout_marginTop="@dimen/_23sdp"
+
+                                    android:layout_marginEnd="@dimen/_5sdp"
+                                    android:alpha="@{viewModel.isPlaceOpen() == false || viewModel.isDeliveringToArea() == false ? 0.5f : 1.0f}" />
+
+                            <TextView
+                                    android:id="@+id/product_details_name_tv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/_25sdp"
+                                    android:layout_marginEnd="@dimen/_11sdp"
+                                    android:layout_toEndOf="@+id/place_image_iv"
+
+                                    android:alpha="@{viewModel.isPlaceOpen() == false || viewModel.isDeliveringToArea() == false ? 0.5f : 1.0f}"
+                                    android:fontFamily="sans-serif"
+                                    android:letterSpacing="-0.02"
+                                    android:textColor="#222222"
+                                    android:textSize="@dimen/_14ssp"
+                                    android:textStyle="bold"
+                                    tools:text="Country Hills - Soyouf " />
+
+                            <TextView
+                                    android:id="@+id/place_category_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/product_details_name_tv"
+
+                                    android:layout_marginTop="@dimen/_2sdp"
+                                    android:layout_toEndOf="@+id/place_image_iv"
+                                    android:alpha="@{viewModel.isPlaceOpen() == false || viewModel.isDeliveringToArea() == false ? 1.0f : 0.5f}"
+                                    android:fontFamily="sans-serif"
+                                    android:includeFontPadding="false"
+                                    android:textColor="#6d7278"
+                                    android:textSize="12sp"
+                                    android:textStyle="normal"
+                                    tools:text="Restaurant &amp; Cafe, Cafe, Brazilian" />
+
+                            <LinearLayout
+                                    android:id="@+id/place_rating_ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/place_category_tv"
+                                    android:layout_marginTop="@dimen/_4sdp"
+                                    android:layout_toEndOf="@+id/place_image_iv"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                                        android:id="@+id/place_details_rb"
+                                        style="?android:attr/ratingBarStyleSmall"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="-2dp"
+                                        android:numStars="5"
+                                        android:rating="0"
+                                        android:stepSize="0.1" />
+
+                                <TextView
+                                        android:id="@+id/first_rate_Tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif"
+                                        android:lineSpacingExtra="4.2sp"
+                                        android:text="@string/be_first_to_rate"
+                                        android:textColor="@color/order_color"
+                                        android:textSize="@dimen/_10ssp"
+                                        android:textStyle="bold"
+                                        android:visibility="gone" />
+
+
+                                <TextView
+                                        android:id="@+id/place_rating_counts_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_5sdp"
+                                        android:fontFamily="sans-serif"
+                                        android:text="@{viewModel.getRatersCount()}"
+                                        android:textColor="#6d7278"
+                                        android:textSize="12sp"
+                                        android:textStyle="normal"
+                                        android:visibility="@{viewModel.getRatersCount().isEmpty() ? View.GONE: View.VISIBLE}"
+                                        tools:text="(250)" />
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_6sdp"
+                                        android:layout_marginTop="@dimen/_1sdp"
+                                        android:scaleType="center"
+                                        android:text="&#9679;"
+                                        android:textColor="#747474"
+                                        android:textSize="@dimen/_4ssp"
+                                        android:visibility="@{viewModel.getPriceRating().isEmpty() ? View.GONE: View.VISIBLE}" />
+
+                                <TextView
+                                        android:id="@+id/place_rating_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_6sdp"
+                                        android:fontFamily="sans-serif"
+                                        android:text="@{viewModel.getPriceRating()}"
+                                        android:textColor="#d0021b"
+                                        android:textSize="@dimen/_10ssp"
+                                        android:textStyle="normal"
+                                        android:visibility="@{viewModel.getPriceRating().isEmpty() ? View.GONE: View.VISIBLE}"
+                                        tools:text="$$$$" />
+
+                                <TextView
+                                        android:id="@+id/place_details_dot_tv"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_6sdp"
+                                        android:layout_marginTop="@dimen/_1sdp"
+                                        android:scaleType="center"
+                                        android:text="&#9679;"
+                                        android:textColor="#747474"
+                                        android:textSize="@dimen/_4ssp"
+                                        android:visibility="@{viewModel.isLocationEnabled() &amp; !viewModel.distance.isEmpty() ? View.VISIBLE: View.GONE}">
+
+                                </TextView>
+
+                                <FrameLayout
+                                        android:id="@+id/show_distance_fm"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_6sdp"
+                                        android:layout_toEndOf="@id/place_image_iv">
+
+
+                                    <TextView
+                                            android:id="@+id/show_distance_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="sans-serif"
+                                            android:lineSpacingExtra="4.2sp"
+                                            android:onClick="@{viewModel.showDistance()}"
+                                            android:text="@string/show_distance"
+                                            android:textColor="@color/order_color"
+                                            android:textSize="@dimen/_10ssp"
+                                            android:textStyle="bold"
+                                            android:visibility="@{viewModel.isLocationEnabled() == true ? View.VISIBLE: View.GONE}" />
+
+                                    <TextView
+                                            android:id="@+id/place_distance_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="sans-serif-medium"
+                                            android:lineSpacingExtra="2.5sp"
+                                            android:text="@{viewModel.distance}"
+                                            android:textColor="#7e7e82"
+                                            android:textSize="@dimen/_10ssp"
+                                            android:textStyle="normal"
+                                            android:visibility="@{viewModel.distance.isEmpty() == true ? View.GONE: View.VISIBLE}" />
+                                </FrameLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                    android:id="@+id/social_ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/place_rating_ll"
+                                    android:layout_marginTop="@dimen/_5sdp"
+                                    android:layout_toEndOf="@+id/place_image_iv"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal"
+                                    android:visibility="@{viewModel.isHaveSocial() ? View.VISIBLE: View.GONE}">
+
+                                <ImageView
+                                        android:layout_width="@dimen/_15sdp"
+                                        android:layout_height="@dimen/_15sdp"
+                                        android:src="@drawable/ic_no_of_likes"
+                                        android:visibility="@{viewModel.isHaveLikeCounts() ? View.VISIBLE: View.GONE}" />
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_1sdp"
+                                        android:layout_marginEnd="@dimen/_5sdp"
+                                        android:fontFamily="sans-serif"
+                                        android:includeFontPadding="false"
+                                        android:text="@{viewModel.getLikeCounts()}"
+                                        android:textColor="#6d7278"
+                                        android:textSize="@dimen/_9ssp"
+                                        android:textStyle="bold"
+                                        android:visibility="@{viewModel.isHaveLikeCounts() ? View.VISIBLE: View.GONE}"
+                                        tools:text="10" />
+
+                                <ImageView
+                                        android:layout_width="@dimen/_15sdp"
+                                        android:layout_height="@dimen/_15sdp"
+                                        android:src="@drawable/ic_no_of_comments"
+                                        android:visibility="@{viewModel.isHaveCommtsCounts() ? View.VISIBLE: View.GONE}" />
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_1sdp"
+                                        android:layout_marginEnd="@dimen/_5sdp"
+                                        android:fontFamily="sans-serif"
+                                        android:includeFontPadding="false"
+                                        android:text="@{viewModel.getCommentsCounts()}"
+                                        android:textColor="#6d7278"
+                                        android:textSize="@dimen/_9ssp"
+                                        android:textStyle="bold"
+                                        android:visibility="@{viewModel.isHaveCommtsCounts() ? View.VISIBLE: View.GONE}"
+                                        tools:text="10" />
+
+                                <ImageView
+                                        android:layout_width="@dimen/_15sdp"
+                                        android:layout_height="@dimen/_15sdp"
+                                        android:src="@mipmap/ic_share_outline"
+                                        android:visibility="@{viewModel.isHaveShareCounts() ? View.VISIBLE: View.GONE}" />
+
+                                <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/_1sdp"
+                                        android:layout_marginEnd="@dimen/_10sdp"
+                                        android:fontFamily="sans-serif"
+                                        android:includeFontPadding="false"
+                                        android:text="@{viewModel.getShareCounts()}"
+                                        android:textColor="#6d7278"
+                                        android:textSize="@dimen/_9ssp"
+                                        android:textStyle="bold"
+                                        android:visibility="@{viewModel.isHaveShareCounts() ? View.VISIBLE: View.GONE}"
+                                        tools:text="10" />
+
+                            </LinearLayout>
+
+
+                            <LinearLayout
+                                    android:id="@+id/social_interactions_ll"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_30sdp"
+                                    android:layout_below="@+id/social_ll"
+                                    android:layout_marginStart="@dimen/_11sdp"
+                                    android:layout_marginTop="@dimen/_15sdp"
+                                    android:layout_marginEnd="@dimen/_11sdp"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal"
+                                    android:weightSum="2">
+
+                                <mehdi.sakout.fancybuttons.FancyButton
+                                        android:id="@+id/product_details_comment_btn"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginEnd="@dimen/_3sdp"
+                                        android:layout_weight="1"
+                                        android:onClick="@{viewModel.commentClick()}"
+                                        android:textAllCaps="true"
+                                        fancy:fb_borderColor="#e4e4e4"
+                                        fancy:fb_borderWidth="@dimen/_1sdp"
+
+                                        fancy:fb_defaultColor="@color/white"
+                                        fancy:fb_fontIconSize="@dimen/_20sdp"
+                                        fancy:fb_iconPaddingTop="@dimen/_8sdp"
+                                        fancy:fb_iconPosition="left"
+                                        fancy:fb_iconResource="@drawable/ic_no_of_comments"
+                                        fancy:fb_radius="@dimen/_3sdp"
+                                        fancy:fb_text="@string/commnt"
+                                        fancy:fb_textColor="@color/forgot_pass_hint_color"
+                                        fancy:fb_textGravity="center"
+                                        fancy:fb_textSize="@dimen/_13ssp"
+                                        tools:textAllCaps="true" />
+
+                                <mehdi.sakout.fancybuttons.FancyButton
+                                        android:id="@+id/product_details_share_btn"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_gravity="center_horizontal"
+                                        android:layout_marginStart="@dimen/_3sdp"
+                                        android:layout_weight="1"
+                                        android:onClick="@{viewModel.shareProduct()}"
+                                        android:textAllCaps="true"
+                                        fancy:fb_borderColor="#e4e4e4"
+                                        fancy:fb_borderWidth="@dimen/_1sdp"
+
+                                        fancy:fb_defaultColor="@color/white"
+                                        fancy:fb_fontIconSize="@dimen/_20sdp"
+                                        fancy:fb_iconPaddingTop="@dimen/_8sdp"
+                                        fancy:fb_iconPosition="left"
+                                        fancy:fb_iconResource="@mipmap/ic_share_outline"
+                                        fancy:fb_radius="@dimen/_3sdp"
+                                        fancy:fb_text="@string/share"
+                                        fancy:fb_textColor="@color/forgot_pass_hint_color"
+                                        fancy:fb_textGravity="center"
+                                        fancy:fb_textSize="@dimen/_13ssp"
+                                        tools:textAllCaps="true" />
+                            </LinearLayout>
+
+                            <TextView
+                                    android:id="@+id/place_availability_tv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/social_interactions_ll"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/_11sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginEnd="@dimen/_11sdp"
+                                    android:drawableStart="@drawable/ic_closed"
+                                    android:drawablePadding="@dimen/_4sdp"
+                                    android:fontFamily="sans-serif"
+                                    android:gravity="center_vertical"
+                                    android:includeFontPadding="false"
+                                    android:letterSpacing="-0.02"
+                                    android:maxLines="2"
+                                    android:paddingTop="@dimen/_8sdp"
+                                    android:text="@{viewModel.getAvailability()}"
+                                    android:textAllCaps="false"
+                                    android:textColor="#6d7278"
+                                    android:textSize="@dimen/_10ssp"
+                                    android:textStyle="bold"
+                                    android:visibility="@{viewModel.getAvailability().isEmpty() == false  ? View.VISIBLE : View.GONE}"
+                                    tools:text="Not delivering to San Stefano" />
+
+                            <com.github.chuross.library.ExpandableLayout
+                                    android:id="@+id/expandableLayout"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_below="@+id/place_availability_tv"
+                                    android:layout_marginTop="@dimen/_13sdp"
+                                    app:exl_collapseHeight="0dp"
+                                    app:exl_duration="50"
+                                    app:exl_expanded="false">
+
+                                <RelativeLayout
+                                        android:id="@+id/place_similar_places_ll"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:background="#f3f3f3"
+                                        android:orientation="vertical"
+                                        android:paddingStart="@dimen/_14sdp"
+                                        android:paddingTop="@dimen/_8sdp"
+                                        android:paddingBottom="@dimen/_8sdp"
+                                        android:visibility="visible">
+
+                                    <TextView
+                                            android:id="@+id/similar_place_tv"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:fontFamily="sans-serif"
+                                            android:text="@string/similar_places"
+                                            android:textColor="#9b9ba2"
+                                            android:textSize="@dimen/_9ssp"
+                                            android:textStyle="bold" />
+
+                                    <ImageView
+                                            android:id="@+id/similar_place_area_close_iv"
+                                            android:layout_width="@dimen/_18sdp"
+                                            android:layout_height="@dimen/_18sdp"
+                                            android:layout_alignParentEnd="true"
+                                            android:layout_marginEnd="@dimen/_14sdp"
+                                            android:padding="@dimen/_5sdp"
+                                            android:src="@mipmap/close"
+                                            app:tint="#8a000000" />
+
+                                    <androidx.recyclerview.widget.RecyclerView
+                                            android:id="@+id/place_similar_places_rv"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_below="@+id/similar_place_tv"
+                                            android:layout_marginTop="@dimen/_10sdp"
+                                            android:clipToPadding="false"
+                                            android:orientation="horizontal"
+                                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                            tools:listitem="@layout/item_similar_place" />
+
+                                </RelativeLayout>
+
+                            </com.github.chuross.library.ExpandableLayout>
+
+                            <View
+                                    android:id="@+id/divider"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_1sdp"
+                                    android:layout_below="@+id/expandableLayout"
+                                    android:layout_marginTop="@dimen/_15sdp"
+                                    android:background="#F2F2F2">
+
+                            </View>
+
+                            <com.google.android.material.tabs.TabLayout
+                                    android:id="@+id/place_tabs"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="@dimen/_40sdp"
+                                    android:layout_below="@+id/divider"
+                                    android:background="@drawable/tabs_bg"
+                                    app:tabGravity="fill"
+                                    app:tabInlineLabel="true"
+                                    app:tabMaxWidth="0dp"
+                                    app:tabMode="fixed"
+                                    app:tabSelectedTextColor="@color/categories_red"
+                                    app:tabTextAppearance="@style/MineCustomTabText"
+                                    app:tabTextColor="@color/black" />
+
+                        </RelativeLayout>
+
+                        <FrameLayout
+                                android:id="@+id/fragment_container_fl"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:clipToPadding="false"
+                                android:paddingBottom="@{viewModel.isDeliveringToArea() == false ? (@dimen/_140sdp) : (@dimen/_30sdp)}"
+                                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior" />
+
+
+                    </LinearLayout>
+                </androidx.core.widget.NestedScrollView>
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/place_details_like_fb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_16sdp"
+                        app:tint="@null"
+                        android:backgroundTint="@{viewModel.isLikedByUser() ? (@color/toolbar_color) : (@color/white)}"
+                        android:elevation="@dimen/_3sdp"
+                        android:onClick="@{viewModel.likeDisLikePlace()}"
+                        android:src="@{viewModel.isLikedByUser() ? (@drawable/ic_like_white) : (@drawable/ic_like_outline)}"
+                        app:elevation="@dimen/_3sdp"
+                        app:layout_anchor="@+id/appbar"
+                        app:layout_anchorGravity="bottom|right|end" />
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/cart_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_margin="@dimen/_19sdp"
+                    android:clickable="true"
+                    android:elevation="@dimen/_3sdp"
+                    android:onClick="@{pagerAgentVM.viewCartActivity()}"
+                    android:visibility="@{pagerAgentVM.isAddedToCart() &amp; viewModel.isDeliveringToArea() ? View.VISIBLE: View.GONE}"
+                    app:cardBackgroundColor="@color/order_color"
+                    app:cardCornerRadius="@dimen/_3sdp"
+                    app:cardElevation="@dimen/_3sdp">
+
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:layoutDirection="locale"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/_14sdp"
+                        android:paddingEnd="@dimen/_14sdp">
+
+                    <TextView
+                            android:id="@+id/quantity_tv"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:background="@drawable/bordered_oval"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center"
+                            android:text="@{pagerAgentVM.quantity}"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="bold"
+                            tools:text="3">
+
+                    </TextView>
+
+                    <TextView
+                            android:id="@+id/price_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif"
+                            android:text="@{pagerAgentVM.price}"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="normal"
+                            tools:text=" EGP 00:00" />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/view_cart"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="normal" />
+
+                    <ImageView
+                            android:layout_width="@dimen/_11sdp"
+                            android:layout_height="@dimen/_11sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:rotation="180"
+                            android:src="@drawable/ic_back"
+                            app:tint="@color/white"></ImageView>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:clickable="true"
+                    android:visibility="@{viewModel.isDeliveringToArea() ? View.GONE: View.VISIBLE}">
+
+                <include
+                        android:id="@+id/not_delivering_view"
+                        layout="@layout/view_not_delivering"></include>
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewModel.isLoading() == true ? View.VISIBLE: View.GONE}"
+                app:shimmer_repeat_mode="restart"
+                app:shimmer_shape="radial">
+
+            <include layout="@layout/activity_place_details_shimmer" />
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+    </RelativeLayout>
+
+</layout>

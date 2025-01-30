@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.qurba.android.ui.address_component.view_models.DelieveryAddressViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/comments_sheet_bg"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/options_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="29dp"
+                android:fontFamily="sans-serif"
+                android:gravity="start"
+                android:maxLines="1"
+                android:text="@string/deliver_to"
+                android:textAllCaps="false"
+                android:textColor="#1d2129"
+                android:textSize="@dimen/_16ssp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="2.2sp"
+
+                android:text="@string/saved_addresses"
+                android:textColor="#747474"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="normal"
+                android:visibility="@{viewModel.isGuest() == true ? View.GONE: View.VISIBLE}" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/saved_addresses_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:clipToPadding="false"
+
+                android:paddingStart="@dimen/_16sdp"
+                android:visibility="@{viewModel.isGuest() == true ? View.GONE: View.VISIBLE}"
+                tools:listitem="addr" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="2.2sp"
+
+                android:text="@string/recent_delivery_area"
+                android:textColor="#747474"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="normal"
+                android:visibility="@{viewModel.isHaveDeliveryArea() == true ? View.GONE: View.VISIBLE}" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/delivery_places_rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+
+                android:clipToPadding="false"
+                android:paddingStart="@dimen/_16sdp"
+
+                android:visibility="@{viewModel.isHaveDeliveryArea() == true ? View.GONE: View.VISIBLE}" />
+
+
+            <LinearLayout
+                android:id="@+id/add_new_address_ll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/_13sdp"
+                android:paddingEnd="@dimen/_13sdp"
+                android:paddingBottom="@dimen/_30sdp">
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_baseline_add_24"
+                    app:tint="@color/order_color"></ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/add_new_address"
+                    android:textColor="#222222"
+                    android:textSize="@dimen/_11ssp"
+                    android:textStyle="normal" />
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:rotation="180"
+                    android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                    app:tint="@color/order_color"></ImageView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

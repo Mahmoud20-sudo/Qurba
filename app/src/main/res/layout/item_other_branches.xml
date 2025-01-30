@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.qurba.android.ui.place_details.view_models.OtherBranchesItemViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:clickable="true"
+        android:onClick="@{viewModel.openPlaceDetails()}"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/place_image_iv"
+            android:layout_width="@dimen/_33sdp"
+            android:layout_height="@dimen/_33sdp"
+            android:src="@drawable/grey_circle" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_7sdp"
+            android:layout_marginEnd="@dimen/_13sdp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item_place_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="1.7sp"
+                android:text="@{viewModel.getPlaceName()}"
+                android:textColor="#626b80"
+                android:textSize="@dimen/_11ssp"
+                android:textStyle="normal"
+                tools:text="Country Hills - San Stefano " />
+
+            <TextView
+                android:id="@+id/item_place_address_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:lineSpacingExtra="1.7sp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:visibility="@{viewModel.getPlaceAddress().isEmpty() == true ? View.GONE: View.VISIBLE}"
+                android:text="@{viewModel.getPlaceAddress()}"
+                android:textColor="#626b80"
+                android:textSize="@dimen/_11ssp"
+                android:textStyle="normal"
+                tools:text="28 Great Sutton St, Clerkenwell, London, EC…" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="@dimen/_10sdp"
+            android:padding="@dimen/_1sdp"
+            android:layout_height="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:src="@drawable/ic_baseline_arrow_forward_ios_24"
+            app:tint="@color/order_color"></ImageView>
+
+    </LinearLayout>
+</layout>

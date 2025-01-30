@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:fab="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="profileVM"
+                type="com.qurba.android.ui.profile.view_models.ProfileViewModel" />
+
+        <variable
+                name="viewModel"
+                type="com.qurba.android.ui.auth.view_models.LoginPopUpViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#EEEEEE">
+
+        <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/toolbar_color"
+                android:elevation="@dimen/_20sdp"
+                android:theme="@style/AddReviewBarStyle"
+                android:visibility="gone"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                app:title="@string/profile"
+                app:titleTextColor="@color/white">
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+                android:id="@+id/logged_parent_ll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/toolbar"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60sdp"
+                    android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/profile_avatar_iv"
+                        android:layout_width="@dimen/_50sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:background="@mipmap/person_placeholder"
+                        android:onClick="@{profileVM.openEditProfile()}" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_20sdp"
+                        android:layout_toEndOf="@+id/profile_avatar_iv"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@{profileVM.getUsername()}"
+                            android:textColor="@color/black"
+                            android:textSize="16.7sp"
+                            android:textStyle="normal" />
+
+                    <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_5sdp">
+
+                        <TextView
+                                android:id="@+id/profile_user_email_tv"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="@dimen/_3sdp"
+                                android:layout_toEndOf="@+id/profile_email_iv"
+                                android:fontFamily="sans-serif"
+                                android:gravity="center"
+                                android:includeFontPadding="false"
+                                android:text="@{profileVM.getUserPhone()}"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10ssp"
+                                android:textStyle="normal" />
+
+
+                        <ImageView
+                                android:id="@+id/profile_email_iv"
+                                android:layout_width="@dimen/_12sdp"
+                                android:layout_height="@dimen/_12sdp"
+                                android:src="@drawable/ic_call"
+                                android:visibility="@{profileVM.getUserPhone().empty ? View.GONE: View.VISIBLE}" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/_9sdp"
+                    android:background="#efefef"></View>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center_horizontal"
+                        android:text="30% complete"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="normal" />
+
+                <com.sasank.roundedhorizontalprogress.RoundedHorizontalProgressBar
+                        android:id="@+id/reviews_excellent_pb"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_5sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:indeterminate="false"
+                        android:maxHeight="@dimen/_5sdp"
+                        android:minHeight="@dimen/_5sdp"
+                        android:progress="30"
+                        app:backgroundColor="@color/navigation_icon_color"
+                        app:isRounded="true"
+                        app:progressColor="@color/categories_red" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:text="To get a better experience edit your profile and complete your missing data"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_8sdp"
+                        android:textStyle="normal" />
+            </LinearLayout>
+
+
+            <RelativeLayout
+                    android:id="@+id/profile_followed_places_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:onClick="@{profileVM.openFollowedPlaces()}"
+                    android:visibility="gone">
+
+                <ImageView
+                        android:id="@+id/profile_followed_places_iv"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:src="@drawable/ic_followed_place" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_toEndOf="@+id/profile_followed_places_iv"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/followed_places"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="normal" />
+
+                <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:src="@drawable/ic_chevron_right_black_24dp" />
+            </RelativeLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#efefef"></View>
+
+            <RelativeLayout
+                    android:id="@+id/profile_followed_orders_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:onClick="@{profileVM.openMyOrder()}">
+
+                <ImageView
+                        android:id="@+id/profile_followed_orders_iv"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:src="@drawable/ic_shopping_cart_24" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_toEndOf="@+id/profile_followed_orders_iv"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/my_order"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="normal" />
+
+                <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:src="@drawable/ic_chevron_right_black_24dp" />
+            </RelativeLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.4dp"
+                    android:background="#efefef" />
+
+            <RelativeLayout
+                    android:id="@+id/profile_my_reviews_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:visibility="gone">
+
+                <ImageView
+                        android:id="@+id/profile_my_reviews_iv"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:src="@drawable/ic_my_reviews"/>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_toEndOf="@+id/profile_my_reviews_iv"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/my_reviews"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="normal" />
+
+                <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:src="@drawable/ic_chevron_right_black_24dp" />
+            </RelativeLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#efefef"></View>
+
+            <RelativeLayout
+                    android:id="@+id/profile_followed_offers_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:onClick="@{profileVM.openLikedffers()}"
+                    android:visibility="visible">
+
+                <ImageView
+                        android:id="@+id/profile_followed_offers_iv"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:src="@drawable/ic_followed_offers" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_toEndOf="@+id/profile_followed_offers_iv"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/liked_offers"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="normal" />
+
+                <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:src="@drawable/ic_chevron_right_black_24dp" />
+            </RelativeLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#efefef"></View>
+
+
+            <RelativeLayout
+                    android:id="@+id/profile_customize_interests_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:visibility="gone">
+
+                <ImageView
+                        android:id="@+id/profile_customize_interests_iv"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:src="@drawable/ic_customize_interest" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_toEndOf="@+id/profile_customize_interests_iv"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/customize_interests"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="normal" />
+
+                <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:src="@drawable/ic_chevron_right_black_24dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                    android:id="@+id/profile_send_feedback_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:onClick="@{profileVM.openFollowedPlaces()}"
+                    android:visibility="visible">
+
+                <ImageView
+                        android:id="@+id/profile_send_feedback_iv"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:src="@drawable/ic_followed_place" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_toEndOf="@+id/profile_send_feedback_iv"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/liked_places"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="normal" />
+
+                <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:src="@drawable/ic_chevron_right_black_24dp" />
+            </RelativeLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#efefef"></View>
+
+            <RelativeLayout
+                    android:id="@+id/profile_about_qurba_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:onClick="@{profileVM.openLikedMeals()}"
+                    android:visibility="visible">
+
+                <ImageView
+                        android:id="@+id/profile_about_qurba_iv"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:src="@drawable/ic_baseline_restaurant_24"
+                        app:tint="@color/order_color" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_toEndOf="@+id/profile_about_qurba_iv"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/liked_meals"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="normal" />
+
+                <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:src="@drawable/ic_chevron_right_black_24dp" />
+            </RelativeLayout>
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#efefef"></View>
+
+            <RelativeLayout
+                    android:id="@+id/edit_profile_rl"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:onClick="@{profileVM.openEditProfile()}"
+                    android:visibility="@{profileVM.isGuest() ? View.VISIBLE: View.GONE}">
+
+                <ImageView
+                        android:id="@+id/edit_profile_iv"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:src="@drawable/ic_profile_red_placeholder" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_toEndOf="@+id/edit_profile_iv"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/my_account"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="normal" />
+
+                <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:src="@drawable/ic_chevron_right_black_24dp" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+                android:id="@+id/guest_parent_ll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/toolbar"
+                android:background="@color/white"
+                android:clickable="true"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+            <TextView
+                    android:id="@+id/discover_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/login_logo_iv"
+                    android:layout_marginStart="@dimen/_13sdp"
+                    android:layout_marginTop="@dimen/_32sdp"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="-0.5sp"
+                    android:text="@string/discover_places"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_23ssp"
+                    android:textStyle="bold" />
+
+            <TextView
+                    android:id="@+id/around_you_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/discover_title_tv"
+                    android:layout_marginStart="@dimen/_13sdp"
+                    android:fontFamily="sans-serif"
+                    android:lineSpacingExtra="-0.5sp"
+                    android:text="@string/around_you_profile"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18ssp"
+                    android:textStyle="normal" />
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/google"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_below="@+id/around_you_tv"
+                    android:layout_marginStart="@dimen/_13sdp"
+                    android:layout_marginTop="@dimen/_31sdp"
+                    android:layout_marginEnd="@dimen/_13sdp"
+                    android:elevation="@dimen/_3sdp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="2.5dp"
+                    app:cardElevation="@dimen/_3sdp">
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/fb_blue_oval"
+                        android:backgroundTint="@color/white">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:fontFamily="sans-serif"
+                            android:text="@string/sign_up_google"
+                            android:textAllCaps="false"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13ssp"
+                            android:textStyle="bold" />
+
+                    <ImageView
+                            android:id="@+id/google_logo"
+                            android:layout_width="@dimen/_19sdp"
+                            android:layout_height="@dimen/_19sdp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_17sdp"
+                            android:src="@drawable/ic_google_icon" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/facebook"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_below="@+id/google"
+                    android:layout_marginStart="@dimen/_13sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_13sdp"
+                    android:layout_marginBottom="@dimen/_40sdp"
+                    android:elevation="@dimen/_3sdp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="2.5dp"
+                    app:cardElevation="@dimen/_3sdp">
+
+                <RelativeLayout
+                        android:id="@+id/login_fb_rl"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/fb_blue_oval">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:fontFamily="sans-serif"
+                            android:text="@string/sign_up_facebook"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="bold" />
+
+                    <ImageView
+                            android:id="@+id/fb_logo"
+                            android:layout_width="@dimen/_19sdp"
+                            android:layout_height="@dimen/_19sdp"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_17sdp"
+                            android:src="@drawable/ic_facebook_icon" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/bottom_ll"
+                android:layout_marginStart="@dimen/_13sdp"
+                android:layout_marginBottom="@dimen/_9sdp"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="3.3sp"
+                android:text="@string/need_hepls"
+                android:textColor="#747474"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="normal"
+                android:visibility="gone" />
+
+        <LinearLayout
+                android:id="@+id/bottom_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/version_tv"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:gravity="center_vertical"
+                android:onClick="@{viewModel.chatWithUs()}"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+            <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_13sdp"
+                    android:src="@mipmap/facebook" />
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_9sdp"
+                    android:fontFamily="sans-serif-medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/chat_with_us"
+                    android:textColor="#2196f3"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="normal" />
+
+        </LinearLayout>
+
+
+        <TextView
+                android:id="@+id/version_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/build_type_tv"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="1dp"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="3.3sp"
+                android:textColor="#747474"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="normal" />
+
+        <TextView
+                android:id="@+id/build_type_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="@dimen/_79sdp"
+                android:alpha="0.3"
+                android:fontFamily="sans-serif"
+                android:lineSpacingExtra="3.3sp"
+                android:textColor="#747474"
+                android:textSize="@dimen/_7ssp"
+                android:textStyle="normal" />
+
+    </RelativeLayout>
+</layout>

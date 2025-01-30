@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="place"
+            type="com.qurba.android.network.models.PlaceModel"/>
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="viewModel"
+            type="com.qurba.android.ui.places.view_models.PlaceItemViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/_166sdp"
+        android:layout_height="@dimen/_61sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:background="@color/white"
+        android:clickable="true"
+        android:elevation="@dimen/_3sdp"
+        android:onClick="@{viewModel.openPlaceDetails(position)}"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="1.7dp"
+        app:cardElevation="@dimen/_3sdp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/place_image_iv"
+                    android:layout_width="@dimen/_42sdp"
+                    android:layout_height="@dimen/_42sdp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_6sdp"
+                    android:layout_marginEnd="@dimen/_8sdp" />
+
+            <TextView
+                    android:id="@+id/place_name_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
+
+                    android:layout_marginEnd="@dimen/_6sdp"
+                    android:layout_toEndOf="@+id/place_image_iv"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="-0.02"
+                    android:maxLines="1"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_9ssp"
+                    android:textStyle="normal"
+                    tools:text="Bruschetta Restaurant " />
+
+            <TextView
+                    android:id="@+id/place_area_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/place_name_tv"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginEnd="@dimen/_6sdp"
+                    android:layout_toEndOf="@id/place_image_iv"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif-medium"
+                    android:lineSpacingExtra="4.2sp"
+                    android:maxLines="1"
+                    android:textColor="#7e7e82"
+                    android:textSize="@dimen/_8ssp"
+                    android:textStyle="normal"
+                    tools:text="The highway" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_below="@+id/place_area_tv"
+                android:onClick="@{viewModel.likePlaceClick()}"
+                android:layout_toEndOf="@+id/place_image_iv"
+                android:gravity="center_vertical"
+                android:layout_marginStart="-5dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/place_details_like_iv"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:padding="@dimen/_3sdp"
+                    android:src="@{viewModel.isFavourite ? (@drawable/ic_like_filled) : (@drawable/ic_like_outline)}"></ImageView>
+
+                <TextView
+                    android:id="@+id/place_details_like_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/place_area_tv"
+                    android:layout_marginStart="@dimen/_1sdp"
+                    android:layout_toEndOf="@+id/place_details_like_iv"
+                    android:fontFamily="sans-serif-medium"
+                    android:textAllCaps="true"
+                    android:textColor="@{viewModel.isFavourite ? (@color/main_red_color) : (@color/unactive_status)}"
+                    android:textSize="@dimen/_9ssp"
+                    android:textStyle="normal"
+                    tools:text="Like" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:letterSpacing="0.01"
+        android:layout_marginEnd="@dimen/_6sdp"
+        android:layout_marginBottom="@dimen/_11sdp"
+        android:background="@drawable/offer_filter_unselected"
+        android:paddingStart="@dimen/_13sdp"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingEnd="@dimen/_13sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:textColor="#949494"
+        android:textSize="@dimen/_10ssp"
+        android:textStyle="normal"
+        tools:text="Free Items" />
+
+</FrameLayout>

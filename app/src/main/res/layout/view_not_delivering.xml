@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/shadow"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@drawable/down_shadow"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:layout_marginTop="@dimen/_17sdp"
+            android:layout_marginEnd="@dimen/_17sdp"
+            android:layout_marginStart="@dimen/_17sdp"
+            android:lineSpacingExtra="3.7sp"
+            android:id="@+id/not_deliver_title_tv"
+            android:textColor="#000000"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold"
+            android:text="@string/not_deliver_hint"
+            tools:text="Pizza Queen doesn&apos;t deliver to Borg El Arab" />
+
+        <CheckBox
+            android:id="@+id/vote_cb"
+            android:layout_marginEnd="@dimen/_17sdp"
+            android:layout_marginStart="@dimen/_14sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:text="@string/vote_hint"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:buttonTint="@color/main_red_color"
+            android:checked="true"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:id="@+id/edit_location_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/bg_card"
+            android:backgroundTint="#e02020"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:letterSpacing="-0.05"
+            android:layout_marginEnd="@dimen/_17sdp"
+            android:layout_marginStart="@dimen/_17sdp"
+            android:layout_marginBottom="@dimen/_17sdp"
+            android:lineSpacingExtra="0.8sp"
+            android:text="@string/choose_another_area"
+            android:textAllCaps="true"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/_11ssp"
+            android:textStyle="normal"
+            tools:text="@string/choose_another_area" />
+    </LinearLayout>
+</layout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/delivery_area_tv"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif"
+        android:background="#B3B3B3"
+        android:maxLines="1"
+        android:textColor="@color/transparent"
+        android:textSize="@dimen/_13ssp"
+        android:textStyle="bold"
+        tools:text="Alexandria, Louran" />
+</layout>

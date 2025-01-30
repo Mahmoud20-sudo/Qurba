@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="verifyAccountVM"
+                type="com.qurba.android.ui.auth.view_models.VerifyAccountViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layoutDirection="locale">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+            <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/anim_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/white"
+                    app:navigationIcon="@drawable/ic_back"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                    app:title="@string/account_verification" />
+
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center_horizontal"
+                    android:text="@string/enter_digits"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_13ssp"
+                    android:textStyle="bold" />
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:fontFamily="sans-serif"
+                        android:gravity="start"
+                        android:lineSpacingExtra="8sp"
+                        android:text="@string/recovery_verification"
+                        android:textColor="@color/subcategories_grey"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="normal" />
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                    <TextView
+                            android:id="@+id/verify_account_email_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:fontFamily="sans-serif"
+                            android:gravity="start"
+                            android:text="user@domain.com"
+                            android:textColor="@color/subcategories_grey"
+                            android:textSize="@dimen/_11ssp"
+                            android:textStyle="normal" />
+
+                    <TextView
+                            android:id="@+id/verify_account_change_email_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_16sdp"
+                            android:layout_toEndOf="@id/verify_account_email_phone"
+                            android:fontFamily="sans-serif"
+                            android:gravity="start"
+                            android:text="@string/change_phone_number"
+                            android:textAllCaps="true"
+                            android:textColor="@color/main_red_color"
+                            android:textSize="@dimen/_11ssp"
+                            android:textStyle="bold" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+
+            <com.chaos.view.PinView
+                    android:id="@+id/pinView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:paddingTop="@dimen/_20sdp"
+                    android:textSize="@dimen/_25ssp"
+                    app:itemCount="6"
+                    app:itemSpacing="@dimen/_5sdp"
+                    app:lineColor="@color/light_grey"
+                    app:viewType="line" />
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                <TextView
+                        android:id="@+id/verify_account_retry_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="0.01"
+                        android:lineSpacingExtra="6sp"
+                        android:text="@string/can_retry"
+                        android:textColor="@color/subcategories_grey"
+                        android:textSize="14sp" />
+
+                <TextView
+                        android:id="@+id/verify_account_timer_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_toEndOf="@+id/verify_account_retry_tv"
+                        android:letterSpacing="0.01"
+                        android:lineSpacingExtra="6sp"
+                        android:text="00:45 sec"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <TextView
+                    android:id="@+id/verify_screen_send_code_tv"
+                    android:layout_width="@dimen/_55sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_41sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:background="@drawable/inactive_red_oval"
+                    android:drawableEnd="@drawable/ic_arrow_forward"
+                    android:fontFamily="sans-serif-medium"
+                    android:gravity="end"
+                    android:lineSpacingExtra="6sp"
+                    android:padding="@dimen/_10sdp"
+                    android:textStyle="normal" />
+        </LinearLayout>
+
+        <RelativeLayout
+                android:id="@+id/claim_success_dialog"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/fifty_transparent_black"
+                android:clickable="false"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+            <androidx.cardview.widget.CardView
+                    android:layout_width="@dimen/_280sdp"
+                    android:layout_height="@dimen/_265sdp"
+                    android:layout_centerInParent="true"
+                    app:cardCornerRadius="@dimen/_10sdp"
+                    app:cardElevation="@dimen/_10sdp">
+
+                <RelativeLayout
+                        android:layout_width="@dimen/_280sdp"
+                        android:layout_height="@dimen/_265sdp"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                    <ImageView
+                            android:id="@+id/dialog_offer_claimed_iv"
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_60sdp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/_70sdp"
+                            android:src="@drawable/ic_done" />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/dialog_offer_claimed_iv"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center_horizontal"
+                            android:text="Offer Claimed \n successfuly"
+                            android:textColor="#de000000"
+                            android:textSize="20sp"
+                            android:textStyle="normal" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+        <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:visibility="@{verifyAccountVM.isLoading() == true ? View.VISIBLE: View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+    </RelativeLayout>
+</layout>

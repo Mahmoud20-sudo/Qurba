@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.qurba.android.ui.comments.view_models.CommentItemViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <TextView
+            android:id="@+id/previous_comments_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="sans-serif"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"
+            android:gravity="start|center"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/view_previous_comments"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10ssp"
+            android:textStyle="bold"/>
+
+</layout>

@@ -1,0 +1,8 @@
+<chip
+    style="@style/Widget.MaterialComponents.Chip.Choice"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:checkable="true"
+    app:chipStrokeWidth="1dp"
+    app:chipBackgroundColor="@color/white"
+    app:chipStrokeColor="@color/categories_border"
+    xmlns:app="http://schemas.android.com/apk/res-auto" />

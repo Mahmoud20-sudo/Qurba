@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="pagerAgentVM"
+                type="com.qurba.android.ui.place_details.view_models.PagerAgentViewModel" />
+
+        <variable
+                name="viewModel"
+                type="com.qurba.android.ui.profile.view_models.UserMealsModel" />
+
+
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <com.google.android.material.appbar.AppBarLayout
+                        android:id="@+id/appbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.Toolbar
+                            android:id="@+id/anim_toolbar"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            android:background="@color/white"
+                            android:fontFamily="sans-serif-medium"
+                            android:textStyle="normal"
+                            app:layout_collapseMode="pin"
+                            app:navigationIcon="@drawable/ic_back"
+                            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                            app:title="@string/liked_meals" />
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/appbar"
+                        android:background="@color/white"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                            android:id="@+id/shimmerLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:visibility="@{viewModel.isLoading() ? View.VISIBLE: View.GONE}"
+                            app:shimmer_duration="1000"
+                            app:shimmer_repeat_mode="restart"
+                            app:shimmer_shape="radial">
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:orientation="vertical">
+
+                            <include layout="@layout/item_offer_shimmer"></include>
+
+                            <include layout="@layout/item_offer_shimmer"></include>
+
+                            <include layout="@layout/item_offer_shimmer"></include>
+
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/meals_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:nestedScrollingEnabled="false"
+                            android:visibility="@{viewModel.isDataFound() ? View.VISIBLE: View.GONE}"
+                            tools:listitem="@layout/item_my_order" />
+
+                    <ProgressBar
+                            android:id="@+id/progressBar"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center_horizontal|bottom"
+                            android:visibility="gone" />
+
+                    <FrameLayout
+                            android:id="@+id/empty_state_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="@{!viewModel.isDataFound() ? View.VISIBLE: View.GONE}">
+
+                        <include layout="@layout/empty_state_view" />
+                    </FrameLayout>
+                </LinearLayout>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.cardview.widget.CardView
+                android:id="@+id/cart_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="@dimen/_19sdp"
+                android:clickable="true"
+                android:elevation="@dimen/_3sdp"
+                android:onClick="@{pagerAgentVM.viewCartActivity()}"
+                android:visibility="@{pagerAgentVM.isAddedToCart() ? View.VISIBLE: View.GONE}"
+                app:cardBackgroundColor="@color/order_color"
+                app:cardCornerRadius="@dimen/_3sdp"
+                app:cardElevation="@dimen/_3sdp">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layoutDirection="locale"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/_14sdp"
+                    android:paddingEnd="@dimen/_14sdp">
+
+                <TextView
+                        android:id="@+id/quantity_tv"
+                        android:layout_width="@dimen/_24sdp"
+                        android:layout_height="@dimen/_24sdp"
+                        android:background="@drawable/bordered_oval"
+                        android:fontFamily="sans-serif"
+                        android:gravity="center"
+                        android:text="@{pagerAgentVM.quantity}"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14ssp"
+                        android:textStyle="bold"
+                        tools:text="3">
+
+                </TextView>
+
+                <TextView
+                        android:id="@+id/price_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif"
+                        android:text="@{pagerAgentVM.price}"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14ssp"
+                        android:textStyle="normal"
+                        tools:text=" EGP 00:00" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="@string/view_cart"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="normal" />
+
+                <ImageView
+                        android:layout_width="@dimen/_11sdp"
+                        android:layout_height="@dimen/_11sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:rotation="180"
+                        android:src="@drawable/ic_back"
+                        app:tint="@color/white"></ImageView>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </RelativeLayout>
+</layout>

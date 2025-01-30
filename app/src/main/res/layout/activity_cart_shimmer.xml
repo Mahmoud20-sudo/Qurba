@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+    </data>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+            <TextView
+                    android:id="@+id/offer_place_name_tv"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginStart="@dimen/_14sdp"
+                    android:layout_marginTop="@dimen/_19sdp"
+                    android:background="#B3B3B3"
+                    android:fontFamily="sans-serif"
+                    android:letterSpacing="0.01"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13ssp"
+                    android:textStyle="bold" />
+
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.8dp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:background="#e4e4e4" />
+
+            <androidx.core.widget.NestedScrollView
+                    android:id="@+id/nestedScrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fillViewport="true"
+                    android:paddingBottom="@dimen/_10sdp"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
+                            android:id="@+id/cart_items_rv"
+                            android:layout_width="match_parent"
+                            app:shimmer_demo_layout="@layout/item_cart"
+                            app:shimmer_demo_layout_manager_type="linear_vertical"
+                            android:layout_height="wrap_content"
+                            app:shimmer_demo_child_count="3"
+                            android:layout_marginBottom="@dimen/_20sdp"
+                            android:clipToPadding="false" />
+
+                    <View
+                            android:id="@+id/divider"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/options_title_tv"
+                            android:layout_marginBottom="10dp"
+                            android:background="#ededed" />
+
+                    <TextView
+                            android:layout_width="@dimen/_100sdp"
+
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:background="#B3B3B3"
+                            android:fontFamily="sans-serif"
+
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="bold" />
+
+                    <TextView
+                            android:layout_width="@dimen/_90sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_15sdp"
+                            android:background="#B3B3B3"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="3.3sp"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/address_note_edt"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:background="#B3B3B3"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center_vertical"
+                            android:lineSpacingExtra="4sp"
+                            android:maxLength="250"
+                            android:minEms="6"
+                            android:paddingStart="@dimen/_10sdp"
+                            android:paddingEnd="@dimen/_15sdp"
+                            android:textColor="#263238"
+                            android:textColorHint="#d8d8d8"
+                            android:textSize="16sp"
+                            android:textStyle="normal" />
+
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="3.3dp"
+                            android:layout_marginTop="@dimen/_12sdp"
+                            android:background="#f1f1f1" />
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

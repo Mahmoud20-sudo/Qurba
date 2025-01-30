@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:fancy="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="itemObject"
+                type="com.qurba.android.network.models.AddAddressModel" />
+
+        <variable
+                name="viewModel"
+                type="com.qurba.android.ui.add_edit_address.view_models.AddAddressViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:fillViewport="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true">
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                <com.google.android.material.appbar.AppBarLayout
+                        android:id="@+id/appbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.Toolbar
+                            android:id="@+id/toolbar"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            android:layout_alignParentTop="true"
+                            android:background="@color/white"
+                            android:theme="@style/AddReviewBarStyle"
+                            android:visibility="visible"
+                            app:navigationIcon="@drawable/ic_back"
+                            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                            app:title="@string/edit_address">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end"
+                                android:layout_marginEnd="@dimen/_15sdp"
+                                android:fontFamily="sans-serif"
+                                android:lineSpacingExtra="5sp"
+                                android:onClick="@{viewModel.deleteAddressClickEvent(itemObject)}"
+                                android:text="@string/delete_hint"
+                                android:textAllCaps="true"
+                                android:textColor="@color/order_color"
+                                android:textSize="@dimen/_11ssp"
+                                android:textStyle="bold"
+                                android:visibility="@{viewModel.isEditingAddress() &amp; viewModel.isFromCheckout() == false ? View.VISIBLE: View.GONE}" />
+
+                    </androidx.appcompat.widget.Toolbar>
+                </com.google.android.material.appbar.AppBarLayout>
+
+                <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_83sdp"
+                        android:layout_margin="@dimen/_13sdp"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="0dp">
+
+                    <com.google.android.gms.maps.MapView
+                            android:id="@+id/map_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:text="@string/delivery_area"
+                        android:textColor="#4a4a4a"
+                        android:textSize="@dimen/_10ssp" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_marginTop="@dimen/_9sdp"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:orientation="horizontal">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif"
+                            android:text="@{viewModel.getDeliveryArea()}"
+                            android:textColor="#252a34"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="bold"
+
+                            tools:text="Alexandria, Louran" />
+
+                    <TextView
+                            android:id="@+id/change_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif"
+                            android:lineSpacingExtra="5sp"
+                            android:text="@string/change"
+                            android:textAllCaps="true"
+                            android:textColor="@color/order_color"
+                            android:textSize="@dimen/_11ssp"
+                            android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_marginTop="@dimen/_21sdp"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:text="@string/address_details"
+                        android:textColor="#4a4a4a"
+                        android:textSize="@dimen/_10ssp" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:fontFamily="sans-serif"
+                        android:lineSpacingExtra="3.3sp"
+                        android:text="@string/street_name"
+                        android:textColor="#6d7278"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold" />
+
+
+                <!--                <com.qurba.android.utils.CustomTextInputLayout-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    app:errorTextAppearance="@style/error_text_appearance">-->
+
+                <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/street_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:background="@drawable/address_fields_bg"
+                        android:fontFamily="sans-serif"
+                        android:gravity="start|center_vertical"
+                        android:hint="@string/street_name_hint"
+                        android:inputType="text"
+                        android:lineSpacingExtra="7.5sp"
+                        android:maxLength="200"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@={viewModel.streetName}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        app:error="@{viewModel.getStreetNameError()}"
+                        app:errorTextAppearance="@style/error_text_appearance" />
+
+                <!--                </com.qurba.android.utils.CustomTextInputLayout>-->
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:fontFamily="sans-serif"
+                        android:lineSpacingExtra="3.3sp"
+                        android:text="@string/branched_from"
+                        android:textColor="#6d7278"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold" />
+
+
+                <!--                <com.qurba.android.utils.CustomTextInputLayout-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    app:errorTextAppearance="@style/error_text_appearance">-->
+
+                <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/branched_from_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:background="@drawable/address_fields_bg"
+                        android:fontFamily="sans-serif"
+                        android:gravity="start|center_vertical"
+                        android:hint="@string/branched_from_hint"
+                        android:inputType="text"
+                        android:lineSpacingExtra="7.5sp"
+                        android:maxLength="200"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@={viewModel.branchedFrom}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        app:error="@{viewModel.getBranchedFromError()}"
+                        app:errorTextAppearance="@style/error_text_appearance" />
+
+                <!--                </com.qurba.android.utils.CustomTextInputLayout>-->
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:fontFamily="sans-serif"
+                        android:lineSpacingExtra="3.3sp"
+                        android:text="@string/building_no"
+                        android:textColor="#6d7278"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold" />
+
+                <!--                <com.qurba.android.utils.CustomTextInputLayout-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    app:errorTextAppearance="@style/error_text_appearance">-->
+
+                <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/building_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:background="@drawable/address_fields_bg"
+                        android:fontFamily="sans-serif"
+                        android:gravity="start|center_vertical"
+                        android:hint="@string/building_number_hint"
+                        android:inputType="text"
+                        android:lineSpacingExtra="7.5sp"
+                        android:maxLength="100"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@={viewModel.buildingNumber}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        app:error="@{viewModel.getBuildingNumberError()}"
+                        app:errorTextAppearance="@style/error_text_appearance" />
+                <!--                </com.qurba.android.utils.CustomTextInputLayout>-->
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_14sdp"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_14sdp"
+                                android:fontFamily="sans-serif"
+                                android:lineSpacingExtra="3.3sp"
+                                android:text="@string/floors_num"
+                                android:textColor="#6d7278"
+                                android:textSize="@dimen/_11ssp"
+                                android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/floor_input"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_40sdp"
+                                android:layout_marginStart="@dimen/_14sdp"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:layout_marginEnd="@dimen/_14sdp"
+                                android:background="@drawable/address_fields_bg"
+                                android:error="@{viewModel.getFloorNumberError()}"
+                                android:fontFamily="sans-serif"
+                                android:gravity="start|center_vertical"
+                                android:hint="@string/floor_number_hint"
+                                android:inputType="text"
+                                android:lineSpacingExtra="7.5sp"
+                                android:maxLength="100"
+                                android:padding="@dimen/_10sdp"
+                                android:text="@={viewModel.floorNumber}"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_12ssp"
+                                android:textStyle="bold"
+                                app:errorTextAppearance="@style/error_text_appearance"
+                                tools:text="1060 Addison Street" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_14sdp"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_14sdp"
+                                android:fontFamily="sans-serif"
+                                android:lineSpacingExtra="3.3sp"
+                                android:text="@string/flat_num"
+                                android:textColor="#6d7278"
+                                android:textSize="@dimen/_11ssp"
+                                android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/flat_input"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_40sdp"
+                                android:layout_marginStart="@dimen/_14sdp"
+                                android:layout_marginTop="@dimen/_4sdp"
+                                android:layout_marginEnd="@dimen/_14sdp"
+                                android:background="@drawable/address_fields_bg"
+                                android:error="@{viewModel.getFlatNumberError()}"
+                                android:fontFamily="sans-serif"
+                                android:gravity="start|center_vertical"
+                                android:hint="@string/flat_number_hint"
+                                android:inputType="text"
+                                android:lineSpacingExtra="7.5sp"
+                                android:maxLength="50"
+                                android:padding="@dimen/_10sdp"
+                                android:text="@={viewModel.flatNumber}"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_12ssp"
+                                android:textStyle="bold"
+                                app:errorTextAppearance="@style/error_text_appearance" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:fontFamily="sans-serif"
+                        android:lineSpacingExtra="3.3sp"
+                        android:text="@{@string/nearby_landmarks + '*'}"
+                        android:textColor="#6d7278"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/nearest_landmark_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:background="@drawable/address_fields_bg"
+                        android:fontFamily="sans-serif"
+                        android:gravity="start|center_vertical"
+                        android:hint="@string/nearby_number_hint"
+                        android:inputType="text"
+                        android:lineSpacingExtra="7.5sp"
+                        android:maxLength="50"
+                        android:padding="@dimen/_10sdp"
+                        android:text="@={viewModel.nearesLandmark}"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        app:error="@{viewModel.getNearestLandMarkError()}"
+                        app:errorTextAppearance="@style/error_text_appearance"
+                        tools:text="1060 Addison Street" />
+
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:fontFamily="sans-serif"
+                        android:lineSpacingExtra="3.3sp"
+                        android:text="@string/labels"
+                        android:textColor="#6d7278"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold" />
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:orientation="horizontal">
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                            android:id="@+id/home_lbl"
+                            android:layout_width="@dimen/_52sdp"
+                            android:layout_height="@dimen/_42sdp"
+                            android:layout_gravity="center_horizontal"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            android:textStyle="normal"
+                            android:visibility="visible"
+
+                            app:layout_constraintEnd_toEndOf="parent"
+                            fancy:fb_borderColor="#e2e2e2"
+                            fancy:fb_borderWidth="0.8dp"
+                            fancy:fb_defaultColor="@color/white"
+                            fancy:fb_iconPaddingBottom="2dp"
+                            fancy:fb_iconPosition="top"
+                            fancy:fb_iconResource="@drawable/ic_baseline_home_24"
+                            fancy:fb_radius="@dimen/_4sdp"
+                            fancy:fb_text="@string/home_lbl"
+                            fancy:fb_textColor="#6d7278"
+                            fancy:fb_textSize="@dimen/_9ssp" />
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                            android:id="@+id/work_lbl"
+                            android:layout_width="@dimen/_52sdp"
+                            android:layout_height="@dimen/_42sdp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:layout_marginEnd="@dimen/_8sdp"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:textStyle="normal"
+
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            fancy:fb_borderColor="#e2e2e2"
+                            fancy:fb_borderWidth="0.8dp"
+                            fancy:fb_defaultColor="@color/white"
+                            fancy:fb_iconPaddingBottom="8dp"
+                            fancy:fb_iconPaddingTop="2dp"
+                            fancy:fb_iconPosition="top"
+
+                            fancy:fb_iconResource="@drawable/ic_work"
+                            fancy:fb_radius="@dimen/_4sdp"
+                            fancy:fb_text="@string/work_lbl"
+                            fancy:fb_textColor="#6d7278"
+                            fancy:fb_textSize="@dimen/_9ssp" />
+
+                    <mehdi.sakout.fancybuttons.FancyButton
+                            android:id="@+id/other_lbl"
+                            android:layout_width="@dimen/_52sdp"
+                            android:layout_height="@dimen/_42sdp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:textColor="#6d7278"
+                            android:textStyle="normal"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            fancy:fb_borderColor="#e2e2e2"
+                            fancy:fb_borderWidth="0.8dp"
+                            fancy:fb_defaultColor="@color/white"
+                            fancy:fb_iconPaddingBottom="5dp"
+                            fancy:fb_iconPosition="top"
+                            fancy:fb_iconResource="@drawable/ic_pin_drop_24_px"
+                            fancy:fb_radius="@dimen/_4sdp"
+                            fancy:fb_text="@string/other_lbl"
+                            fancy:fb_textColor="#6d7278"
+                            fancy:fb_textSize="@dimen/_9ssp" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/others_input"
+                            android:layout_width="@dimen/_190sdp"
+                            android:layout_height="@dimen/_42sdp"
+                            android:background="@drawable/address_fields_bg"
+                            android:fontFamily="sans-serif"
+                            android:gravity="start|center_vertical"
+                            android:hint="@string/label_ur_address"
+                            android:inputType="text"
+                            android:lineSpacingExtra="7.5sp"
+                            android:maxLength="30"
+                            android:padding="@dimen/_10sdp"
+                            android:text="@={viewModel.othersTitle}"
+                            android:textColor="@color/black"
+                            android:textColorHint="#d8d8d8"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            tools:text="1060 Addison Street" />
+
+                    <ImageView
+                            android:id="@+id/other_close_iv"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_6sdp"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/ic_baseline_cancel_24"
+                            android:visibility="gone"></ImageView>
+
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/offer_item_order_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_33sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/_14sdp"
+                        android:layout_marginTop="@dimen/_21sdp"
+                        android:layout_marginEnd="@dimen/_14sdp"
+                        android:layout_marginBottom="@dimen/_26sdp"
+                        android:background="@drawable/bg_card"
+                        android:gravity="center"
+                        android:onClick="@{viewModel.updateAddress()}"
+                        android:text="@{viewModel.isEditingAddress() ? @string/update_addres: @string/save_address}"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_11ssp"
+                        app:backgroundTint="#de1d31"
+                        tools:textAllCaps="false" />
+
+            </LinearLayout>
+
+            <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:visibility="@{viewModel.isLoading() == true ? View.VISIBLE: View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

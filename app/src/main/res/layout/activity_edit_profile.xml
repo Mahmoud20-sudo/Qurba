@@ -1,0 +1,219 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.qurba.android.ui.profile.view_models.EditProfileViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/_20sdp"
+            android:background="@color/white">
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/_10sdp" />
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/_10sdp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_avatar_iv"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/person_placeholder"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="0dp"
+                android:visibility="gone"
+                android:layout_height="0dp"
+                android:layout_margin="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/profile_avatar_iv"
+                app:layout_constraintTop_toTopOf="@+id/profile_avatar_iv"
+                app:layout_constraintEnd_toEndOf="@+id/profile_avatar_iv"
+                app:layout_constraintStart_toStartOf="@+id/profile_avatar_iv"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_centerHorizontal="true" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/_20sdp"
+                android:background="@drawable/grey_circle"
+                android:layout_marginTop="-25dp"
+                android:padding="@dimen/_4sdp"
+                android:src="@drawable/ic_baseline_camera_alt_24"
+                android:layout_marginStart="-25dp"
+                app:layout_constraintTop_toBottomOf="@+id/profile_avatar_iv"
+                app:layout_constraintStart_toEndOf="@+id/profile_avatar_iv"
+                android:layout_height="@dimen/_20sdp"/>
+
+        <TextView
+                android:id="@+id/user_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@{viewModel.firstName + ` ` + viewModel.lastName}"
+                android:textColor="@color/black"
+                android:textSize="16.7sp"
+                android:textStyle="normal"
+                app:layout_constraintStart_toEndOf="@+id/profile_avatar_iv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+                android:id="@+id/breif_tv"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:paddingEnd="@dimen/_20sdp"
+                android:maxLines="2"
+                android:fontFamily="sans-serif"
+                android:text="@string/update_inf"
+                android:textColor="@color/facilities_grey"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                android:textStyle="normal"
+                app:layout_constraintStart_toEndOf="@+id/profile_avatar_iv"
+                app:layout_constraintTop_toBottomOf="@+id/user_name_tv" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/first_name_edt"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/address_fields_bg"
+                android:fontFamily="sans-serif"
+                android:gravity="start|center_vertical"
+                android:hint="@string/first_name"
+                android:inputType="text"
+                android:lineSpacingExtra="7.5sp"
+                android:maxLength="20"
+                android:paddingStart="@dimen/_14sdp"
+                android:paddingEnd="@dimen/_14sdp"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:text="@={viewModel.firstName}"
+                android:textSize="@dimen/_14ssp"
+                app:error="@{viewModel.getFirstNameError()}"
+                app:errorTextAppearance="@style/error_text_appearance"
+                app:layout_constraintEnd_toEndOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/profile_avatar_iv" />
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/last_name_edt"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/address_fields_bg"
+                android:fontFamily="sans-serif"
+                android:gravity="start|center_vertical"
+                android:hint="@string/last_name"
+                android:inputType="text"
+                android:paddingEnd="@dimen/_14sdp"
+                android:lineSpacingExtra="7.5sp"
+                android:maxLength="20"
+                android:paddingStart="@dimen/_14sdp"
+                android:textColor="@color/black"
+                android:singleLine="true"
+                android:text="@={viewModel.lastName}"
+                android:textSize="@dimen/_14ssp"
+                app:error="@{viewModel.getLastNameError()}"
+                app:errorTextAppearance="@style/error_text_appearance"
+                app:layout_constraintEnd_toEndOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/first_name_edt" />
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/email_edt"
+                android:enabled="false"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:backgroundTint="@color/light_gray"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/address_fields_bg"
+                android:fontFamily="sans-serif"
+                android:paddingEnd="@dimen/_14sdp"
+                android:gravity="start|center_vertical"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:lineSpacingExtra="7.5sp"
+                android:maxLength="100"
+                android:paddingStart="@dimen/_14sdp"
+                android:singleLine="true"
+                android:text="@={viewModel.email}"
+                android:textSize="@dimen/_14ssp"
+                app:errorTextAppearance="@style/error_text_appearance"
+                app:layout_constraintEnd_toEndOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/last_name_edt" />
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/phone_ed"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/address_fields_bg"
+                android:digits="0123456789"
+                android:fontFamily="sans-serif"
+                android:paddingEnd="@dimen/_14sdp"
+                android:gravity="start|center_vertical"
+                android:hint="@string/mobile_number"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:lineSpacingExtra="7.5sp"
+                android:paddingStart="@dimen/_14sdp"
+                android:singleLine="true"
+                android:text="@={viewModel.phoneNumber}"
+                android:textSize="@dimen/_14ssp"
+                app:error="@{viewModel.getPhoneError()}"
+                app:errorTextAppearance="@style/error_text_appearance"
+                app:layout_constraintEnd_toEndOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/email_edt" />
+
+        <br.com.simplepass.loadingbutton.customViews.CircularProgressButton
+                android:id="@+id/offer_item_order_btn"
+                android:layout_width="0dp"
+                app:layout_constraintEnd_toEndOf="@id/guideline2"
+                android:layout_height="@dimen/_33sdp"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/phone_ed"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_21sdp"
+                android:background="@drawable/bg_card"
+                android:onClick="@{viewModel.updateProfileClick()}"
+                android:layout_marginBottom="@dimen/_26sdp"
+                app:backgroundTint="#de1d31"
+                android:text="@string/update"
+                android:textAllCaps="true"
+                android:textSize="@dimen/_11ssp"
+                android:textColor="@color/white"
+                app:spinning_bar_color="#FFF"
+                app:spinning_bar_padding="6dp"
+                android:gravity="center" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

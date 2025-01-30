@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="com.qurba.android.ui.offers.view_models.OffersViewModel" />
+
+        <import type="com.qurba.android.R" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#EEEEEE"
+            android:orientation="vertical">
+
+        <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:id="@+id/collapsing_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:fitsSystemWindows="true"
+                    app:contentScrim="@color/white"
+                    app:expandedTitleMarginBottom="30dp"
+                    app:expandedTitleMarginEnd="64dp"
+                    app:expandedTitleMarginStart="48dp"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <LinearLayout
+                        android:id="@+id/featured_places_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_132sdp"
+                        android:background="@color/white"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/_15sdp"
+                        android:visibility="gone">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_15sdp"
+                            android:fontFamily="sans-serif"
+                            android:text="@string/featured_places"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14ssp"
+                            android:textStyle="bold" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/featured_places_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:clipToPadding="false"
+                            android:orientation="horizontal"
+                            android:paddingStart="@dimen/_15sdp"
+                            android:visibility="visible"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/item_featured_place" />
+                </LinearLayout>
+
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:layoutDirection="locale"
+                    android:orientation="vertical">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingBottom="@dimen/_5sdp">
+
+                    <com.qurba.android.utils.CustomSearchView
+                            android:id="@+id/offers_search_view"
+                            style="@style/MySearchViewStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_26sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/grey_border"
+                            android:focusable="false"
+                            android:focusableInTouchMode="true"
+                            android:iconifiedByDefault="false"
+                            app:closeIcon="@mipmap/close"
+                            app:defaultQueryHint="@string/search_hint"
+                            app:iconifiedByDefault="false"
+                            app:queryHint="@string/search_hint"
+                            app:searchHintIcon="@drawable/ic_search_black_24dp"
+                            app:searchIcon="@null" />
+
+                    <TextView
+                            android:id="@+id/filter_offer_tv"
+                            android:layout_width="@dimen/_70sdp"
+                            android:layout_height="@dimen/_26sdp"
+                            android:layout_marginEnd="@dimen/_11sdp"
+                            android:background="@drawable/white_rect_grey_stroke"
+                            android:drawableStart="@drawable/ic_baseline_filter_list_24"
+                            android:drawablePadding="-10dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:letterSpacing="0.02"
+                            android:lineSpacingExtra="1.6sp"
+                            android:paddingStart="@dimen/_6sdp"
+                            android:text="@string/filter"
+                            android:textAllCaps="true"
+                            android:textColor="#222222"
+                            android:textSize="@dimen/_10ssp"
+                            android:textStyle="normal"
+                            tools:text="Filter" />
+
+                </LinearLayout>
+
+                <com.google.android.flexbox.FlexboxLayout
+                        android:id="@+id/filtering_results_ll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_11sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:orientation="horizontal"
+                        app:alignItems="center"
+                        app:flexWrap="wrap">
+
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <View
+                        android:id="@+id/divider"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/social_ll"
+                        android:layout_marginStart="@dimen/_11sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_marginEnd="@dimen/_11sdp"
+                        android:background="#19000000"></View>
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.qurba.android.utils.SwipeToRefreshLayout
+                android:id="@+id/refreshLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.core.widget.NestedScrollView
+                    android:id="@+id/nestedScrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fillViewport="true">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/_100sdp">
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                            android:id="@+id/shimmerLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="@{viewModel.isLoading() ? View.VISIBLE: View.GONE}"
+                            app:shimmer_duration="1000"
+                            app:shimmer_repeat_mode="restart"
+                            app:shimmer_shape="radial">
+
+                        <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/white"
+                                android:orientation="vertical">
+
+                            <include layout="@layout/item_offer_place_offer_shimmer"></include>
+
+                            <include layout="@layout/item_offer_place_offer_shimmer"></include>
+
+                            <include layout="@layout/item_offer_place_offer_shimmer"></include>
+
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/offers_rv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clipToPadding="false"
+                            android:visibility="@{viewModel.isDataFound() ? View.VISIBLE: View.GONE}"
+                            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                            app:shimmer_demo_child_count="5"
+                            app:shimmer_demo_duration="1000"
+                            app:shimmer_demo_layout="@layout/item_offer_place_offer_shimmer" />
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/_67sdp"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical"
+                            android:visibility="@{!viewModel.isDataFound() ? View.VISIBLE: View.GONE}">
+
+                        <ImageView
+                                android:layout_width="52dp"
+                                android:layout_height="52dp"
+                                android:src="@drawable/ic_no_result"></ImageView>
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_18sdp"
+                                android:fontFamily="sans-serif"
+                                android:gravity="center_horizontal"
+                                android:text="@string/no_result_found"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/_12ssp"
+                                android:textStyle="bold"
+                                tools:text="No Results Found!" />
+
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_8sdp"
+                                android:fontFamily="sans-serif"
+                                android:letterSpacing="0.01"
+                                android:text="@string/no_offer_found"
+                                android:textColor="#646464"
+                                android:textSize="@dimen/_10ssp"
+                                android:textStyle="bold"
+                                tools:text="No offers matching selected filters to show" />
+
+                        <TextView
+                                android:id="@+id/clear_filters_tv"
+                                android:layout_width="@dimen/_120sdp"
+                                android:layout_height="@dimen/_28sdp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginTop="@dimen/_30sdp"
+                                android:background="@drawable/bg_card"
+                                android:backgroundTint="@color/order_color"
+                                android:clickable="true"
+                                android:fontFamily="sans-serif"
+                                android:gravity="center"
+                                android:letterSpacing="-0.05"
+                                android:lineSpacingExtra="0.8sp"
+                                android:text="@string/clear_filters"
+                                android:textAllCaps="true"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_11ssp"
+                                android:textStyle="bold"
+                                tools:text="@string/clear_filters" />
+
+                    </LinearLayout>
+
+                    <ProgressBar
+                            android:id="@+id/progressBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:visibility="gone" />
+
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+        </com.qurba.android.utils.SwipeToRefreshLayout>
+        <!--    </androidx.core.widget.NestedScrollView>-->
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

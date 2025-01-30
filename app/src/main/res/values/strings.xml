@@ -1,0 +1,606 @@
+<resources>
+    <string name="app_name">Qurba</string>
+    <string name="default_city">Alexandria</string>
+    <string name="trending">Trending</string>
+    <string name="nearby">Places</string>
+    <string name="near">Near, </string>
+    <string name="offers">Offers</string>
+    <string name="restaurants">Restaurants</string>
+    <string name="offer_type">Offer Type</string>
+    <string name="products">Products</string>
+    <string name="profile">Profile</string>
+    <string name="places_search_hint">What are you looking for?</string>
+    <string name="places_search_by_name_hint">Search by Place name</string>
+    <string name="areas_search_by_name_hint">Search area</string>
+
+    <!--    <string name="fb_login_protocol_scheme" translatable="false">fb457115404681191</string>-->
+
+    <!--    <string name="fb_app_id" translatable="false">457115404681191</string>-->
+
+
+    <string name="view_all_comments">View All Comments</string>
+    <string name="view_all_offers_at">View All Offers at</string>
+    <string name="view_menu">View Menu</string>
+    <string name="view">View</string>
+    <string name="replies">Replies</string>
+    <string name="more_replies">more replies</string>
+    <string name="percentage">%</string>
+
+    <string name="view_order_details">View Order Details</string>
+
+    <string name="offer_description">Offer Description</string>
+
+    <string name="products_and_services">Products and Services </string>
+    <string name="product_description">Meal Description</string>
+    <string name="product_customization">Meal Customizations</string>
+    <string name="see_others_saying">See what others are saying</string>
+    <string name="place_info">Restaurant Info</string>
+    <string name="similar_places">Similar Restaurants</string>
+    <string name="be_first_to_rate">Be the first to rate</string>
+    <string name="be_first_to_comment">Be the first to comment</string>
+    <string name="view_previous_comments">View recent comments</string>
+
+    <string name="offers_search_hint">Search by offer name</string>
+    <string name="search_location_hint">Search in specific location</string>
+    <string name="follow">Follow</string>
+    <string name="show_results">Show results</string>
+    <string name="following">Following</string>
+    <string name="see_all_reviews">See all reviews</string>
+    <string name="view_all_reviews">View all reviews</string>
+    <string name="view_all_images">View all images</string>
+    <string name="see_all_places">See all places</string>
+    <string name="featured">Featured</string>
+    <string name="featured_places">Featured Restaurants</string>
+    <string name="_new">New</string>
+    <string name="became_trendy">Became trendy</string>
+    <string name="most_reviewed">Most reviewed</string>
+    <string name="recently_joined">Recently joined</string>
+    <string name="no_connection">No Internet Connection</string>
+    <string name="profile_updated_success">Profile successfully updated</string>
+
+    <string name="retry">Retry</string>
+    <string name="sort_by_distance">Sort by distance</string>
+    <string name="sort_by">Sort by</string>
+    <string name="places">Places</string>
+    <string name="place">Place</string>
+    <string name="search_this_area">Search this area</string>
+    <string name="description">Description</string>
+    <string name="location">Location</string>
+    <string name="open_time">Open time</string>
+    <string name="about">About</string>
+    <string name="nearby_landmarks">Nearby landmarks</string>
+    <string name="nearby_garages">Nearby garages</string>
+    <string name="open_now">Open now</string>
+    <string name="open_at">Opens at</string>
+    <string name="other_branches">Other branches</string>
+    <string name="phone_number">Phone number</string>
+    <string name="land_line">Land line</string>
+    <string name="phone">Phone</string>
+    <string name="hash_tags">Hashtags</string>
+    <string name="facilities">Facilities</string>
+    <string name="gallery">Gallery</string>
+    <string name="info">INFO</string>
+    <string name="categories">Categories</string>
+    <string name="reviews">Reviews</string>
+    <string name="menu">Menu</string>
+    <string name="get_directions">Get directions</string>
+    <string name="write_review">Write a review</string>
+    <string name="share">Share</string>
+    <string name="commnt">Comment</string>
+    <string name="label_ur_address">label your address</string>
+    <string name="other_address_hint">eg. beside pharmacy</string>
+
+    <string name="excellent">Excellent</string>
+    <string name="very_good">Very good</string>
+    <string name="good">Good</string>
+    <string name="fair">Fair</string>
+    <string name="poor">Poor</string>
+    <string name="rated">Rated</string>
+    <string name="failed_update_pp">Failed to update the new profile picture. Please try again.</string>
+    <string name="failed_image_invalid_path">Image path not valid. Please choose a valid image.</string>
+
+    <string name="something_wrong">Something went wrong. Please try again.</string>
+    <string name="trending_hashtags">Trending Hashtags</string>
+    <string name="recent_searches">Recent searches</string>
+    <string name="no_locations_found">No locations found</string>
+    <string name="no_places_found">No places found</string>
+    <string name="no_offers_found">No offers found</string>
+    <string name="zero">0</string>
+    <string name="update_item_qty_failed">Can\'t update this item quanitity</string>
+
+    <string name="all_reviews">All reviews</string>
+    <string name="write_a_review">Write a review</string>
+    <string name="post">POST</string>
+    <string name="clear_all">Clear All</string>
+    <string name="order_now">Order Now</string>
+    <string name="order_hint">Order</string>
+    <string name="order">Add To Cart</string>
+    <string name="view_cart">View My Cart</string>
+    <string name="clear_filters">Clear Filters</string>
+
+    <string name="liked_meals">Liked Meals</string>
+    <string name="liked_places">Liked Restaurants</string>
+    <string name="liked_offers">Liked Offers</string>
+    <string name="my_order">My Orders</string>
+    <string name="next">Next</string>
+    <string name="claim_now">Claim now</string>
+    <string name="write_your_review">Write your review</string>
+    <string name="add_images">Add images</string>
+    <string name="add_comment">Write a comment</string>
+    <string name="add_reply">Write a reply</string>
+
+    <string name="tap_on_star">Tap on a star</string>
+    <string name="image">Image</string>
+    <string name="filter_by">Filter by</string>
+    <string name="filter">Filter</string>
+    <string name="show_distance">Show distance</string>
+    <string name="followers">Followers</string>
+    <string name="follower">Follower</string>
+    <string name="expire">Expire </string>
+    <string name="expire_on">Expire on</string>
+    <string name="ends_on">Ends on </string>
+    <string name="ended_on">Ended on </string>
+    <string name="valid_till">Valid till</string>
+    <string name="util_now">util now</string>
+
+    <string name="days_left">Days left</string>
+    <string name="claims">Claims</string>
+    <string name="claim_offer">Claim offer</string>
+    <string name="claimed">Claimed</string>
+    <string name="terms_and_conditions">Terms and Conditions</string>
+    <string name="read_terms_and_conditions">Read terms and condition</string>
+    <string name="ask_pm">Ask place manager to enter offer PIN code below</string>
+    <string name="discount">Discount</string>
+    <string name="on_items">On Items</string>
+    <string name="on_menu">On Menu</string>
+
+    <string name="discount_on_items">Discount On Items</string>
+    <string name="discount_on_menu">Discount On Menu</string>
+    <string name="can_deliver">Can Deliver</string>
+    <string name="active_now">Active Now</string>
+
+    <string name="km">KM</string>
+    <string name="free">Free</string>
+    <string name="free_items">Free Items</string>
+    <string name="items">Items</string>
+    <string name="other_offers">Other place offers</string>
+    <string name="other_offers_from">Other offers from</string>
+
+    <string name="specific_offer">Specific time</string>
+    <string name="no_results">No results found</string>
+    <string name="most_followed">Most Followed</string>
+    <string name="most_claimed">Most Claimed</string>
+    <string name="newly_added">Newly Added</string>
+    <string name="nearest">Nearest</string>
+    <string name="need_account">You need an account to continue</string>
+    <string name="sign_up">Sign up</string>
+    <string name="login">Login</string>
+    <string name="login_success">Logged in successfully</string>
+    <string name="added_to_cart">Offer has been successfully added to cart</string>
+
+    <string name="sign_up_facebook">Continue with Facebook</string>
+    <string name="sign_up_google">Continue with Google</string>
+    <string name="discover_places">Discover Places</string>
+    <string name="discover_returants">Discover Restaurants</string>
+
+    <string name="order_tasty_food">Order tasty food</string>
+    <string name="make_day_delicious">&amp; make your day delicious</string>
+
+    <string name="all_ur_favs">All your favorites</string>
+    <string name="delivers_to_you">Delivers to you</string>
+    <string name="your_delivery_area">Your Delivery Area</string>
+    <string name="delivering_area">Your Delivery Area</string>
+    <string name="drag_the_map">Drag the map and put the pin on your exact delivery area</string>
+
+    <string name="around_you_profile">Around you</string>
+    <string name="around_you">Around you</string>
+    <string name="comment_hint">Add a comment</string>
+    <string name="have_account">Already have an account?</string>
+    <string name="do_not_have_account">Don\'t have an account?</string>
+    <string name="email">Email</string>
+    <string name="mobile_registered">Mobile Already Registered!</string>
+    <string name="done">DONE</string>
+    <string name="edit">EDIT</string>
+    <string name="no_data">No match was found for the specified search criteria</string>
+    <string name="not_available">Not Available</string>
+    <string name="cart_not_available">Some items are not available. Please check your cart items and try again</string>
+    <string name="ok">OK</string>
+
+    <string name="not_supported_area_hint">We currently do not deliver here</string>
+    <string name="not_supported_area">This area not supported Yet!</string>
+    <string name="not_supported_area_message">The delivery address selected is currently not supported. Please select another address to deliver to</string>
+
+    <string name="no_result_found">Sorry, no results found!</string>
+    <string name="no_filtered_result">No results found matching your filters, try something  more general</string>
+
+    <string name="no_comments_hint">No comments yet</string>
+    <string name="first_comments_hint">Be the first to comment</string>
+
+    <string name="chat_with_us">Chat with us on Messenger</string>
+    <string name="need_hepls">Have something to say to Qurba ?</string>
+    <string name="help_hint">Help</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot password?</string>
+    <string name="forgot_password_title">Forgot password</string>
+    <string name="forgot_help_password">password must be 6 digits to 20</string>
+    <string name="create_account">Create account</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="create_my_account">Create my account</string>
+    <string name="my_account">My account</string>
+    <string name="update_inf">Update your information and manage your account</string>
+
+    <string name="account_verification">Account Verification</string>
+    <string name="enter_digits">Enter 6-digit Verification code</string>
+    <string name="can_retry">Can retry in:</string>
+    <string name="recovery_verification">The recovery verification was sent to</string>
+    <string name="change">Change</string>
+    <string name="resend_code">RESEND CODE</string>
+    <string name="invalid_email">Invalid email. Please follow this format \"user@domain.com\"</string>
+    <string name="required_field">Required field</string>
+    <string name="addesss_length_msg">Address length must be more than six</string>
+    <string name="floor_number_error">Floor number must be less than 99</string>
+    <string name="add_comment_warning">You must type a comment first</string>
+    <string name="add_reply_warning">You must type a reply first</string>
+
+    <string name="required">(Required)</string>
+    <string name="optional">(Optional)</string>
+
+    <string name="invalid_bracnhed_length">Branched from must be at least 6 digits to 200</string>
+    <string name="invalid_street_length">Street must be at least 6 digits to 200</string>
+    <string name="invalid_password_length">Password must be 6 digits to 20</string>
+    <string name="wrong_password">Wrong password</string>
+    <string name="invalid_phone">Invalid phone number</string>
+    <string name="wrong_email_or_password">Wrong email address or password</string>
+    <string name="wrong_mobile_or_password">Wrong mobile number or password</string>
+    <string name="verificatin_failed">Verification failed</string>
+    <string name="invalid_or_existing_email">This email is invalid or already existing</string>
+    <string name="invalid_or_existing_phone">This mobile is invalid or already existing</string>
+
+    <string name="not_existing_email">This email is not exist</string>
+    <string name="not_existing_phone">This mobile is not exist</string>
+    <string name="reset_password">Reset Your Password</string>
+    <string name="version_title">V</string>
+
+    <string name="reset_password_hint">If you forgotten your password you can reset it by write your mobile number, we will send you a code for next process.</string>
+
+    <string name="opens">Opens</string>
+    <string name="closed">Closed</string>
+    <string name="closed_now">CLOSED NOW</string>
+
+    <!--    <string name="facebook_app_id">420354745006215</string>-->
+    <!--    <string name="fb_login_protocol_scheme">fb420354745006215</string>-->
+    <string name="gps_network_not_enabled">To continue, turn on device location, which uses Google’s location service</string>
+    <string name="open_location_settings">Go to settings</string>
+    <string name="not_open_settings">NO, THANKS</string>
+    <string name="cancel">Cancel</string>
+    <string name="no_places_near_you">No places near to your current location</string>
+    <string name="search_results">Search result</string>
+    <string name="search_deliver_area">Search for your delivery area</string>
+    <string name="search_for_areas">Search for areas</string>
+
+    <string name="invalid_pin_code">Invalid claim code</string>
+    <string name="invalid_verification_code">Invalid verification code</string>
+    <string name="sponsored">Sponsored</string>
+    <string name="sponsored_offers">Sponsored offers</string>
+    <string name="beta">Beta</string>
+    <string name="today">Today</string>
+    <string name="show_less">Show less</string>
+    <string name="show_more">Show more</string>
+
+    <string name="view_all">View all</string>
+    <string name="view_all_days">View all days</string>
+    <string name="view_less">View less</string>
+    <string name="hotline">Hotline</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="photos">PHOTOS</string>
+
+    <string name="google_places_api_key">AIzaSyABHMKyUYuS7xXWqDvgFJrDrqN8q5aZOws</string>
+    <string name="placement_id">853320171696106_1211609195867200</string>
+    <string name="no_offers_yet">No offers yet</string>
+    <string name="no_products_yet">No products yet</string>
+    <string name="no_my_reviews_yet">You haven’t any reviews yet</string>
+    <string name="no_favourite_offers_yet">No favorite offers yet</string>
+    <string name="no_following_places_yet">You are not following any places yet</string>
+    <string name="no_orders_yet">No Pending Orders yet</string>
+    <string name="closed_for_delivery">Place currently closed for delivery</string>
+
+    <string name="no_reviews_yet">No reviews yet</string>
+    <string name="show_less_text">    Show less</string>
+    <string name="show_more_text">......Show more</string>
+    <string name="place_manager">Place manager</string>
+    <string name="like">Like</string>
+    <string name="reply">Reply</string>
+    <string name="order_pending">Waiting for restaurant’s confirmation.. ..</string>
+    <string name="no_offer_found">No offers matching selected filters to show</string>
+
+    <string name="dislike">Dislike</string>
+    <string name="unlike">Unlike</string>
+    <string name="share_review">Share review</string>
+    <string name="invalid_credentials">Invalid credentials. Please try again</string>
+    <string name="followed_places">My Liked places</string>
+    <string name="my_reviews">My reviews</string>
+    <string name="followed_offers">My Liked Offers</string>
+    <string name="customize_interests">Customize interests</string>
+    <string name="send_feedback">Send feedback</string>
+    <string name="about_qurba">About Qurba</string>
+    <string name="settings">Settings</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="language_preferences">Language preferences</string>
+    <string name="language">Language</string>
+    <string name="arabic" translatable="false">عربي</string>
+    <string name="english" translatable="false">English</string>
+
+    <string name="change_password">Change password</string>
+    <string name="change_email">Change email</string>
+    <string name="change_phone_number">Change number</string>
+    <string name="logout">Logout</string>
+    <string name="favorited_offers">Favorited offers</string>
+    <string name="possword_not_matching">New and old password are the same</string>
+    <string name="old_password">Old password</string>
+    <string name="new_password">New password</string>
+
+    <string name="save_settings">Save settings?</string>
+    <string name="restart_app">You will have to restart the application for the changes to take effect</string>
+    <string name="save">Save</string>
+    <string name="labels">Label*</string>
+    <string name="floors_num">Floor No.*</string>
+    <string name="flat_num">Flat No.*</string>
+    <string name="building_no">Building No.*</string>
+    <string name="street_name">Street Name*</string>
+    <string name="branched_from">Branched From*</string>
+    <string name="plus" translatable="false">+</string>
+
+    <string name="street_name_hint">Enter Street Name</string>
+    <string name="branched_from_hint">Enter main street name</string>
+    <string name="building_number_hint">Building number</string>
+    <string name="floor_number_hint">Floor number</string>
+    <string name="flat_number_hint">Flat number</string>
+    <string name="nearby_number_hint">e.g: in front of pharmacy</string>
+
+    <string name="address_details">Address Details</string>
+    <string name="saved_addresses">Saved Addresses</string>
+    <string name="vote_hint">Vote to deliver to here</string>
+    <string name="not_deliver_hint">does not deliver to</string>
+    <string name="not_deliver_main_hint">Unfortunately, We currently do not deliver to</string>
+    <string name="another_branch_hint">Do you want to switch to another branch ?</string>
+    <string name="this_branch">This branch</string>
+
+    <string name="likes">Likes</string>
+    <string name="comments">Comments</string>
+    <string name="shares">Shares</string>
+    <string name="orders">Orders</string>
+
+    <string name="update_addres">UPDATE ADDRESS</string>
+    <string name="save_address">SAVE ADDRESS</string>
+    <string name="weak_password">Weak password, try a stronger password.</string>
+    <string name="password_changed">Password changed successfully</string>
+    <string name="send">Send</string>
+    <string name="wrong_email">Wrong email</string>
+    <string name="verify_new_email">Verification</string>
+    <string name="token">msg_token_fmt</string>
+    <string name="notification_channel_id">QurbaUserApp</string>
+    <string name="notification_channel_name">Qurba</string>
+    <string name="msg_token_fmt">fb_token</string>
+    <string name="fcm_message">FCM Message</string>
+    <string name="forgot_pass_type">Select which contact details should we use to reset your password.</string>
+    <string name="forgot_pass_mobile">If you forgotten your password you can reset it by write your mobile number, we will send you a code for next process.</string>
+    <string name="forgot_pass_email">If you forgotten your password you can reset it by write your email, we will send you a code for next process.</string>
+    <string name="via_phone">Via Phone</string>
+    <string name="via_email">Via email</string>
+    <string name="have_offers">Have Offers</string>
+    <string name="offer_availability">This Offer is available only on</string>
+    <string name="from">from</string>
+    <string name="availability">Availability</string>
+    <string name="to">to</string>
+<!--    <string name="available">Available</string>-->
+    <string name="select_country">Choose Country</string>
+    <string name="select_city">City*</string>
+    <string name="select_city_hint">Choose City</string>
+    <string name="select_area_hint">Choose Area</string>
+    <string name="select_area">Area*</string>
+    <string name="select_your_city">Select Your City</string>
+    <string name="select_label_error_msg">Select label first</string>
+    <string name="select_other_label_error_msg">Type label name first</string>
+    <string name="select_your_area">Select Your Area</string>
+    <string name="deliver_to">Delivering to</string>
+    <string name="add_new_address">Add New Delivery address</string>
+    <string name="recent_delivery_area">Recent Delivery Areas</string>
+    <string name="delivery">Delivery</string>
+    <string name="order_details">Order Details</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="quantitiy">Quantity</string>
+    <string name="payment_information">Payment information</string>
+    <string name="delivery_area">Delivery Area</string>
+    <string name="street_address">Street Address*</string>
+    <string name="landmark">Nearest Landmark</string>
+    <string name="address">Address</string>
+    <string name="delivery_address">Delivery Address</string>
+    <string name="edit_address">Edit Address</string>
+    <string name="building">Building*</string>
+    <string name="floor">Floor*</string>
+    <string name="flat_hint">flat</string>
+    <string name="floor_hint">floor</string>
+    <string name="building_hint">building</string>
+
+    <string name="home_lbl">Home</string>
+    <string name="work_lbl">Work</string>
+    <string name="other_lbl">Other</string>
+
+    <string name="flat_number">Flat Number*</string>
+    <string name="street_required">Street*</string>
+    <string name="confirm_address">CONFIRM ADDRESS</string>
+    <string name="edit_location">Edit Location</string>
+    <string name="starting_from">Starting from</string>
+    <string name="starting_at">Starting at</string>
+    <string name="get_started">Get Started</string>
+    <string name="confirm_location">CONFIRM LOCATION</string>
+    <string name="choose_another_area">Choose another area</string>
+    <string name="select_another_supported_area">Please select another address to deliver to</string>
+
+    <string name="additional_note">Additional Notes</string>
+    <string name="note">Special Request</string>
+    <string name="confrim_order">Confirm Order</string>
+    <string name="home">Home</string>
+    <string name="choose">Choose</string>
+
+
+    <string name="subtotal">Order Subtotal</string>
+    <string name="subtotal_hint">(Unit Price x Quantity)</string>
+    <string name="fees">Delivery Fees</string>
+    <string name="delivery_time">Delivery Time</string>
+    <string name="order_total">Order Total</string>
+    <string name="order_status">Order Status</string>
+    <string name="order_number">Order</string>
+    <string name="cancel_reason">Cancellation reason:</string>
+    <string name="ordered_on">Ordered at:</string>
+    <string name="vat">VAT</string>
+
+    <string name="thank_you">Thank you, your order has been Submitted</string>
+    <string name="ordered_created_successfully">Order has been successfully created</string>
+    <string name="created_on">Created on</string>
+    <string name="view_details">View</string>
+    <string name="order_status_hint">Order Status:</string>
+    <string name="enter_phone_numberl">Enter Phone Number</string>
+    <string name="verify_phone_numberl">Verify Phone Number</string>
+    <string name="enter_number_hint">Please enter your phone number to complete your order</string>
+    <string name="order_id_hint">Order ID:</string>
+    <string name="current_status">Current Status:</string>
+    <string name="total_savings">Total Savings</string>
+    <string name="like_hint">Like</string>
+
+    <string name="enter_street_number_hint">Enter your street number</string>
+
+    <string name="my_cart">My Cart</string>
+    <string name="yes_start">Yes, Start</string>
+    <string name="start_new_cart">Start a new cart?</string>
+    <string name="already_have_items">You already have items in your cart from</string>
+    <string name="clear_cart">do you want to clear cart and start a new order?</string>
+    <string name="clear_cart_hint">You already have items in your cart ,if you change current location it will be cleared</string>
+    <string name="your_cart_contain_items_hint">Your cart contains items from</string>
+    <string name="this_place_not_deliver_hint">and this place is not delivering to</string>
+
+    <string name="item_price">Item Price</string>
+    <string name="price">Price</string>
+    <string name="total">Total</string>
+    <string name="total_hint">Total:</string>
+    <string name="add_items">ADD ITEMS</string>
+    <string name="apply_filter">Apply Filter</string>
+    <string name="reset">Reset</string>
+
+    <string name="note_hint">e.g. without onion</string>
+    <string name="checkout">Checkout</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="empty_cart">Your Cart is empty</string>
+    <string name="add_items_to_cart">Add items to your cart to place new order</string>
+    <string name="payment_method">Payment Method</string>
+    <string name="cash_on_delivery">Cash on delivery</string>
+    <string name="customize_order">Customize Order</string>
+    <string name="current_hint">Current</string>
+    <string name="no_orders_hint">You haven’t make any orders till now, If you make a new order later you can manage it from here</string>
+    <string name="free_Delivery_loss">Note: Please note that you will lose this Free Delivery option because the order has other not free delivery items</string>
+    <string name="free_delivery_hint">Free Delivery</string>
+
+    <string name="delete_reply_title">Delete Reply</string>
+    <string name="delete_comment_title">Delete Comment</string>
+    <string name="delete_comment_msg">Are you sure you want to delete this comment?</string>
+    <string name="delete_comment_with_replies_msg">Are you sure you delete this comment and the replies on it?</string>
+
+    <string name="delete_address_title">Delete Address?</string>
+    <string name="delete_address_msg">Are you sure you want to delete this address?</string>
+    <string name="and_delete_Address">and delete address?</string>
+
+    <string name="yes_delete">Yes, delete</string>
+    <string name="update">Update</string>
+
+    <string name="update_now">Update Now</string>
+    <string name="not_now">Not Now</string>
+    <string name="new_version_brief">There is a new version available for download!</string>
+    <string name="new_version_title">New Version Available</string>
+
+    <string name="cancel_order">Need Help</string>
+    <string name="cancel_order_breif">Hello there! Have an issue with your order? You will be redirected to our customer support, make sure to have your order number.</string>
+    <string name="call_customer_support">Call Customer Support</string>
+    <string name="within">Within</string>
+    <string name="vat_included">Included</string>
+
+    <string name="seconds">seconds</string>
+    <string name="minutes">mins</string>
+    <string name="hours">hours</string>
+    <string name="second">s</string>
+    <string name="minute">min</string>
+    <string name="hour">hour</string>
+    <string name="two_hour">hour</string>
+    <string name="day">d</string>
+    <string name="days">days</string>
+    <string name="week">a week</string>
+    <string name="weeks">weeks</string>
+    <string name="month">a month</string>
+    <string name="months">months</string>
+    <string name="year">a year</string>
+    <string name="years">years</string>
+    <string name="ago">ago</string>
+    <string name="just_now">Just Now</string>
+
+    <string name="currency">EGP</string>
+    <string name="filter_by_price">Filter by price</string>
+    <string name="pending_orders">You already have three orders in progress!</string>
+    <string name="only_two_orders">You can make only 3 Orders in the same hour, Once your orders finished you can enjoy making new orders</string>
+
+    <string name="dleet_hint">Yes, delete</string>
+    <string name="delete_hint">Delete</string>
+
+    <string name="max_quantity_hint">You have reached maximum quantity of this item</string>
+    <string name="max_price_hint">You have reached maximum price of this item</string>
+
+    <string name="enjoy">ENJOY</string>
+    <string name="discount_on_men">DISCOUNT ON MENU</string>
+    <string name="and_hint">and</string>
+    <string name="others_hint">others</string>
+    <string name="commented_on_this">commented on this</string>
+    <string name="replied_on_this">replied on this</string>
+    <string name="address_added">Address added successfully</string>
+    <string name="delivery_fees_error">Can\'t load delivery fees</string>
+    <string name="address_deleted">Address deleted successfully</string>
+    <string name="address_updated">Address updated successfully</string>
+    <string name="estimated_time">Estimated delivery time</string>
+
+    <string name="order_out_for_delivery">Your order is out for delivery</string>
+    <string name="pending">Pending</string>
+    <string name="delivering">Delivering</string>
+    <string name="completed">Completed</string>
+    <string name="preparing">Preparing your order</string>
+    <string name="recieved">Received</string>
+    <string name="canceled">Cancelled</string>
+
+
+    <string name="order_submitted">Your order is pending</string>
+    <string name="order_recieved">Your order has been received</string>
+    <string name="order_complete">Your order is completed</string>
+    <string name="order_canceled">Your order is cancelled</string>
+    <string name="order_delivery">Your order is on its way</string>
+    <string name="order_preparing">Your order is being prepared</string>
+
+    <string name="order_recieved_status">Order Received</string>
+    <string name="order_complete_status">Completed</string>
+    <string name="order_canceled_status">Cancelled</string>
+    <string name="order_delivery_status">Out for delivery</string>
+    <string name="order_preparing_status">Preparing your order</string>
+
+    <string name="section_required">At least one section required</string>
+
+    <string name="saturday" translatable="false">السبت</string>
+    <string name="sunday" translatable="false">الأحد</string>
+    <string name="monday" translatable="false">الاثنين</string>
+    <string name="tuesday" translatable="false">الثلاثاء</string>
+    <string name="wednesday" translatable="false">الأربعاء</string>
+    <string name="thursday" translatable="false">الخميس</string>
+    <string name="friday" translatable="false">الجمعة</string>
+
+    <string name="busy_hint">The restaurant is busy serving a large number of orders, and your order might be delayed further than the delivery time</string>
+    <string name="search_hint">Search...</string>
+    <string name="have_recent_comments">comments already up to date</string>
+
+
+</resources>
+
